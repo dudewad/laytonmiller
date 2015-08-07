@@ -1,0 +1,16 @@
+{
+	"name": "laytonmiller",
+	"version": "0.1.0",
+	"authors": [
+		"dudewad <layton@desmill.com>"
+	],
+	"moduleType": "globals",
+	"description": "Layton Miller's Personal Website",
+	"license": "MIT",
+	"homepage": "http://www.laytonmiller.com",
+	"dependencies": {
+		"greensock": "~1.17.0",
+		"jQuery": "~1.11.3",
+		"angular": "~1.4.3"
+	}
+}
