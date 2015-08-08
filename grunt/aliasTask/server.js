@@ -3,8 +3,8 @@
  */
 module.exports = function (grunt) {
 	grunt.registerTask("server", [
-		'express',
-		'open',
+		'express:dev',
+		'open:dev',
 		'watch'
 	]);
 };

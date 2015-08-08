@@ -1,0 +1,71 @@
+header.main-header{
+	margin-bottom:2em;
+
+	h1 {
+		font-size: 3em;
+		margin-bottom:0;
+	}
+
+	h2{
+		margin-top: -.25em;
+		font-size:1.25em;
+		@include setFont("montserrat", 200, normal);
+	}
+}
+
+
+
+@media screen and(min-width: $screen-sm-min) {
+	header.main-header{
+		h1 {
+			font-size: 4em;
+		}
+
+		h2 {
+			font-size: 1.3em;
+		}
+	}
+}
+
+
+
+@media screen and(min-width: $screen-md-min) {
+	header.main-header{
+		h1 {
+			font-size: 5em;
+		}
+
+		h2 {
+			margin-top: -.65em;
+			font-size: 1.4em;
+		}
+	}
+}
+
+
+
+@media screen and(min-width: $screen-lg-min) {
+	header.main-header{
+		h1 {
+			font-size: 6em;
+		}
+
+		h2 {
+			font-size: 1.5em;
+		}
+	}
+}
+
+
+
+@media screen and(min-width: $screen-xl-min) {
+	header.main-header{
+		h1 {
+			font-size: 7.5em;
+		}
+
+		h2 {
+			font-size: 2em;
+		}
+	}
+}

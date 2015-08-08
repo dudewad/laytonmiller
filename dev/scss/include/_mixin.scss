@@ -1,0 +1,47 @@
+@mixin prefixProp($prop, $val){
+	-webkit-#{$prop}: #{$val};
+	-moz-#{$prop}: #{$val};
+	-ms-#{$prop}: #{$val};
+	#{$prop}: #{$val};
+}
+
+
+
+@mixin themeBase($light, $medium, $dark) {
+	color: $light;
+	background-color: $medium;
+	border-top: 5px solid $light;
+
+	nav{
+		border-left:.2em solid $dark;
+	}
+}
+
+
+
+@mixin theme($name, $light, $medium, $dark){
+	@if $name {
+		&.#{$name}{
+			@include themeBase($light, $medium, $dark);
+		}
+	}
+	@else {
+		@include themeBase($light, $medium, $dark);
+	}
+}
+
+
+
+/**
+ * Fonts
+ */
+@mixin setFont($name, $weight, $style){
+	@if $name == "montserrat" {
+		font-family: $font-list-montserrat;
+	}
+	@else if $name == "quattrocento-sans" {
+		font-family: $font-list-quattrocento-sans;
+	}
+	font-weight: $weight;
+	font-style: $style;
+}

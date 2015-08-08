@@ -1,0 +1,9 @@
+nav{
+	font-size:2.5em;
+
+	@include setFont("montserrat", 200, normal);
+
+	li{
+		padding:.5em;
+	}
+}
