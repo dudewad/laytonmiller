@@ -32,6 +32,7 @@
     "script": "script/",
     "scriptSrc": "script/src/",
     "bowerComponents": "bower-components/",
+    "partial": "partial/",
     "style": "style/",
     "scss": "scss/",
     "grunt": {
