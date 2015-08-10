@@ -1,3 +1,76 @@
+.navigation-wrapper{
+	/*Using intrinsic ratio*/
+	width:0;
+	height: 0;
+	padding-bottom: 0;
+	position: fixed;
+	bottom: 0;
+	right:0;
+	overflow:hidden;
+	border-top-left-radius:100%;
+	@include prefixProp("transition", "width 150ms, padding-bottom 150ms");
+
+	ul {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		border-top-left-radius: 100%;
+		width:100%;
+
+		li{
+			position:absolute;
+			bottom:0;
+			right:0;
+			width:100%;
+			@include prefixProp("transform-origin", "bottom right");
+
+			&.technical-summary{
+				@include prefixProp("transform", "rotate(67.5deg)");
+			}
+
+			&.experience{
+				@include prefixProp("transform", "rotate(45deg)");
+			}
+
+			&.portfolio{
+				@include prefixProp("transform", "rotate(22.5deg)");
+			}
+		}
+	}
+
+	.mobile-nav-background{
+		position:absolute;
+		bottom:0;
+		right:0;
+		width: 100%;
+		height: 100%;
+
+		path
+		{
+			&.technical-summary{
+				fill: $color-blue-medium;
+			}
+
+			&.experience{
+				fill: $color-red-medium;
+			}
+
+			&.portfolio{
+				fill: $color-green-medium;
+			}
+
+			&.contact{
+				fill: $color-orange-medium;
+			}
+		}
+	}
+
+	&.active{
+		width:100%;
+		padding-bottom:100%;
+	}
+}
+
 nav{
 	font-size: 2em;
 	@include setFont("montserrat", 200, normal);
@@ -38,7 +111,9 @@ nav{
 
 
 @media screen and(min-width: $screen-sm-min){
-	margin: 0;
+	.navigation-wrapper{
+		position:static;
+	}
 
 	nav {
 		li{

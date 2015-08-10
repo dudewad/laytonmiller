@@ -28,40 +28,54 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 col-lg-3">
 			<nav class="main-nav content-background">
-				<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-				     viewBox="0 0 70 70" preserveAspectRatio="xMidYMid slice"
-				     class="mobile-nav-menu visible-xs-block">
-					<filter id="mobile-nav-menu-shadow" height="150%">
-						<feGaussianBlur in="SourceAlpha" stdDeviation="2.25"/>
-						<feOffset dx="3" dy="3" result="offsetblur"/>
-						<feComponentTransfer xmlns="http://www.w3.org/2000/svg">
-							<feFuncA type="linear" slope="0.35"/>
-						</feComponentTransfer>
-						<feMerge>
-							<feMergeNode/>
-							<feMergeNode in="SourceGraphic"/>
-						</feMerge>
-					</filter>
-					<circle cx="47%" cy="47%" r="43%" style="filter:url(#mobile-nav-menu-shadow)"/>
-					<rect x="27%" y="31%" width="40%" height="3px" rx="1" ry="1"/>
-					<rect x="27%" y="44%" width="40%" height="3px" rx="1" ry="1"/>
-					<rect x="27%" y="57%" width="40%" height="3px" rx="1" ry="1"/>
-				</svg>
+				<div class="navigation-wrapper active">
+					<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+					     viewBox="-100 -100 100 100"
+					     class="mobile-nav-background">
+						<g id="mobile-nav-bg-starburst">
+							<path class="technical-summary" d="M0,0 -141,-59 -141,0 z" transform="rotate(67.5)"></path>
+							<path class="experience" d="M0,0 -141,-59 -141,0 z" transform="rotate(45)"></path>
+							<path class="portfolio" d="M0,0 -141,-59 -141,0 z" transform="rotate(22.5)"></path>
+							<path class="contact" d="M0,0 -141,-59 -141,0 z" ></path>
+						</g>
+					</svg>
 
-				<ul>
-					<li ui-sref-active="active">
-						<a ui-sref="technical-summary">Technical Summary</a>
-					</li>
-					<li ui-sref-active="active">
-						<a ui-sref="experience">Experience</a>
-					</li>
-					<li ui-sref-active="active">
-						<a ui-sref="portfolio">Portfolio</a>
-					</li>
-					<li ui-sref-active="active">
-						<a ui-sref="contact">Contact</a>
-					</li>
-				</ul>
+					<ul>
+						<li ui-sref-active="active" class="technical-summary">
+							<a ui-sref="technical-summary">Technical Summary</a>
+						</li>
+						<li ui-sref-active="active" class="experience">
+							<a ui-sref="experience">Experience</a>
+						</li>
+						<li ui-sref-active="active" class="portfolio">
+							<a ui-sref="portfolio">Portfolio</a>
+						</li>
+						<li ui-sref-active="active" class="contact">
+							<a ui-sref="contact">Contact</a>
+						</li>
+					</ul>
+
+					<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+					     viewBox="0 0 70 70" preserveAspectRatio="xMidYMid slice"
+					     class="mobile-nav-menu visible-xs-block">
+						<filter id="mobile-nav-menu-shadow" height="150%">
+							<feGaussianBlur in="SourceAlpha" stdDeviation="2.25"/>
+							<feOffset dx="3" dy="3" result="offsetblur"/>
+							<feComponentTransfer xmlns="http://www.w3.org/2000/svg">
+								<feFuncA type="linear" slope="0.35"/>
+							</feComponentTransfer>
+							<feMerge>
+								<feMergeNode/>
+								<feMergeNode in="SourceGraphic"/>
+							</feMerge>
+						</filter>
+						<circle cx="47%" cy="47%" r="43%" style="filter:url(#mobile-nav-menu-shadow)"/>
+						<rect id="mobile-nav-menu-hamburger-stripe" x="27%" y="31%" width="40%" height="3px" rx="1"
+						      ry="1"/>
+						<use xlink:href="#mobile-nav-menu-hamburger-stripe" y="13%"/>
+						<use xlink:href="#mobile-nav-menu-hamburger-stripe" y="26%"/>
+					</svg>
+				</div>
 			</nav>
 		</div>
 
