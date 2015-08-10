@@ -1,9 +1,76 @@
 nav{
-	font-size:2.5em;
-
+	font-size: 2em;
 	@include setFont("montserrat", 200, normal);
+	margin: 0 -15px;
 
 	li{
-		padding:.5em;
+		a {
+			display: block;
+			padding: 1em;
+		}
+
+		&.active{
+			@include setFont("montserrat", 400, normal);
+		}
+	}
+
+	svg{
+		&.mobile-nav-menu {
+			width: 70px;
+			height: 70px;
+			position: fixed;
+			right: .5em;
+			bottom: .5em;
+			background: transparent;
+
+			circle,
+			rect{
+				@include prefixProp("transition", "fill #{$section-transition-speed} linear");
+			}
+
+			circle{
+				@include prefixProp("filter", "drop-shadow( -5px -5px 5px #{$color-black})");
+			}
+		}
+	}
+}
+
+
+
+@media screen and(min-width: $screen-sm-min){
+	margin: 0;
+
+	nav {
+		li{
+			a {
+				padding: .75em;
+			}
+		}
+	}
+}
+
+
+
+@media screen and(min-width: $screen-md-min){
+	nav {
+		font-size: 2em;
+		margin-right: .25em;
+	}
+}
+
+
+
+@media screen and(min-width: $screen-lg-min){
+	nav {
+		margin-right: .5em;
+	}
+}
+
+
+
+@media screen and(min-width: $screen-xl-min){
+	nav {
+		font-size: 2.25em;
+		margin-right: 1em;
 	}
 }

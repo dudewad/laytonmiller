@@ -14,7 +14,9 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<header class="main-header">
-				<h1>LAYTON MILLER</h1>
+				<h1>
+					<a ui-sref="default">LAYTON MILLER</a>
+				</h1>
 
 				<h2>Web Architect, Team Leader</h2>
 			</header>
@@ -26,24 +28,44 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 col-lg-3">
 			<nav class="main-nav content-background">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+				     viewBox="0 0 70 70" preserveAspectRatio="xMidYMid slice"
+				     class="mobile-nav-menu visible-xs-block">
+					<filter id="mobile-nav-menu-shadow" height="150%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="2.25"/>
+						<feOffset dx="3" dy="3" result="offsetblur"/>
+						<feComponentTransfer xmlns="http://www.w3.org/2000/svg">
+							<feFuncA type="linear" slope="0.35"/>
+						</feComponentTransfer>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+					<circle cx="47%" cy="47%" r="43%" style="filter:url(#mobile-nav-menu-shadow)"/>
+					<rect x="27%" y="31%" width="40%" height="3px" rx="1" ry="1"/>
+					<rect x="27%" y="44%" width="40%" height="3px" rx="1" ry="1"/>
+					<rect x="27%" y="57%" width="40%" height="3px" rx="1" ry="1"/>
+				</svg>
+
 				<ul>
-					<li>
+					<li ui-sref-active="active">
 						<a ui-sref="technical-summary">Technical Summary</a>
 					</li>
-					<li>
+					<li ui-sref-active="active">
 						<a ui-sref="experience">Experience</a>
 					</li>
-					<li>
+					<li ui-sref-active="active">
 						<a ui-sref="portfolio">Portfolio</a>
 					</li>
-					<li>
+					<li ui-sref-active="active">
 						<a ui-sref="contact">Contact</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 
-		<div class="col-xs-12 col-sm-8 col-lg-9" ui-view="contentMain">
+		<div class="col-xs-12 col-sm-8 col-lg-9 content-main" ui-view="contentMain">
 		</div>
 	</div>
 </div>

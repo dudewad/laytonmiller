@@ -1,7 +1,7 @@
 body{
 	margin:0;
 	font-size:10px;
-	padding:3em 1.5em;
+	padding:3em 0;
 	@include setFont("montserrat", 400, normal);
 
 	/*Default theme*/
@@ -9,7 +9,8 @@ body{
 	@include theme("technical-summary", $color-blue-lightest, $color-blue-medium, $color-blue-darkest);
 	@include theme("portfolio", $color-green-lightest, $color-green-medium, $color-green-darkest);
 	@include theme("experience", $color-red-lightest, $color-red-medium, $color-red-darkest);
-	@include prefixProp("transition", "color .5s linear, background-color .5s linear");
+	@include theme("contact", $color-orange-lightest, $color-orange-medium, $color-orange-darkest);
+	@include prefixProp("transition", "color #{$section-transition-speed} linear, background-color #{$section-transition-speed} linear");
 }
 
 a{
@@ -37,7 +38,8 @@ ul{
 	list-style-type:none;
 }
 
-.content-background{
+.content-background,
+nav li.active{
 	$start: rgba(0, 0, 0, .1);
 	$mid: rgba(0, 0, 0, .25);
 	$end: rgba(0, 0, 0, .4);
@@ -60,6 +62,11 @@ ul{
 @media screen and(min-width: $screen-sm-min){
 	body{
 		padding:5em 2em 0 5em;
+
+		> .container-fluid{
+			padding-left:15px;
+			padding-right:15px;
+		}
 	}
 }
 

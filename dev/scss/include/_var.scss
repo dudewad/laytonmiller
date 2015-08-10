@@ -19,6 +19,10 @@ $color-green-darkest: #0c4000;
 $color-green-medium: #198600;
 $color-green-lightest: #def2da;
 
+$color-orange-darkest: #733900;
+$color-orange-medium: #d96900;
+$color-orange-lightest: #f2dada;
+
 
 
 /**
@@ -26,3 +30,10 @@ $color-green-lightest: #def2da;
  */
 $font-list-montserrat: montserrat, arial, helvetica, sans-serif;
 $font-list-quattrocento-sans: quattrocento-sans, arial, helvetica, sans-serif;
+
+
+
+/**
+ * Transition related
+ */
+$section-transition-speed: .5s;

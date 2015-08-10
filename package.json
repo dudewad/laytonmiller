@@ -15,6 +15,7 @@
     "grunt-express": "^1.4.1",
     "grunt-open": "^0.2.3",
     "grunt-scss-lint": "^0.3.8",
+    "grunt-spritesmith": "^5.0.0",
     "load-grunt-tasks": "^0.5.0"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "temp_root": "./.tmp/",
     "asset": "asset/",
     "image": "asset/image/",
+    "sprite": "asset/image/sprite/",
     "script": "script/",
     "scriptSrc": "script/src/",
     "bowerComponents": "bower-components/",

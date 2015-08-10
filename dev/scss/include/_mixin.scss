@@ -14,6 +14,26 @@
 
 	nav{
 		border-left:.2em solid $dark;
+
+		li{
+			&.active{
+				border-left: 4px solid $light;
+				margin-left: -4px;
+			}
+		}
+
+		svg {
+			&.mobile-nav-menu {
+				circle{
+					stroke: $light;
+					fill: $medium;
+				}
+
+				rect{
+					fill: $light;
+				}
+			}
+		}
 	}
 }
 

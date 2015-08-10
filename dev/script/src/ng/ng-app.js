@@ -5,6 +5,14 @@ var LMApp = angular.module("LMApp", ["ui.router"])
 		var PATH = CONSTANTS.PATH;
 
 		$stateProvider
+			.state(STATE.DEFAULT.NAME, {
+				url: STATE.DEFAULT.URL,
+				views: {
+					"contentMain": {
+						templateUrl: PATH.PARTIAL + STATE.DEFAULT.TEMPLATE
+					}
+				}
+			})
 			.state(STATE.TECHNICAL_SUMMARY.NAME, {
 				url: STATE.TECHNICAL_SUMMARY.URL,
 				views: {

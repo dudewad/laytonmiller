@@ -1,0 +1,58 @@
+.content-main{
+	> section {
+		padding:3em 0;
+	}
+
+	h1{
+		font-size:2.5em;
+	}
+}
+
+@media screen and(min-width: $screen-sm-min) {
+	.content-main {
+		> section {
+			padding: 1em 1.5em 3em 1.5em;
+		}
+
+		h1 {
+			font-size: 3em;
+		}
+	}
+}
+
+@media screen and(min-width: $screen-md-min) {
+	.content-main {
+		> section {
+			margin-left: .25em;
+		}
+
+		h1 {
+			font-size: 3.5em;
+		}
+	}
+}
+
+@media screen and(min-width: $screen-lg-min) {
+	.content-main {
+		> section {
+			padding-top: 2em;
+			margin-left: .5em;
+		}
+
+		h1{
+			font-size:3.75em;
+		}
+	}
+}
+
+@media screen and(min-width: $screen-xl-min) {
+	.content-main {
+		> section {
+			margin-left: 1em;
+		}
+
+		h1 {
+			font-size: 4em;
+		}
+	}
+}
