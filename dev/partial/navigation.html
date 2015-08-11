@@ -1,0 +1,42 @@
+<nav class="main-nav content-background" ng-controller="NavigationController">
+	<div data-lm-touchend="deactivate($event)">
+		<div class="navigation-wrapper" ng-class="{'active': currentState.active}">
+			<ul class="link-list">
+				<li ui-sref-active="active" class="contact">
+					<a ui-sref="contact"><span>Contact</span></a>
+				</li>
+				<li ui-sref-active="active" class="portfolio">
+					<a ui-sref="portfolio"><span>Portfolio</span></a>
+				</li>
+				<li ui-sref-active="active" class="experience">
+					<a ui-sref="experience"><span>Experience</span></a>
+				</li>
+				<li ui-sref-active="active" class="technical-summary">
+					<a ui-sref="technical-summary"><span>Technical Summary</span></a>
+				</li>
+			</ul>
+		</div>
+
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+		     viewBox="0 0 70 70" preserveAspectRatio="xMidYMid slice"
+		     class="mobile-nav-menu visible-xs-block"
+		     data-lm-touchstart="activate()">
+			<filter id="mobile-nav-menu-shadow" height="150%">
+				<feGaussianBlur in="SourceAlpha" stdDeviation="2.25"></feGaussianBlur>
+				<feOffset dx="3" dy="3" result="offsetblur"></feOffset>
+				<feComponentTransfer xmlns="http://www.w3.org/2000/svg">
+					<feFuncA type="linear" slope="0.35"></feFuncA>
+				</feComponentTransfer>
+				<feMerge>
+					<feMergeNode></feMergeNode>
+					<feMergeNode in="SourceGraphic"></feMergeNode>
+				</feMerge>
+			</filter>
+			<circle cx="47%" cy="47%" r="43%" style="filter:url(#mobile-nav-menu-shadow)"></circle>
+			<rect id="mobile-nav-menu-hamburger-stripe" x="27%" y="31%" width="40%" height="3px" rx="1"
+			      ry="1"></rect>
+			<use xlink:href="#mobile-nav-menu-hamburger-stripe" y="13%"></use>
+			<use xlink:href="#mobile-nav-menu-hamburger-stripe" y="26%"></use>
+		</svg>
+	</div>
+</nav>
