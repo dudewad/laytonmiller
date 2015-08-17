@@ -49,7 +49,7 @@ angular.module("LMApp").controller("NavigationController", ["$scope", function($
 	$scope.deactivate = function(e){
 		var target;
 		if(e.type === "mouseup"){
-			target = angular.element(e.originalEvent.target)
+			target = angular.element(e.originalEvent.target);
 		}
 		else{
 			target = angular.element(elementFromPoint(e));
