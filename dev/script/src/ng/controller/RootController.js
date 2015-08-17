@@ -3,5 +3,5 @@ angular.module("LMApp").controller("RootController", ["$scope", "$rootScope", fu
 
 	$rootScope.$on("$stateChangeStart", function(e, toState){
 		$scope.currentSection = toState.name;
-	})
+	});
 }]);

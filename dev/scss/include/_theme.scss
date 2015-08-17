@@ -1,0 +1,58 @@
+@mixin themeBase($light, $medium, $dark) {
+	color: $light;
+	background-color: $medium;
+	border-top: 5px solid $light;
+
+	nav {
+		border-left: .2em solid $dark;
+
+		li {
+			&.active {
+				border: none;
+				margin-left: 0;
+			}
+		}
+
+		svg {
+			&.mobile-nav-menu {
+				circle {
+					stroke: $light;
+					fill: $medium;
+				}
+
+				rect {
+					fill: $light;
+				}
+			}
+		}
+
+		.link-list {
+			border: 2px solid $light;
+		}
+	}
+
+	@media screen and(min-width: $screen-sm-min) {
+		nav {
+			li {
+				&.active {
+					border-left: 4px solid $light;
+					margin-left: -4px;
+				}
+			}
+
+			.link-list{
+				border:none;
+			}
+		}
+	}
+}
+
+@mixin theme($name, $light, $medium, $dark) {
+	@if $name {
+		&.#{$name} {
+			@include themeBase($light, $medium, $dark);
+		}
+	} @else {
+		@include themeBase($light, $medium, $dark);
+	}
+}

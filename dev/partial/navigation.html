@@ -1,26 +1,22 @@
 <nav class="main-nav content-background" ng-controller="NavigationController">
 	<div data-lm-touchend="deactivate($event)">
-		<div class="navigation-wrapper" ng-class="{'active': currentState.active}">
-			<ul class="link-list">
-				<li ui-sref-active="active" class="contact">
-					<a ui-sref="contact"><span>Contact</span></a>
-				</li>
-				<li ui-sref-active="active" class="portfolio">
-					<a ui-sref="portfolio"><span>Portfolio</span></a>
-				</li>
-				<li ui-sref-active="active" class="experience">
-					<a ui-sref="experience"><span>Experience</span></a>
-				</li>
-				<li ui-sref-active="active" class="technical-summary">
-					<a ui-sref="technical-summary"><span>Technical Summary</span></a>
-				</li>
-			</ul>
+		<div class="navigation-wrapper-outer" ng-class="{'active': currentState.active}">
+			<div class="navigation-wrapper">
+				<ul class="link-list">
+					<li ui-sref-active="active"
+					    ng-repeat="item in navItems"
+					    data-mobile-hover="{{item.isHovered ? 'true' : 'false'}}"
+					    class="{{item.className}}">
+						<a ui-sref="{{item.sref}}"><span>{{item.text}}</span></a>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 		<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
 		     viewBox="0 0 70 70" preserveAspectRatio="xMidYMid slice"
 		     class="mobile-nav-menu visible-xs-block"
-		     data-lm-touchstart="activate()">
+		     data-lm-touchstart="activate($event)">
 			<filter id="mobile-nav-menu-shadow" height="150%">
 				<feGaussianBlur in="SourceAlpha" stdDeviation="2.25"></feGaussianBlur>
 				<feOffset dx="3" dy="3" result="offsetblur"></feOffset>

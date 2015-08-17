@@ -3,6 +3,7 @@ dev/bower-components/
 .sass-cache/
 node_modules/
 dist/
+prod/
 .ftppass
 *.iml
 dev/script/app.js

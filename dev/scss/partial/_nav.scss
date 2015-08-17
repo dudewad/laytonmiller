@@ -1,3 +1,7 @@
+$navItemClasses: "technical-summary", "experience", "portfolio", "contact";
+$navBGColors: $color-blue-medium, $color-red-medium, $color-green-medium, $color-orange-medium;
+$navHoverBGColors: $color-blue-light, $color-red-light, $color-green-light, $color-orange-light;
+
 nav {
 	position: relative;
 	z-index: 1;
@@ -6,17 +10,6 @@ nav {
 	margin: 0 -15px;
 	cursor: pointer;
 	@include prefixProp("user-select", "none");
-
-	li {
-		a {
-			display: block;
-			padding: 1em;
-		}
-
-		&.active {
-			@include setFont("montserrat", 400, normal);
-		}
-	}
 
 	svg {
 		&.mobile-nav-menu {
@@ -38,32 +31,30 @@ nav {
 		}
 	}
 
-	.navigation-wrapper {
-		/*Using intrinsic ratio*/
-		width: 0;
-		height: 0;
-		padding-bottom: 0;
+	.navigation-wrapper-outer {
 		position: fixed;
 		bottom: 0;
 		right: 0;
-		overflow: hidden;
-		border-top-left-radius: 100%;
-		@include prefixProp("transition", "width 150ms, padding-bottom 150ms");
-		border-width: 0;
+		width: 0;
+		height:0;
+		padding-bottom:0;
+		@include prefixProp("transition", "height 150ms, width 150ms, padding-bottom 150ms");
 
 		&.active {
-			width: 100%;
-			max-height: 100%;
-			padding-bottom: 100%;
-			border-left-width: 2px !important;
-			border-top-width: 2px !important;
+			width:100%;
+			padding-bottom:100%;
 		}
+	}
 
+	.navigation-wrapper {
 		ul {
-			position: absolute;
-			bottom: 0;
-			right: 0;
 			border-top-left-radius: 100%;
+			border-top-right-radius: 2%;
+			border-bottom-left-radius: 2%;
+			border-bottom-right-radius: 0;
+			display:block;
+			position:absolute;
+			overflow:hidden;
 			width: 100%;
 			height: 100%;
 
@@ -71,50 +62,34 @@ nav {
 				position: absolute;
 				bottom: 0;
 				right: 0;
-				width: 150%;
-				height: 41%;
+				width: 600%;
+				height: 100%;
 				@include prefixProp("transform-origin", "bottom right");
 
-				&.technical-summary {
-					@include prefixProp("transform", "rotate(67.5deg)");
-					background-color: $color-blue-medium;
-
-					&:hover,
-					&:active,
-					&:focus {
-						background-color: $color-blue-light;
-					}
+				&.active {
+					@include setFont("montserrat", 400, normal);
 				}
 
-				&.experience {
-					@include prefixProp("transform", "rotate(45deg)");
-					background-color: $color-red-medium;
+				//Outputs specific styles for nav LI elements
+				//To add to this, modify the arrays at the top of the file.
+				//The rest should handle itself.
+				@each $navItem in $navItemClasses {
+					$i: index($navItemClasses, $navItem);
+					$deg: 90 / length($navItemClasses); //#degrees each LI should take up in the wheel
+					$rotation: 90 - $deg * $i; //Calculate actual rotation
 
-					&:hover,
-					&:active,
-					&:focus{
-						background-color: $color-red-light;
-					}
-				}
+					&.#{$navItem} {
+						@include prefixProp("transform", "rotate(#{$rotation}deg)");
+						z-index: 4 - $i;
+						background-color: nth($navBGColors, $i);
 
-				&.portfolio {
-					@include prefixProp("transform", "rotate(22.5deg)");
-					background-color: $color-green-medium;
-
-					&:hover,
-					&:active,
-					&:focus {
-						background-color: $color-green-light;
-					}
-				}
-
-				&.contact {
-					background-color: $color-orange-medium;
-
-					&:hover,
-					&:active,
-					&:focus {
-						background-color: $color-orange-light;
+						&:hover,
+						&:active,
+						&:focus,
+						&.active,
+						&[data-mobile-hover='true']{
+							background-color: nth($navHoverBGColors, $i);
+						}
 					}
 				}
 
@@ -122,8 +97,10 @@ nav {
 					position: absolute;
 					right: 0;
 					bottom: 0;
-					width: 67%;
+					display: block;
+					width: 16%;
 					height: 100%;
+					padding: 1em;
 
 					span {
 						position: absolute;
@@ -135,11 +112,23 @@ nav {
 	}
 }
 
-@media screen and(min-width: $screen-sm-min) {
-
+@media screen and (orientation: landscape) {
 	nav {
-		ul{
-			position:static;
+		.navigation-wrapper-outer {
+			&.active {
+				width:50%;
+				padding-bottom:50%;
+			}
+		}
+	}
+}
+
+@media screen and(min-width: $screen-sm-min) {
+	nav {
+		position: static;
+
+		ul {
+			position: static;
 		}
 
 		li {
@@ -149,37 +138,40 @@ nav {
 			}
 		}
 
-		.navigation-wrapper {
-			position: static;
-			width: auto;
-			height: auto;
-			border-top-left-radius: 0;
-			overflow: visible;
+		.navigation-wrapper-outer{
+			position:static;
+			width:auto;
+			height:auto;
+		}
 
+		.navigation-wrapper {
 			ul {
 				position: static;
-				width:auto;
-				height:auto;
+				width: auto;
+				height: auto;
+				border-radius:0;
 
 				li {
-					&.technical-summary,
-					&.experience,
-					&.portfolio,
-					&.contact{
+					position: static;
+					width: auto;
+					height: auto;
+					background-color: transparent;
+
+					//Override to reset rotation property from mobile
+					@each $navItem in $navItemClasses {
+						&.#{$navItem} {
+							@include prefixProp("transform", "none");
+							background-color:transparent;
+						}
+					}
+
+					a {
 						position: static;
-						@include prefixProp("transform", "none");
 						width: auto;
 						height: auto;
-						background-color:transparent;
 
-						a{
-							position:static;
-							width:auto;
-							height:auto;
-
-							span{
-								position:static;
-							}
+						span {
+							position: static;
 						}
 					}
 				}
