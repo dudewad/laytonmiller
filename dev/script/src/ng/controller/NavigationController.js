@@ -123,8 +123,8 @@ angular.module("LMApp").controller("NavigationController", ["$scope", function($
 			return;
 		}
 
-		for (var index in $scope.navItems) {
-			var i = $scope.navItems[index];
+		for (var ind in $scope.navItems) {
+			var i = $scope.navItems[ind];
 			if (currentMobileHoverDOMItem.attr("class").indexOf(i.className) != -1) {
 				if (currentMobileHoverNavObject) {
 					currentMobileHoverNavObject.isHovered = false;
