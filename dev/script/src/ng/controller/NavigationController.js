@@ -48,7 +48,9 @@ angular.module("LMApp").controller("NavigationController", ["$scope", function($
 
 	$scope.deactivate = function(e){
 		var target;
-		if(e.type === "mouseup"){
+		var isMouse = e.type === "mouseup";
+
+		if(isMouse){
 			target = angular.element(e.originalEvent.target);
 		}
 		else{
@@ -62,7 +64,7 @@ angular.module("LMApp").controller("NavigationController", ["$scope", function($
 		enablePageScrolling(e);
 
 
-		if(target.closest(".link-list").length){
+		if(target.closest(".link-list").length && !isMouse){
 			target.trigger("click");
 		}
 		if (!$scope.$$phase) {
