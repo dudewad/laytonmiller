@@ -1,0 +1,99 @@
+.summary-group {
+	max-width:100%;
+	width:100%;
+	float:left;
+	padding-bottom:0;
+	margin-right:3em;
+	margin-bottom:5em;
+
+	h2,
+	h3{
+		@include setFont("montserrat", 300, normal);
+	}
+
+	h2{
+		font-size: 2.5em;
+		margin-bottom:1em;
+	}
+
+	h3{
+		font-size:1.5em;
+		margin-bottom:.66em;
+	}
+
+	.summary-item{
+		position: relative;
+		margin-bottom: 3em;
+		cursor:pointer;
+
+		&.tooltip-active {
+			.description {
+				z-index:1;
+				opacity: 1;
+				@include prefixProp("transform", "translateX(0)");
+			}
+		}
+
+		&.tooltip-inactive{
+			.description {
+				z-index: -1;
+				opacity: 0;
+				@include prefixProp("transform", "translateX(-5%)");
+			}
+		}
+	}
+
+	.description{
+		@include setFont("quattrocento-sans", 100, italic);
+		font-size:1.25em;
+		display: block;
+		position: absolute;
+		top: 150%;
+		padding: 1.5em;
+		border-radius: 4px;
+		width: 90%;
+		left: 5%;
+		box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+		opacity: 0;
+		z-index:-1;
+		@include prefixProp("transform", "translateX(-5%)");
+		@include prefixProp("transition", "opacity 150ms, transform 150ms");
+	}
+
+	.rating-visual{
+		height:1em;
+		background-color:rgba(0,0,0,.25);
+
+		.fill-bar{
+			height: 100%;
+			display: block;
+			padding: 0;
+			border-left: 0;
+			@include prefixProp("transform", "scaleX(0)");
+			@include prefixProp("transform-origin", "0");
+			@include prefixProp("transition", "transform 1.5s");
+		}
+	}
+}
+
+@media screen and (min-width:$screen-sm-max){
+	.summary-group{
+		width: 25em;
+		margin-right: 5em;
+
+		.summary-item {
+			&:hover{
+				.description {
+					z-index: 1;
+					opacity: 1;
+					@include prefixProp("transform", "translateX(0)");
+				}
+			}
+		}
+
+		.description {
+			width: 150%;
+			left: -25%;
+		}
+	}
+}

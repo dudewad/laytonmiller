@@ -1,9 +1,20 @@
 angular.module("LMApp").constant("CONSTANTS", {
 	/**
-	 * Path/Directory contstants
+	 * Data files
+	 */
+	"DATA_FILES": {
+		"TECHNICAL_SUMMARY": "technical-summary.json",
+		"EXPERIENCE": "experience.json",
+		"PORTFOLIO": "portfolio.json",
+		"CONTACT": "contact.json"
+	},
+
+	/**
+	 * Path/Directory constants
 	 */
 	"PATH": {
-		"PARTIAL": "/partial/"
+		"PARTIAL": "partial/",
+		"DATA": "data/"
 	},
 
 	/**
@@ -12,28 +23,28 @@ angular.module("LMApp").constant("CONSTANTS", {
 	"STATE": {
 		"DEFAULT": {
 			"NAME": "default",
-			"URL": "",
-			"TEMPLATE": "default.html"
+			"URL": "/",
+			"TEMPLATE": "core/default.html"
 		},
 		"TECHNICAL_SUMMARY": {
 			"NAME": "technical-summary",
-			"URL": "technicalSummary/",
-			"TEMPLATE": "technical-summary.html"
+			"URL": "/technicalSummary",
+			"TEMPLATE": "technical-summary/technical-summary.html"
 		},
 		"EXPERIENCE": {
 			"NAME": "experience",
-			"URL": "experience/",
-			"TEMPLATE": "experience.html"
+			"URL": "/experience",
+			"TEMPLATE": "experience/experience.html"
 		},
 		"PORTFOLIO": {
 			"NAME": "portfolio",
-			"URL": "portfolio/",
-			"TEMPLATE": "portfolio.html"
+			"URL": "/portfolio",
+			"TEMPLATE": "portfolio/portfolio.html"
 		},
 		"CONTACT": {
 			"NAME": "contact",
-			"URL": "contact/",
-			"TEMPLATE": "contact.html"
+			"URL": "/contact",
+			"TEMPLATE": "contact/contact.html"
 		}
 
 	}

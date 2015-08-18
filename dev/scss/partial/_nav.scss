@@ -11,6 +11,10 @@ nav {
 	cursor: pointer;
 	@include prefixProp("user-select", "none");
 
+	&.content-background {
+		padding: 0;
+	}
+
 	svg {
 		&.mobile-nav-menu {
 			width: 70px;
@@ -35,14 +39,14 @@ nav {
 		position: fixed;
 		bottom: 0;
 		right: 0;
-		width: 0;
-		height:0;
-		padding-bottom:0;
-		@include prefixProp("transition", "height 150ms, width 150ms, padding-bottom 150ms");
+		width:100%;
+		padding-bottom:100%;
+		@include prefixProp("transform", "scale(0)");
+		@include prefixProp("transition", "transform 150ms");
+		@include prefixProp("transform-origin", "bottom right");
 
 		&.active {
-			width:100%;
-			padding-bottom:100%;
+			@include prefixProp("transform", "scale(1)");
 		}
 	}
 
@@ -115,10 +119,8 @@ nav {
 @media screen and (orientation: landscape) {
 	nav {
 		.navigation-wrapper-outer {
-			&.active {
-				width:50%;
-				padding-bottom:50%;
-			}
+			width:50%;
+			padding-bottom: 50%;
 		}
 	}
 }
@@ -142,6 +144,8 @@ nav {
 			position:static;
 			width:auto;
 			height:auto;
+			padding-bottom: 0;
+			@include prefixProp("transform", "scale(1)");
 		}
 
 		.navigation-wrapper {

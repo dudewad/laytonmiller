@@ -1,0 +1,11 @@
+<section class="technical-summary" ng-controller="TechnicalSummaryController">
+	<header>
+		<h1>{{sectionTitle}}</h1>
+
+		<p>{{sectionIntro}}</p>
+	</header>
+
+	<section class="subsection-content clearfix">
+		<div class="summary-groups" ng-include data-src="'partial/technical-summary/summary-group.html'" ng-repeat="group in summaryGroups"></div>
+	</section>
+</section>
