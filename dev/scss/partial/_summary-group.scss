@@ -30,7 +30,7 @@
 			.description {
 				z-index:1;
 				opacity: 1;
-				@include prefixProp("transform", "translateX(0)");
+				@include prefixProp("transform", "translateY(0)");
 			}
 		}
 
@@ -38,25 +38,25 @@
 			.description {
 				z-index: -1;
 				opacity: 0;
-				@include prefixProp("transform", "translateX(-5%)");
+				@include prefixProp("transform", "translateY(5%)");
 			}
 		}
 	}
 
 	.description{
 		@include setFont("quattrocento-sans", 100, italic);
-		font-size:1.25em;
+		font-size:1.4em;
 		display: block;
 		position: absolute;
 		top: 150%;
 		padding: 1.5em;
 		border-radius: 4px;
-		width: 90%;
-		left: 5%;
+		width: 105%;
+		left: -2.5%;
 		box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
 		opacity: 0;
 		z-index:-1;
-		@include prefixProp("transform", "translateX(-5%)");
+		@include prefixProp("transform", "translateY(5%)");
 		@include prefixProp("transition", "opacity 150ms, transform 150ms");
 	}
 
@@ -76,24 +76,63 @@
 	}
 }
 
-@media screen and (min-width:$screen-sm-max){
-	.summary-group{
-		width: 25em;
-		margin-right: 5em;
 
+
+@media screen and (min-width:$screen-sm-min){
+	.summary-group{
 		.summary-item {
 			&:hover{
 				.description {
 					z-index: 1;
 					opacity: 1;
-					@include prefixProp("transform", "translateX(0)");
+					@include prefixProp("transform", "translateY(0)");
 				}
 			}
 		}
 
 		.description {
-			width: 150%;
-			left: -25%;
+			width: 125%;
+			left: -12.5%;
+		}
+	}
+}
+
+
+
+@media screen and (min-width: $screen-md-min) {
+	.summary-group {
+		width: 47.5%;
+		margin-right: 5%;
+
+		&:nth-child(2n) {
+			margin-right: 0;
+		}
+
+		.description {
+			width: 140%;
+			left: -20%;
+		}
+	}
+}
+
+
+
+@media screen and (min-width: $screen-lg-min) {
+	.summary-group {
+		width: 30%;
+		margin-right: 5%;
+
+		&:nth-child(2n){
+			margin-right:5%;
+		}
+
+		&:nth-child(3n) {
+			margin-right: 0;
+		}
+
+		.description {
+			width: 135%;
+			left: -17.5%;
 		}
 	}
 }

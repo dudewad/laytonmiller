@@ -4,7 +4,7 @@ $navHoverBGColors: $color-blue-light, $color-red-light, $color-green-light, $col
 
 nav {
 	position: relative;
-	z-index: 1;
+	z-index: 10;
 	font-size: 2em;
 	@include setFont("montserrat", 200, normal);
 	margin: 0 -15px;
