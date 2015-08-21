@@ -25,39 +25,11 @@
 		position: relative;
 		margin-bottom: 3em;
 		cursor:pointer;
-
-		&.tooltip-active {
-			.description {
-				z-index:1;
-				opacity: 1;
-				@include prefixProp("transform", "translateY(0)");
-			}
-		}
-
-		&.tooltip-inactive{
-			.description {
-				z-index: -1;
-				opacity: 0;
-				@include prefixProp("transform", "translateY(5%)");
-			}
-		}
 	}
 
-	.description{
-		@include setFont("quattrocento-sans", 100, italic);
-		font-size:1.4em;
-		display: block;
-		position: absolute;
-		top: 150%;
-		padding: 1.5em;
-		border-radius: 4px;
+	.tooltip{
 		width: 105%;
 		left: -2.5%;
-		box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
-		opacity: 0;
-		z-index:-1;
-		@include prefixProp("transform", "translateY(5%)");
-		@include prefixProp("transition", "opacity 150ms, transform 150ms");
 	}
 
 	.rating-visual{
@@ -80,17 +52,7 @@
 
 @media screen and (min-width:$screen-sm-min){
 	.summary-group{
-		.summary-item {
-			&:hover{
-				.description {
-					z-index: 1;
-					opacity: 1;
-					@include prefixProp("transform", "translateY(0)");
-				}
-			}
-		}
-
-		.description {
+		.tooltip {
 			width: 125%;
 			left: -12.5%;
 		}
@@ -108,7 +70,7 @@
 			margin-right: 0;
 		}
 
-		.description {
+		.tooltip {
 			width: 140%;
 			left: -20%;
 		}
@@ -130,7 +92,7 @@
 			margin-right: 0;
 		}
 
-		.description {
+		.tooltip {
 			width: 135%;
 			left: -17.5%;
 		}

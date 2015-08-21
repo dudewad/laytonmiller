@@ -1,4 +1,4 @@
-<section class="experience" ng-controller="ExperienceController">
+<section class="experience">
 	<header>
 		<h1>{{sectionTitle}}</h1>
 
@@ -6,6 +6,6 @@
 	</header>
 
 	<section class="subsection-content clearfix">
-		<div class="timeline" ng-include data-src="'partial/experience/.html'"></div>
+		<div ng-include data-src="'partial/timeline/timeline.html'" ng-controller="TimelineController"></div>
 	</section>
 </section>

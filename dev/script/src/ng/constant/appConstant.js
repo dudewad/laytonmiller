@@ -5,6 +5,7 @@ angular.module("LMApp").constant("CONSTANTS", {
 	"DATA_FILES": {
 		"TECHNICAL_SUMMARY": "technical-summary.json",
 		"EXPERIENCE": "experience.json",
+		"EXPERIENCE_TIMELINE": "experience-timeline.json",
 		"PORTFOLIO": "portfolio.json",
 		"CONTACT": "contact.json"
 	},

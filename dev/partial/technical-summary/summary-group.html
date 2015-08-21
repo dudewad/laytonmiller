@@ -2,14 +2,9 @@
 	<h2>{{group.title}}</h2>
 	<div class="summary-item"
 	     ng-repeat="skill in group.skills"
-	     ng-class="{'tooltip-active': tooltipActive}"
-	     data-lm-summary-group-tooltip>
+	     data-lm-tooltip>
 		<h3>{{skill.name}} - <span class="rating">{{skill.rating}}/10</span></h3>
-		<div class="rating-visual" data-rating="{{skill.rating}}" data-lm-visualization-rating>
-			<span class="fill-bar content-background"></span>
-		</div>
-		<p class="description">{{skill.description}}</p>
+		<div ng-include data-src="'partial/element/visualization-rating.html'" ng-init="rating = skill.rating"></div>
+		<div ng-include data-src="'partial/element/tooltip.html'" ng-init="tooltipContent = skill.tooltipContent; position = 'bottom'"></div>
 	</div>
 </div>
-
-<!--ng-class="skill.tooltipActive ? 'tooltip-active' : 'tooltip-inactive'"-->

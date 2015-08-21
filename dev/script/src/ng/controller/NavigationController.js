@@ -64,7 +64,8 @@ angular.module("LMApp").controller("NavigationController", ["$scope", function($
 		enablePageScrolling(e);
 
 
-		if(target.closest(".link-list").length && !isMouse){
+		if(target.closest(".link-list").length){
+			isMouse && e.stopPropagation();
 			target.trigger("click");
 		}
 		if (!$scope.$$phase) {

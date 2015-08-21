@@ -1,8 +1,6 @@
 angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", function($rootScope, $scope){
 	$scope.currentSection = "default";
 
-	FastClick.attach(document.body);
-
 
 
 	$rootScope.$on("$stateChangeStart", function(e, toState){
@@ -11,7 +9,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", fu
 
 
 
-	angular.element("body").on("click", function(e){
-		$rootScope.$broadcast("bodyClick", {$event: e});
+	angular.element(document).on("click", function(e){
+		$rootScope.$broadcast("documentClick", {$event: e});
 	});
 }]);

@@ -12,6 +12,7 @@
     "jquery": "~1.11.3",
     "angular": "~1.4.3",
     "angular-ui-router": "~0.2.15",
-    "fastclick": "~1.0.6"
+    "fastclick": "~1.0.6",
+    "modernizr": "~2.8.3"
   }
 }

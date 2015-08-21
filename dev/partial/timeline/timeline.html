@@ -1,0 +1,52 @@
+<div class="timeline">
+	<div class="timeline-wrapper">
+		<div class="timeline-range">
+			<div class="timeline-intervals">
+				<figure class="timeline-interval"
+				     ng-class="{'tooltip-trigger': tooltip, 'timeline-end': $first}"
+				     ng-repeat="interval in timeline.intervals"
+				     ng-style="{'left': interval.position}">
+					<h4 class="label">
+						<span class="year" ng-if="interval.label.year">{{interval.label.year}}</span>
+						<span class="month">{{interval.label.month}}</span>
+					</h4>
+					<span class="interval"></span>
+				</figure>
+			</div>
+
+			<div class="timeline-events">
+				<figure class="timeline-event"
+				     ng-repeat="event in timeline.events">
+					<div class="eventStart" ng-style="{'left': event.startPosition}" data-lm-tooltip>
+						<span class="outer">
+							<span class="center"></span>
+						</span>
+						<span ng-include data-src="'partial/element/tooltip.html'"
+						      ng-init="tooltipContent = event.tooltipContent; position = 'top'"></span>
+					</div>
+					<div class="eventEnd" ng-style="{'left': event.endPosition}" ng-if="event.endPosition">
+						<span class="outer">
+							<span class="center"></span>
+						</span>
+					</div>
+					<div class="range-indicator" ng-style="{'left': event.endPosition, 'width': event.rangeIndicator}" ng-if="event.endPosition"></div>
+				</figure>
+			</div>
+
+			<!--
+			<figure class="timeline-interval timeline-end tooltip-trigger">
+				<span ng-include data-src="'partial/element/tooltip.html'" ng-init="tooltipContent = 'Some Awesome Tooltip Content!'; position = 'top'"></span>
+			</figure>
+
+			<figure class="timeline-interval tooltip-trigger">
+				<span ng-include data-src="'partial/element/tooltip.html'"ng-init="tooltipContent = 'Some More Awesome Tooltip Content!'; position = 'top'"></span>
+			</figure>
+
+			<figure class="timeline-event tooltip-trigger">
+				<span class="center"></span>
+				<span ng-include data-src="'partial/element/tooltip.html'" ng-init="tooltipContent = 'Even More Awesome Tooltip Content!'; position = 'top'"></span>
+			</figure>
+			-->
+		</div>
+	</div>
+</div>

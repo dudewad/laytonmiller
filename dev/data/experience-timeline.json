@@ -1,0 +1,28 @@
+{
+	"events": [
+		{
+			"type": "experience",
+			"name": "Event One",
+			"start": "6/10/2014",
+			"end": "9/10/2014"
+		},
+		{
+			"type": "experience",
+			"name": "Event Two",
+			"start": "9/22/2014",
+			"end": "10/30/2014"
+		},
+		{
+			"type": "experience",
+			"name": "Event Three",
+			"start": "11/5/2014",
+			"end": "1/16/2015"
+		},
+		{
+			"type": "experience",
+			"name": "Event Four",
+			"start": "8/6/2015",
+			"end": "current"
+		}
+	]
+}
