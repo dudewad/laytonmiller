@@ -18,6 +18,7 @@ module.exports = {
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>jQuery/dist/jquery.min.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>angular/angular.min.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>angular-ui-router/release/angular-ui-router.min.js",
+				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>angular-cookies/angular-cookies.min.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>fastclick/lib/fastclick.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>modernizr/modernizr.js"
 			]
@@ -39,6 +40,7 @@ module.exports = {
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>jQuery/dist/jquery.min.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>angular/angular.min.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>angular-ui-router/release/angular-ui-router.min.js",
+				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>angular-cookies/angular-cookies.min.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>fastclick/lib/fastclick.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.bowerComponents %>modernizr/modernizr.js"
 			]

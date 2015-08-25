@@ -1,7 +1,6 @@
-angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", function($rootScope, $scope){
+angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "STRINGS", function($rootScope, $scope, STRINGS){
 	$scope.currentSection = "default";
-
-
+	$scope.STRINGS = STRINGS.CORE;
 
 	$rootScope.$on("$stateChangeStart", function(e, toState){
 		$scope.currentSection = toState.name;

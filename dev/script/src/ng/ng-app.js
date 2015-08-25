@@ -1,8 +1,48 @@
-var LMApp = angular.module("LMApp", ["ui.router"])
+function LMApp_conditionalLoad($cookies) {
+	var list = LMApp_conditionalLoadList;
+	var lang = $cookies.get("lang") || "en_us";
+	lang = lang.toLowerCase();
+
+	if(list && Array.isArray(list)){
+		//Sort all lazy load items by conditional load type
+		for (var i = 0; i < list.length; i++) {
+			var item = list[i];
+			try {
+				switch (item.condition.toLowerCase()) {
+					case "cookie":
+						if(item.cookie.toLowerCase() === "lang" && item.value.toLowerCase() === lang){
+							(item.fn)();
+						}
+						break;
+				}
+			}
+			catch(e){
+				console.warn("There was a problem conditionally loading a module definition.")
+			}
+		}
+	}
+}
+
+
+
+var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 	//Set up routing
-	.config(["$stateProvider", "$urlRouterProvider", "CONSTANTS", function ($stateProvider, $urlRouterProvider, CONSTANTS) {
+	.config(["$stateProvider", "$urlRouterProvider", "CONSTANTS", "$provide", function ($stateProvider, $urlRouterProvider, CONSTANTS, $provide) {
 		var STATE = CONSTANTS.STATE;
 		var PATH = CONSTANTS.PATH;
+
+		//Manually inject cookies service since its too early for services yet
+		var $cookies;
+		angular.injector(['ngCookies']).invoke(function (_$cookies_) {
+			$cookies = _$cookies_;
+		});
+
+		LMApp.constant = function(name, factory){
+			$provide.constant(name, factory);
+			return (this);
+		};
+
+		LMApp_conditionalLoad($cookies);
 
 		$stateProvider
 			.state(STATE.DEFAULT.NAME, {
