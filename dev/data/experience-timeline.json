@@ -1,27 +1,29 @@
 {
 	"events": [
 		{
-			"type": "experience",
-			"name": "Event One",
-			"start": "6/10/2014",
-			"end": "9/10/2014"
+			"stringId": "DESIGN_MILL",
+			"start": "9/08/2007",
+			"end": "1/1/2013"
 		},
 		{
-			"type": "experience",
-			"name": "Event Two",
-			"start": "9/22/2014",
-			"end": "10/30/2014"
+			"stringId": "YACHT_VID",
+			"start": "9/20/2009",
+			"end": "11/1/2010"
 		},
 		{
-			"type": "experience",
-			"name": "Event Three",
-			"start": "11/5/2014",
-			"end": "1/16/2015"
+			"stringId": "MUTUAL_AUTO_MEDIA",
+			"start": "11/15/2010",
+			"end": "2/12/2012"
 		},
 		{
+			"stringId": "GLOBANT",
 			"type": "experience",
-			"name": "Event Four",
-			"start": "8/6/2015",
+			"start": "10/1/2012",
+			"end": "2/30/2013"
+		},
+		{
+			"stringId": "RAZORFISH",
+			"start": "6/10/2013",
 			"end": "current"
 		}
 	]

@@ -8,14 +8,16 @@
 			.year {
 				display: block;
 				font-size: 3em;
+				position:relative;
+				right:90%;
 
-				&::after {
-					content: "\279D";
+				&::before {
+					content: "\2190";
 					font-size: .5em;
 					display: inline-block;
 					position: relative;
-					bottom: .25em;
-					left: .5em;
+					bottom: .15em;
+					margin-right: .5em;
 				}
 			}
 
@@ -40,6 +42,7 @@
 
 	.timeline-interval{
 		position: absolute;
+		opacity:.5;
 	}
 
 	.interval {
@@ -70,21 +73,21 @@
 
 		.eventStart,
 		.eventEnd{
+			margin-left: -12px;
 			position: absolute;
 			bottom: -7px;
 		}
 
 		.eventEnd,
 		.range-indicator{
-			opacity:0;
+			opacity:.15;
 			@include prefixProp("transition", "opacity 100ms");
 		}
 
 		.range-indicator{
 			position:absolute;
-			top: 18px;
-			margin-left: 15px;
-			height:2em;
+			top: 15px;
+			margin-left: 3px;
 			border-top:none !important;
 		}
 

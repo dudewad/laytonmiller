@@ -69,7 +69,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 		var current = new Date($scope.timeline.startDate.date.getFullYear(), $scope.timeline.startDate.date.getMonth(), 1);
 		var currentYear = current.getFullYear();
 
-		$scope.timeline.intervals.push(new Interval("Today", currentYear, 0));
+		$scope.timeline.intervals.push(new Interval("Today", null, 0));
 
 		while($scope.timeline.endDate.date < current){
 			var d = Date.parse((current.getMonth() + 1) + "/1/" + current.getFullYear());
@@ -77,15 +77,15 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 			var year = null;
 
 			if(current.getMonth() === 0){
-				year = currentYear = current.getFullYear() - 1;
+				year = currentYear = current.getFullYear();
 			}
 
-			$scope.timeline.intervals.push(new Interval(months[current.getMonth()], year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
+			$scope.timeline.intervals.push(new Interval(current.getMonth() + 1, year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
 			current.setMonth(current.getMonth() - 1);
 		}
 
 		//Push final month for space
-		$scope.timeline.intervals.push(new Interval(months[current.getMonth()], year, 100));
+		$scope.timeline.intervals.push(new Interval(current.getMonth() + 1, year, 100));
 
 		applyScope();
 	}
@@ -93,11 +93,28 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 
 
 	function buildTimelineEvents(){
-		var events = [];
-		for(var evt in $scope.timeline.events){
-			var e = $scope.timeline.events[evt];
+		var eStrings = $scope.timeline.eventStrings;
+		//Sort events newest to oldest
+		$scope.timeline.events.sort(function(a, b){
+			var aStart = Date.parse(a.start);
+			var bStart = Date.parse(b.start);
+
+			if(aStart < bStart){
+				return 1;
+			}
+			if(aStart > bStart){
+				return -1;
+			}
+			return 0;
+		});
+
+		//Builds each event
+		for(var i = 0; i < $scope.timeline.events.length; i++){
+			var e = $scope.timeline.events[i];
 			var startRange = Date.parse(e.start) - $scope.timeline.endDate.asInt;
 			var endRange;
+			var startDateString = e.start;
+			var endDateString = e.end;
 
 			//There will always be a start position
 			e.startPosition = ((1 - startRange / $scope.timeline.dateRange.asInt) * 100) + "%";
@@ -107,8 +124,10 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 				//Keyword "current" means this event is always going until "now"
 				//Since "end" is present, we have a range and need to calculate for the range line indicator as well
 				if(e.end.toLowerCase() === "current"){
-					endRange = 0;
-					e.endPosition = 0;
+					var d = new Date();
+					e.endPosition = 0 + "%";
+					e.rangeIndicator = ((1 - (startRange / $scope.timeline.dateRange.asInt)) * 100) + "%";
+					endDateString = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 				}
 				//Otherwise event ends on the timeline.
 				else {
@@ -116,10 +135,10 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 					e.endPosition = ((1 - endRange / $scope.timeline.dateRange.asInt) * 100) + "%";
 					e.rangeIndicator = ((endRange - startRange) / $scope.timeline.dateRange.asInt * 100) + "%";
 				}
-
+				e.height = (2 * i + 10) + "px";
 			}
 
-			e.tooltipContent = e.name + ": " + e.start + " to " + e.end;
+			e.tooltipContent = eStrings[e.stringId].NAME + ": " + startDateString + " - " + endDateString;
 		}
 	}
 
@@ -133,7 +152,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 
 
 
-	$scope.$on("timelineData", function(e, data){
+	$scope.$on("timelineData", function(e, data, eventStrings){
 		if(!data || !Array.isArray(data.events)){
 			//TODO: Handle error here or in broadcaster? Here would be better since this IS the timeline and you dont
 			//want to have to implement a handler in every broadcaster...
@@ -141,6 +160,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 		}
 
 		$scope.timeline.events = data.events;
+		$scope.timeline.eventStrings = eventStrings;
 		calculateTimeline();
 		buildTimelineIntervals();
 		buildTimelineEvents();

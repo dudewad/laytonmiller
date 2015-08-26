@@ -65,6 +65,34 @@ LMApp_conditionalLoadList.push({
 							}
 						}
 					}
+				},
+
+				EXPERIENCE: {
+					HEADER: {
+						TITLE: "Experience",
+						DESCRIPTION: "Salenius voron melutius fet bororilian. Pecus virtus qui validus ullamcorper utrum. Oppeto mos ullamcorper erat exerci cogo aliquam vero adsum te patria."
+					},
+					EVENTS:{
+						DESIGN_MILL: {
+							NAME: "Design Mill"
+						},
+						YACHT_VID: {
+							NAME: "Yacht Vid"
+						},
+						MUTUAL_AUTO_MEDIA: {
+							NAME: "Mutual Auto Media"
+						},
+						GLOBANT: {
+							NAME: "Globant"
+						},
+						RAZORFISH: {
+							NAME: "Razorfish"
+						}
+					}
+				},
+
+				MISC: {
+					NOW: "now"
 				}
 			});
 		}

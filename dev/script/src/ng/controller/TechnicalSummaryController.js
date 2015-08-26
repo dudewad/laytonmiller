@@ -1,9 +1,9 @@
 angular.module("LMApp").controller("TechnicalSummaryController", ["$rootScope", "$scope", "$http", "CONSTANTS", "STRINGS",
 	function($rootScope, $scope, $http, CONSTANTS, STRINGS){
-		$scope.sectionTitle = "";
-		$scope.sectionIntro = "";
-		$scope.summaryGroups = null;
 		$scope.STRINGS = STRINGS.TECHNICAL_SUMMARY;
+		$scope.sectionTitle = $scope.STRINGS.HEADER.TITLE;
+		$scope.sectionIntro = $scope.STRINGS.HEADER.DESCRIPTION;
+		$scope.summaryGroups = null;
 
 		$http.get(CONSTANTS.PATH.DATA + CONSTANTS.DATA_FILES.TECHNICAL_SUMMARY).
 			success(function (data, status, headers, config) {
@@ -29,9 +29,6 @@ angular.module("LMApp").controller("TechnicalSummaryController", ["$rootScope", 
 
 					parsedSummaryGroups.push(summaryGroup);
 				}
-
-				$scope.sectionTitle = data.sectionTitle;
-				$scope.sectionIntro = data.sectionIntro;
 				$scope.summaryGroups = parsedSummaryGroups;
 			}).
 			error(function (data, status, headers, config) {

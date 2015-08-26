@@ -16,8 +16,8 @@
 
 			<div class="timeline-events">
 				<figure class="timeline-event"
-				     ng-repeat="event in timeline.events">
-					<div class="eventStart" ng-style="{'left': event.startPosition}" data-lm-tooltip>
+				     ng-repeat="event in timeline.events" data-lm-tooltip>
+					<div class="eventStart" ng-style="{'left': event.startPosition}">
 						<span class="outer">
 							<span class="center"></span>
 						</span>
@@ -29,24 +29,9 @@
 							<span class="center"></span>
 						</span>
 					</div>
-					<div class="range-indicator" ng-style="{'left': event.endPosition, 'width': event.rangeIndicator}" ng-if="event.endPosition"></div>
+					<div class="range-indicator" ng-style="{'left': event.endPosition, 'width': event.rangeIndicator, 'height': event.height}" ng-if="event.endPosition"></div>
 				</figure>
 			</div>
-
-			<!--
-			<figure class="timeline-interval timeline-end tooltip-trigger">
-				<span ng-include data-src="'partial/element/tooltip.html'" ng-init="tooltipContent = 'Some Awesome Tooltip Content!'; position = 'top'"></span>
-			</figure>
-
-			<figure class="timeline-interval tooltip-trigger">
-				<span ng-include data-src="'partial/element/tooltip.html'"ng-init="tooltipContent = 'Some More Awesome Tooltip Content!'; position = 'top'"></span>
-			</figure>
-
-			<figure class="timeline-event tooltip-trigger">
-				<span class="center"></span>
-				<span ng-include data-src="'partial/element/tooltip.html'" ng-init="tooltipContent = 'Even More Awesome Tooltip Content!'; position = 'top'"></span>
-			</figure>
-			-->
 		</div>
 	</div>
 </div>
