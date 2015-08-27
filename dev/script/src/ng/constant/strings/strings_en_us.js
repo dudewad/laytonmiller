@@ -70,7 +70,7 @@ LMApp_conditionalLoadList.push({
 				EXPERIENCE: {
 					HEADER: {
 						TITLE: "Experience",
-						DESCRIPTION: "Salenius voron melutius fet bororilian. Pecus virtus qui validus ullamcorper utrum. Oppeto mos ullamcorper erat exerci cogo aliquam vero adsum te patria."
+						DESCRIPTION: "Here is a timeline of my employment, from today back to when I started. Feel free to explore! Swipe, drag, or mouse-wheel to navigate across the timeline."
 					},
 					EVENTS:{
 						DESIGN_MILL: {
@@ -91,8 +91,9 @@ LMApp_conditionalLoadList.push({
 					}
 				},
 
-				MISC: {
-					NOW: "now"
+				TIMELINE: {
+					TODAY: "Today",
+					MONTHS: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 				}
 			});
 		}

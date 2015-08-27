@@ -5,15 +5,15 @@ angular.module("LMApp").directive("lmTouchend", function () {
 		},
 		restrict: "A",
 		link: function (scope, elm, attrs) {
-			var handler = function (e) {
+			function handler (e) {
 				scope.lmTouchend({"$event": e});
-			};
+			}
 
-			elm.bind("touchend", function (e) {
+			elm.on("touchend", function (e) {
 				handler(e);
 			});
 
-			elm.bind("mouseup", function (e) {
+			elm.on("mouseup", function (e) {
 				handler(e);
 			});
 		}

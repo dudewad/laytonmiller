@@ -31,7 +31,12 @@
 	.timeline-wrapper {
 		position: absolute;
 		bottom: 6px;
-		width: 1000%;
+		//width: 1000%;
+	}
+
+	.timeline-range{
+		position:relative;
+		height:100px;
 	}
 
 	.timeline-interval,
@@ -127,7 +132,7 @@
 @media screen and (min-width: $screen-sm-min) {
 	.timeline {
 		.timeline-wrapper {
-			width: 750%;
+			//width: 750%;
 		}
 	}
 }
@@ -135,7 +140,7 @@
 @media screen and (min-width: $screen-md-min) {
 	.timeline {
 		.timeline-wrapper {
-			width: 550%;
+			//width: 550%;
 		}
 	}
 
@@ -144,7 +149,7 @@
 @media screen and (min-width: $screen-lg-min) {
 	.timeline {
 		.timeline-wrapper {
-			width: 400%;
+			//width: 400%;
 		}
 	}
 }
@@ -152,7 +157,7 @@
 @media screen and (min-width: $screen-xl-min) {
 	.timeline {
 		.timeline-wrapper {
-			width: 250%;
+			/*width: 250%;*/
 		}
 	}
 }

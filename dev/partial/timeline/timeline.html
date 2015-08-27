@@ -1,11 +1,13 @@
 <div class="timeline">
 	<div class="timeline-wrapper">
-		<div class="timeline-range">
+		<div class="timeline-range"
+		     ng-style="{width: timeline.intervals.length * 90 + 'px', 'left': timeline.position.x}"
+             data-lm-drag="dragHandler(pointerData, $event)">
 			<div class="timeline-intervals">
 				<figure class="timeline-interval"
-				     ng-class="{'tooltip-trigger': tooltip, 'timeline-end': $first}"
-				     ng-repeat="interval in timeline.intervals"
-				     ng-style="{'left': interval.position}">
+				        ng-class="{'tooltip-trigger': tooltip, 'timeline-end': $first}"
+				        ng-repeat="interval in timeline.intervals"
+				        ng-style="{'left': interval.position}">
 					<h4 class="label">
 						<span class="year" ng-if="interval.label.year">{{interval.label.year}}</span>
 						<span class="month">{{interval.label.month}}</span>
@@ -16,7 +18,7 @@
 
 			<div class="timeline-events">
 				<figure class="timeline-event"
-				     ng-repeat="event in timeline.events" data-lm-tooltip>
+				        ng-repeat="event in timeline.events" data-lm-tooltip>
 					<div class="eventStart" ng-style="{'left': event.startPosition}">
 						<span class="outer">
 							<span class="center"></span>
@@ -29,7 +31,9 @@
 							<span class="center"></span>
 						</span>
 					</div>
-					<div class="range-indicator" ng-style="{'left': event.endPosition, 'width': event.rangeIndicator, 'height': event.height}" ng-if="event.endPosition"></div>
+					<div class="range-indicator"
+					     ng-style="{'left': event.endPosition, 'width': event.rangeIndicator, 'height': event.height}"
+					     ng-if="event.endPosition"></div>
 				</figure>
 			</div>
 		</div>

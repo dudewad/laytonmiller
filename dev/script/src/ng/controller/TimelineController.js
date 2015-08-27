@@ -1,4 +1,4 @@
-angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CONSTANTS", function($scope, $http, CONSTANTS){
+angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "STRINGS", function($scope, $http, STRINGS){
 	$scope.timeline = {
 		startDate: {
 			date: null,
@@ -12,12 +12,12 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 			asInt: 0
 		},
 		intervals: [],
-		events:[]
+		events:[],
+		position:{
+			x: 0
+		}
 	};
-
-
-
-	var months = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+	var TIMELINE_STRS = STRINGS.TIMELINE;
 
 
 
@@ -69,7 +69,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 		var current = new Date($scope.timeline.startDate.date.getFullYear(), $scope.timeline.startDate.date.getMonth(), 1);
 		var currentYear = current.getFullYear();
 
-		$scope.timeline.intervals.push(new Interval("Today", null, 0));
+		$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.TODAY, null, 0));
 
 		while($scope.timeline.endDate.date < current){
 			var d = Date.parse((current.getMonth() + 1) + "/1/" + current.getFullYear());
@@ -80,14 +80,12 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 				year = currentYear = current.getFullYear();
 			}
 
-			$scope.timeline.intervals.push(new Interval(current.getMonth() + 1, year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
+			$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.MONTHS[current.getMonth()], year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
 			current.setMonth(current.getMonth() - 1);
 		}
 
 		//Push final month for space
-		$scope.timeline.intervals.push(new Interval(current.getMonth() + 1, year, 100));
-
-		applyScope();
+		$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.MONTHS[current.getMonth()], year, 100));
 	}
 
 
@@ -141,6 +139,22 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "CO
 			e.tooltipContent = eStrings[e.stringId].NAME + ": " + startDateString + " - " + endDateString;
 		}
 	}
+
+
+
+	$scope.dragHandler = function(pointerData, e){
+		switch(e.type){
+			case "mousedown":
+			case "touchstart":
+
+				break;
+			case "mousemove":
+			case "touchmove":
+				$scope.timeline.position.x += pointerData.xDif;
+				applyScope();
+				break;
+		}
+	};
 
 
 

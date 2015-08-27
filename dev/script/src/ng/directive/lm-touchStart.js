@@ -5,14 +5,15 @@ angular.module("LMApp").directive("lmTouchstart", function () {
 		},
 		restrict: "A",
 		link: function (scope, elm, attrs) {
-			var handler = function (e) {
+			function handler (e) {
 				scope.lmTouchstart({"$event": e});
-			};
-			elm.bind("touchstart", function (e) {
+			}
+
+			elm.on("touchstart", function (e) {
 				handler(e);
 			});
 
-			elm.bind("mousedown", function (e) {
+			elm.on("mousedown", function (e) {
 				handler(e);
 			});
 		}
