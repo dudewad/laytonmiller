@@ -61,7 +61,7 @@ angular.module("LMApp").directive("lmTooltip", ["$rootScope", function ($rootSco
 				}
 			}
 
-			element.on('$destroy', function () {
+			element.on("$destroy", function () {
 				bodyClickCleanup();
 			});
 		}

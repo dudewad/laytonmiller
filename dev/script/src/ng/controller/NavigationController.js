@@ -66,7 +66,9 @@ angular.module("LMApp").controller("NavigationController", ["$scope", "STRINGS",
 
 
 		if(target.closest(".link-list").length){
-			isMouse && e.stopPropagation();
+			if(isMouse) {
+				e.stopPropagation();
+			}
 			target.trigger("click");
 		}
 		if (!$scope.$$phase) {

@@ -10,12 +10,12 @@ LMApp_conditionalLoadList.push({
 				CORE: {
 					HEADER: {
 						TITLE: "LAYTON MILLER",
-						SUBTITLE: "Architecto web, Líder de equipos de desarrollo"
+						SUBTITLE: "Architecto web, LÃ­der de equipos de desarrollo"
 					},
 					NAVIGATION: {
-						TECHNICAL_SUMMARY: "Resumen téchnico",
+						TECHNICAL_SUMMARY: "Resumen tÃ©chnico",
 						EXPERIENCE: "Experiencia",
-						PORTFOLIO: "Portfólio",
+						PORTFOLIO: "PortfÃ³lio",
 						CONTACT: "Contacto"
 					}
 				},

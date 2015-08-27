@@ -21,6 +21,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 
 
 
+
 	/**
 	 * Factory function to return an "Interval" object
 	 */
@@ -31,7 +32,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 				year: labelYear || null
 			},
 			position: parseFloat(position) + "%"
-		}
+		};
 	};
 
 
@@ -68,13 +69,13 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 	function buildTimelineIntervals(){
 		var current = new Date($scope.timeline.startDate.date.getFullYear(), $scope.timeline.startDate.date.getMonth(), 1);
 		var currentYear = current.getFullYear();
+		var year = null;
 
 		$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.TODAY, null, 0));
 
 		while($scope.timeline.endDate.date < current){
 			var d = Date.parse((current.getMonth() + 1) + "/1/" + current.getFullYear());
 			var thisRange = d - $scope.timeline.endDate.asInt;
-			var year = null;
 
 			if(current.getMonth() === 0){
 				year = currentYear = current.getFullYear();
@@ -152,6 +153,10 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 			case "touchmove":
 				$scope.timeline.position.x += pointerData.xDif;
 				applyScope();
+				break;
+			case "mouseup":
+			case "touchend":
+
 				break;
 		}
 	};

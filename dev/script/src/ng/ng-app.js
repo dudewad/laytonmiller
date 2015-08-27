@@ -17,7 +17,7 @@ function LMApp_conditionalLoad($cookies) {
 				}
 			}
 			catch(e){
-				console.warn("There was a problem conditionally loading a module definition.")
+				console.warn("There was a problem conditionally loading a module definition.");
 			}
 		}
 	}
@@ -33,7 +33,7 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 
 		//Manually inject cookies service since its too early for services yet
 		var $cookies;
-		angular.injector(['ngCookies']).invoke(function (_$cookies_) {
+		angular.injector(["ngCookies"]).invoke(function (_$cookies_) {
 			$cookies = _$cookies_;
 		});
 
