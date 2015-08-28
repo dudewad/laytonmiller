@@ -1,4 +1,7 @@
 angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "STRINGS", function($scope, $http, STRINGS){
+	var TIMELINE_STRS = STRINGS.TIMELINE;
+	var decelerationTween = null;
+
 	$scope.timeline = {
 		startDate: {
 			date: null,
@@ -17,7 +20,6 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 			x: 0
 		}
 	};
-	var TIMELINE_STRS = STRINGS.TIMELINE;
 
 
 
@@ -76,6 +78,7 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 		while($scope.timeline.endDate.date < current){
 			var d = Date.parse((current.getMonth() + 1) + "/1/" + current.getFullYear());
 			var thisRange = d - $scope.timeline.endDate.asInt;
+			year = null;
 
 			if(current.getMonth() === 0){
 				year = currentYear = current.getFullYear();
@@ -143,23 +146,43 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 
 
 
-	$scope.dragHandler = function(pointerData, e){
-		switch(e.type){
+	$scope.dragHandler = function(pointerData, event){
+		switch(event.type){
 			case "mousedown":
 			case "touchstart":
-
+				if(decelerationTween){
+					decelerationTween.kill();
+				}
+				$scope.timeline.position.x = parseInt(angular.element(event.target).css("left"));
+				applyScope();
 				break;
 			case "mousemove":
 			case "touchmove":
-				$scope.timeline.position.x += pointerData.xDif;
+				var pos = $scope.timeline.position.x + pointerData.xDif;
+				if(pos > 0){
+					pos = 0;
+				}
+				$scope.timeline.position.x = pos;
 				applyScope();
 				break;
 			case "mouseup":
 			case "touchend":
-
+				decelerateTimeline(pointerData.xSpeed, event);
 				break;
 		}
 	};
+
+
+
+	function decelerateTimeline(currentSpeed, event){
+		var target = angular.element(event.target);
+		var duration = Math.abs(currentSpeed / 4);
+		var offset = (currentSpeed * 400) + parseInt(target.css("left"));
+		if(offset > 0){
+			offset = 0;
+		}
+		decelerationTween = TweenMax.to(target, duration, {"left": offset + "px"});
+	}
 
 
 

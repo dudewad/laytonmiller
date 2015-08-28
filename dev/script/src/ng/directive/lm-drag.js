@@ -9,20 +9,21 @@ angular.module("LMApp").directive("lmDrag", function () {
 			var lastX = null;
 			var lastY = null;
 			var lastTimestamp = null;
+			var lastPointerData = null;
 
 			/*Support handlers to each bound listener that is triggered when the user touches/mousedowns*/
 			function touchEndFn (e) {
 				body.off("touchmove", handler);
 				body.off("touchend", touchEndFn);
-				resetPointer();
 				handler(e);
+				resetPointer();
 			}
 
 			function mouseUpFn (e) {
 				body.off("mousemove", handler);
 				body.off("mouseup", mouseUpFn);
-				resetPointer();
 				handler(e);
+				resetPointer();
 			}
 
 			/*Bind Mousedown/touchstart events*/
@@ -41,13 +42,17 @@ angular.module("LMApp").directive("lmDrag", function () {
 
 
 			function handler(e) {
+				if(e.type === "touchend"){
+					scope.lmDrag({"pointerData": lastPointerData, "$event": e});
+					return;
+				}
 				var pageX = e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX;
 				var pageY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
-				var xDif = lastX ? pageX - lastX : 0;
-				var yDif = lastY ? pageY - lastY : 0;
+				var xDif = lastX !== null ? pageX - lastX : 0;
+				var yDif = lastY !== null ? pageY - lastY : 0;
 				var timeDif = lastTimestamp ? e.timeStamp - lastTimestamp : 0;
-				var xSpeed = lastX ? xDif / timeDif : 0;
-				var ySpeed = lastY ? yDif / timeDif : 0;
+				var xSpeed = lastX !== null ? xDif / timeDif : 0;
+				var ySpeed = lastY !== null ? yDif / timeDif : 0;
 				var pointerData = {
 					type: e.type,
 					xDif: xDif,
@@ -60,6 +65,7 @@ angular.module("LMApp").directive("lmDrag", function () {
 				lastTimestamp = e.timeStamp;
 				lastX = pageX;
 				lastY = pageY;
+				lastPointerData = pointerData;
 			}
 
 
@@ -68,6 +74,7 @@ angular.module("LMApp").directive("lmDrag", function () {
 				lastX = null;
 				lastY = null;
 				lastTimestamp = null;
+				lastPointerData = null;
 			}
 		}
 	};

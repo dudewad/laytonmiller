@@ -11,4 +11,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "S
 	angular.element(document).on("click", function(e){
 		$rootScope.$broadcast("documentClick", {$event: e});
 	});
+	angular.element("body").on("selectstart", function(){
+		return false;
+	});
 }]);
