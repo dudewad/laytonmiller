@@ -1,8 +1,12 @@
-<div class="timeline">
+<div class="timeline" data-lm-timeline>
 	<div class="timeline-wrapper">
 		<div class="timeline-range"
-		     ng-style="{width: timeline.intervals.length * 90 + 'px', 'left': timeline.position.x}"
+		     ng-style="{width: timeline.intervals.length * 90 + 'px',
+		     height: timeline.events.length * 2 + 100 + 'px',
+		     'left': timeline.position.x,
+		     'margin-left': timeline.dimensions.marginLeft + 'px'}"
              data-lm-drag="dragHandler(pointerData, $event)">
+			<hr />
 			<div class="timeline-intervals">
 				<figure class="timeline-interval"
 				        ng-class="{'tooltip-trigger': tooltip, 'timeline-end': $first}"

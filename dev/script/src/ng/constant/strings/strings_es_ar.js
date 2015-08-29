@@ -65,6 +65,35 @@ LMApp_conditionalLoadList.push({
 							}
 						}
 					}
+				},
+
+				EXPERIENCE: {
+					HEADER: {
+						TITLE: "Experiencia",
+						DESCRIPTION: "Lo que sigue es una linea de tiempo de mi experiencia profesional, desde hoy hasta que empecé a trabajar. Explore! Hacé swipe, arrastrar, o use la rueda del mouse para navegar atravez de la linea de tiempo."
+					},
+					EVENTS: {
+						DESIGN_MILL: {
+							NAME: "Design Mill"
+						},
+						YACHT_VID: {
+							NAME: "Yacht Vid"
+						},
+						MUTUAL_AUTO_MEDIA: {
+							NAME: "Mutual Auto Media"
+						},
+						GLOBANT: {
+							NAME: "Globant"
+						},
+						RAZORFISH: {
+							NAME: "Razorfish"
+						}
+					}
+				},
+
+				TIMELINE: {
+					TODAY: "Hoy",
+					MONTHS: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 				}
 			});
 		}

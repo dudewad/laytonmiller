@@ -1,6 +1,6 @@
 function LMApp_conditionalLoad($cookies) {
 	var list = LMApp_conditionalLoadList;
-	var lang = $cookies.get("lang") || "en_us";
+	var lang = $cookies.get("lang") || "es_ar";
 	lang = lang.toLowerCase();
 
 	if(list && Array.isArray(list)){

@@ -1,15 +1,17 @@
 .timeline {
-	height: 75px;
-
 	h4 {
 		&.label {
 			margin-bottom: 1em;
+			text-align:right;
+
+			span{
+				position:relative;
+				right:90%;
+			}
 
 			.year {
 				display: block;
 				font-size: 3em;
-				position:relative;
-				right:90%;
 
 				&::before {
 					content: "\2190";
@@ -27,28 +29,65 @@
 			}
 		}
 	}
+	/*h4 {
+		&.label {
+			margin-bottom: 1em;
 
-	.timeline-wrapper {
-		position: absolute;
-		bottom: 6px;
-		//width: 1000%;
+			.year {
+				display: block;
+				font-size: 3em;
+				position: relative;
+				right: 90%;
+
+				&::before {
+					content: "\2190";
+					font-size: .5em;
+					display: inline-block;
+					position: relative;
+					bottom: .15em;
+					margin-right: .5em;
+				}
+			}
+
+			.month {
+				@include setFont("quattrocento-sans", 200, italic);
+				font-size: 1.4em;
+			}
+		}
+	}*/
+
+	hr{
+		position: relative;
+		top: 71px;
+		border-width: 1px 0 0 0;
+		border-style: dashed;
+		opacity: .5;
 	}
 
 	.timeline-range{
 		position:relative;
-		height:100px;
 		margin-left: 15px;
+	}
+
+	.timeline-intervals,
+	.timeline-events{
+		position: relative;
+		top: 65px;
+	}
+
+	.timeline-events{
+		position:relative;
 	}
 
 	.timeline-interval,
 	.timeline-event {
 		bottom: 100%;
-		margin-bottom: -8px;
 	}
 
 	.timeline-interval{
 		position: absolute;
 		opacity:.5;
+		margin-bottom: -8px;
 	}
 
 	.interval {

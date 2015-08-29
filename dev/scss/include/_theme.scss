@@ -66,7 +66,10 @@
 	}
 
 	.timeline{
-		.timeline-range,
+		hr{
+			border-color: $light;
+		}
+
 		.interval {
 			border: 1px solid $light;
 			background-color: $medium;
@@ -78,13 +81,6 @@
 					background-color: $light;
 				}
 			}
-		}
-
-		.timeline-range{
-			border-top-style:dashed;
-			border-bottom:0;
-			border-left:0;
-			border-right:0;
 		}
 
 		.timeline-event {

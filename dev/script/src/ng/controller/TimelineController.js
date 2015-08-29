@@ -1,6 +1,5 @@
-angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "STRINGS", function($scope, $http, STRINGS){
+angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "$timeout", "STRINGS", function($scope, $http, $timeout, STRINGS){
 	var TIMELINE_STRS = STRINGS.TIMELINE;
-	var decelerationTween = null;
 
 	$scope.timeline = {
 		startDate: {
@@ -17,7 +16,15 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 		intervals: [],
 		events:[],
 		position:{
-			x: 0
+			x: 0,
+			minX: 0
+		},
+		dimensions:{
+			width: 0,
+			marginLeft: 0
+		},
+		mask:{
+			width: 0
 		}
 	};
 
@@ -39,6 +46,9 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 
 
 
+	/**
+	 * Loop through timeline data and calculate critical data points such as length, date range, etc.
+	 */
 	function calculateTimeline(){
 		var extendedDate;
 
@@ -72,23 +82,26 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 		var current = new Date($scope.timeline.startDate.date.getFullYear(), $scope.timeline.startDate.date.getMonth(), 1);
 		var currentYear = current.getFullYear();
 		var year = null;
+		var month = null;
 
 		$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.TODAY, null, 0));
 
 		while($scope.timeline.endDate.date < current){
 			var d = Date.parse((current.getMonth() + 1) + "/1/" + current.getFullYear());
 			var thisRange = d - $scope.timeline.endDate.asInt;
+			month = TIMELINE_STRS.MONTHS[current.getMonth()].substr(0,3);
 			year = null;
 
 			if(current.getMonth() === 0){
 				year = currentYear = current.getFullYear();
 			}
 
-			$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.MONTHS[current.getMonth()], year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
+			$scope.timeline.intervals.push(new Interval(month, year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
 			current.setMonth(current.getMonth() - 1);
 		}
 
 		//Push final month for space
+		month = TIMELINE_STRS.MONTHS[current.getMonth()].substr(0, 3);
 		$scope.timeline.intervals.push(new Interval(TIMELINE_STRS.MONTHS[current.getMonth()], year, 100));
 	}
 
@@ -146,51 +159,30 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 
 
 
-	$scope.dragHandler = function(pointerData, event){
-		switch(event.type){
-			case "mousedown":
-			case "touchstart":
-				if(decelerationTween){
-					decelerationTween.kill();
-				}
-				$scope.timeline.position.x = parseInt(angular.element(event.target).css("left"));
-				applyScope();
-				break;
-			case "mousemove":
-			case "touchmove":
-				var pos = $scope.timeline.position.x + pointerData.xDif;
-				if(pos > 0){
-					pos = 0;
-				}
-				$scope.timeline.position.x = pos;
-				applyScope();
-				break;
-			case "mouseup":
-			case "touchend":
-				decelerateTimeline(pointerData.xSpeed, event);
-				break;
-		}
-	};
-
-
-
-	function decelerateTimeline(currentSpeed, event){
-		var target = angular.element(event.target);
-		var duration = Math.abs(currentSpeed / 4);
-		var offset = (currentSpeed * 400) + parseInt(target.css("left"));
-		if(offset > 0){
-			offset = 0;
-		}
-		decelerationTween = TweenMax.to(target, duration, {"left": offset + "px"});
-	}
-
-
-
 	function applyScope() {
 		if (!$scope.$$phase) {
 			$scope.$apply();
 		}
 	}
+
+
+
+	$scope.dragHandler = function(pointerData, event){
+		switch(event.type){
+			case "mousedown":
+			case "touchstart":
+				$scope.$broadcast("interactionStart", pointerData, event);
+				break;
+			case "mousemove":
+			case "touchmove":
+				$scope.$broadcast("interactionSwipe", pointerData, event);
+				break;
+			case "mouseup":
+			case "touchend":
+				$scope.$broadcast("interactionEnd", pointerData, event);
+				break;
+		}
+	};
 
 
 
@@ -206,5 +198,8 @@ angular.module("LMApp").controller("TimelineController", ["$scope", "$http", "ST
 		calculateTimeline();
 		buildTimelineIntervals();
 		buildTimelineEvents();
+		$timeout(function() {
+			$scope.$broadcast("timelineBuilt");
+		}, 0);
 	});
 }]);

@@ -1,6 +1,12 @@
 body.experience{
+
 	.content-main{
 		padding-right:0;
+		padding-left:0;
+
+		header {
+			padding: 0 15px;
+		}
 
 		> section{
 			padding-right:0;
@@ -8,5 +14,16 @@ body.experience{
 			overflow:hidden;
 		}
 
+	}
+
+	@media screen and (min-width: $screen-sm-min) {
+
+		.content-main {
+			padding-left: 15px;
+
+			header {
+				padding: 0;
+			}
+		}
 	}
 }

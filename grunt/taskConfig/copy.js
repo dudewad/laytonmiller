@@ -17,7 +17,11 @@ module.exports = {
             {
                 expand: "true",
                 cwd: "<%=pkg.directories.dev_root %>",
-                src: "<%=pkg.directories.asset %>**/*",
+                src: ["<%=pkg.directories.asset %>**/*",
+	                "<%=pkg.directories.data %>**/*",
+	                "<%=pkg.directories.partial %>**/*",
+	                "<%=pkg.directories.script %>*.js",
+	                "<%=pkg.directories.style %>**/*.css"],
                 dest: "<%=pkg.directories.prod_root %>"
             }
         ]
