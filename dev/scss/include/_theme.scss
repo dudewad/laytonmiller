@@ -31,6 +31,15 @@
 		}
 	}
 
+	.main-header{
+		svg{
+			&.emblem {
+				border-color:$light;
+				fill: $light;
+			}
+		}
+	}
+
 	.content-background {
 		border-left: 4px solid $dark;
 	}

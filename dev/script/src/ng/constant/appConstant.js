@@ -3,11 +3,12 @@ angular.module("LMApp").constant("CONSTANTS", {
 	 * Data files
 	 */
 	"DATA_FILES": {
-		"TECHNICAL_SUMMARY": "technical-summary.json",
+		"CONTACT": "contact.json",
 		"EXPERIENCE": "experience.json",
 		"EXPERIENCE_TIMELINE": "experience-timeline.json",
 		"PORTFOLIO": "portfolio.json",
-		"CONTACT": "contact.json"
+		"TECHNICAL_SUMMARY": "technical-summary.json",
+		"WELCOME": "welcome.json"
 	},
 
 	/**
@@ -26,6 +27,11 @@ angular.module("LMApp").constant("CONSTANTS", {
 			"NAME": "default",
 			"URL": "/",
 			"TEMPLATE": "core/default.html"
+		},
+		"WELCOME": {
+			"NAME": "welcome",
+			"URL": "/welcome",
+			"TEMPLATE": "welcome/welcome.html"
 		},
 		"TECHNICAL_SUMMARY": {
 			"NAME": "technical-summary",

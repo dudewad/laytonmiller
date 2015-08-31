@@ -1,0 +1,7 @@
+svg {
+	&.emblem{
+		padding: .05em;
+		border: .025em solid;
+		@include prefixProp(border-radius, 50%);
+	}
+}

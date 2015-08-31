@@ -53,6 +53,14 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 					}
 				}
 			})
+			.state(STATE.WELCOME.NAME, {
+				url: STATE.WELCOME.URL,
+				views: {
+					"contentMain": {
+						templateUrl: PATH.PARTIAL + STATE.DEFAULT.TEMPLATE
+					}
+				}
+			})
 			.state(STATE.TECHNICAL_SUMMARY.NAME, {
 				url: STATE.TECHNICAL_SUMMARY.URL,
 				views: {
