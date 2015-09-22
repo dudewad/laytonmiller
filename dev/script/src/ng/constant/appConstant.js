@@ -23,10 +23,10 @@ angular.module("LMApp").constant("CONSTANTS", {
 	 * Application state constants
 	 */
 	"STATE": {
-		"DEFAULT": {
-			"NAME": "default",
+		"INTRO": {
+			"NAME": "intro",
 			"URL": "/",
-			"TEMPLATE": "core/default.html"
+			"TEMPLATE": "intro/intro.html"
 		},
 		"WELCOME": {
 			"NAME": "welcome",

@@ -1,6 +1,6 @@
 function LMApp_conditionalLoad($cookies) {
 	var list = LMApp_conditionalLoadList;
-	var lang = $cookies.get("lang") || "es_ar";
+	var lang = $cookies.get("lang") || "en_us";
 	lang = lang.toLowerCase();
 
 	if(list && Array.isArray(list)){
@@ -45,19 +45,14 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 		LMApp_conditionalLoad($cookies);
 
 		$stateProvider
-			.state(STATE.DEFAULT.NAME, {
-				url: STATE.DEFAULT.URL,
-				views: {
-					"contentMain": {
-						templateUrl: PATH.PARTIAL + STATE.DEFAULT.TEMPLATE
-					}
-				}
+			.state(STATE.INTRO.NAME, {
+				url: STATE.INTRO.URL
 			})
 			.state(STATE.WELCOME.NAME, {
 				url: STATE.WELCOME.URL,
 				views: {
 					"contentMain": {
-						templateUrl: PATH.PARTIAL + STATE.DEFAULT.TEMPLATE
+						templateUrl: PATH.PARTIAL + STATE.WELCOME.TEMPLATE
 					}
 				}
 			})
@@ -98,5 +93,5 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 				}
 			});
 
-		$urlRouterProvider.otherwise(STATE.DEFAULT.URL);
+		$urlRouterProvider.otherwise(STATE.INTRO.URL);
 	}]);

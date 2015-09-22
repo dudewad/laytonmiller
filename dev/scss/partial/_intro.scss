@@ -1,0 +1,18 @@
+.intro {
+	//@include prefixProp("transition", "padding 500ms");
+
+	header.main-header {
+		text-align:center;
+
+		.content {
+			margin:0;
+		}
+
+		.emblem {
+			display: block;
+			position: static;
+			font-size: 5.5em;
+			margin:.25em auto 0 auto;
+		}
+	}
+}

@@ -1,7 +1,9 @@
 svg {
 	&.emblem{
 		padding: .05em;
-		border: .025em solid;
+		border: .035em solid;
 		@include prefixProp(border-radius, 50%);
+		position:relative;
+		top:.15em;
 	}
 }

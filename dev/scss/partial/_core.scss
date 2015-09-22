@@ -5,6 +5,7 @@ html{
 html,
 body{
 	min-height: 100%;
+	height:100%;
 }
 
 body{
@@ -21,6 +22,30 @@ body{
 	@include theme("experience", $color-red-lightest, $color-red-medium, $color-red-darkest);
 	@include theme("contact", $color-orange-lightest, $color-orange-medium, $color-orange-darkest);
 	@include prefixProp("transition", "color #{$section-transition-speed} linear, background-color #{$section-transition-speed} linear");
+	@include prefixProp("transition-duration", "1000ms");
+
+	&.intro{
+		padding:0;
+
+		.site-content {
+			display: none;
+			opacity: 0;
+			@include prefixProp("transition", "opacity 500ms");
+		}
+	}
+
+	.top-border{
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		z-index:1;
+	}
+
+	.site-content {
+		opacity:1;
+		@include prefixProp("transition", "opacity 500ms");
+	}
 }
 
 a{
@@ -44,12 +69,26 @@ figure{
 
 p{
 	margin-top:0;
+	font-size:1.6em;
+	@include setFont("montserrat", 300, normal);
 }
 
 ul{
 	padding:0;
 	margin:0;
 	list-style-type:none;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {
+	zoom: 1;
 }
 
 .content-main{
@@ -76,12 +115,6 @@ ul{
 	html.cssgradients & {
 		background: radial-gradient(ellipse at left top, $start $startPercent, $mid $midPercent, $end $endPercent);
 	}
-}
-
-.clearfix:after{
-	content: "";
-	display: table;
-	clear: both;
 }
 
 

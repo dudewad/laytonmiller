@@ -1,10 +1,15 @@
-angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "STRINGS", function($rootScope, $scope, STRINGS){
-	$scope.currentSection = "default";
+angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "CONSTANTS", "STRINGS", "AnimationService", "$timeout", function($rootScope, $scope, $state, CONSTANTS, STRINGS, AnimationService, $timeout){
+	$scope.currentSection = "intro";
 	$scope.STRINGS = STRINGS.CORE;
 
-	$rootScope.$on("$stateChangeStart", function(e, toState){
+	$rootScope.$on("$stateChangeStart", function (e, toState, params, fromState) {
 		$scope.currentSection = toState.name;
+		AnimationService.transition.pageTransition(toState, fromState);
 	});
+
+	$timeout(function(){
+		$state.go(CONSTANTS.STATE.TECHNICAL_SUMMARY.NAME);
+	}, 500);
 
 
 

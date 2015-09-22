@@ -12,8 +12,16 @@ header.main-header{
 		@include setFont("montserrat", 200, normal);
 	}
 
+	.content{
+		margin-left:7.4em;
+	}
+
 	.emblem{
-		display:inline;
+		display: block;
+		position: absolute;
+		top: 0;
+		font-size: 2.5em;
+		margin-right:.1em;
 
 		svg{
 			height:1em;
@@ -35,6 +43,14 @@ header.main-header{
 		h2 {
 			font-size: 1.3em;
 		}
+
+		.content {
+			margin-left: 9em;
+		}
+
+		.emblem {
+			font-size: 2.75em;
+		}
 	}
 }
 
@@ -52,6 +68,14 @@ header.main-header{
 			margin-top: -.65em;
 			font-size: 1.4em;
 		}
+
+		.content {
+			margin-left: 9.8em;
+		}
+
+		.emblem {
+			font-size: 2.85em;
+		}
 	}
 }
 
@@ -68,6 +92,14 @@ header.main-header{
 		h2 {
 			font-size: 1.5em;
 		}
+
+		.content {
+			margin-left: 11.25em;
+		}
+
+		.emblem {
+			font-size: 3.1em;
+		}
 	}
 }
 
@@ -83,6 +115,14 @@ header.main-header{
 
 		h2 {
 			font-size: 2em;
+		}
+
+		.content {
+			margin-left: 14em;
+		}
+
+		.emblem {
+			font-size: 3.5em;
 		}
 	}
 }

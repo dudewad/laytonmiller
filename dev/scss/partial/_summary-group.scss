@@ -81,17 +81,6 @@
 
 @media screen and (min-width: $screen-lg-min) {
 	.summary-group {
-		width: 30%;
-		margin-right: 5%;
-
-		&:nth-child(2n){
-			margin-right:5%;
-		}
-
-		&:nth-child(3n) {
-			margin-right: 0;
-		}
-
 		.tooltip {
 			width: 135%;
 			left: -17.5%;

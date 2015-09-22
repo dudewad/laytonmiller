@@ -128,6 +128,7 @@ nav {
 @media screen and(min-width: $screen-sm-min) {
 	nav {
 		position: static;
+		font-size: 1.5em;
 
 		ul {
 			position: static;
@@ -186,7 +187,6 @@ nav {
 
 @media screen and(min-width: $screen-md-min) {
 	nav {
-		font-size: 2em;
 		margin-right: .25em;
 	}
 }
@@ -194,12 +194,13 @@ nav {
 @media screen and(min-width: $screen-lg-min) {
 	nav {
 		margin-right: .5em;
+		font-size: 1.6em;
 	}
 }
 
 @media screen and(min-width: $screen-xl-min) {
 	nav {
-		font-size: 2.25em;
 		margin-right: 1em;
+		font-size: 1.75em;
 	}
 }
