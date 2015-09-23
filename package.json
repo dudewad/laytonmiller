@@ -16,7 +16,6 @@
     "grunt-ftp-deploy": "^0.1.10",
     "grunt-githooks": "^0.3.1",
     "grunt-open": "^0.2.3",
-    "grunt-scss-lint": "^0.3.8",
     "grunt-spritesmith": "^5.0.0",
     "load-grunt-tasks": "^0.5.0"
   },

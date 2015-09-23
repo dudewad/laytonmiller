@@ -69,7 +69,7 @@ angular.module("LMApp").directive("lmTimeline", [function () {
 			scope.$on("timelineBuilt", function(){
 				slider = element.find(".timeline-range");
 				scope.timeline.dimensions.marginLeft = element.find(".timeline-interval").eq(0).find(".month").outerWidth();
-			})
+			});
 		}
 	};
 }]);

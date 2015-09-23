@@ -3,8 +3,8 @@
  */
 module.exports = function(grunt){
     grunt.registerTask("dev", [
+	    "githooks",
         "jshint",
-        /*"scss-lint:dev",*/
         "sass:dev",
         "concat:dev"
     ]);
