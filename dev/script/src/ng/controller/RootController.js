@@ -7,9 +7,9 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		AnimationService.transition.pageTransition(toState, fromState);
 	});
 
-	$timeout(function(){
+	/*$timeout(function(){
 		$state.go(CONSTANTS.STATE.TECHNICAL_SUMMARY.NAME);
-	}, 500);
+	}, 500);*/
 
 
 

@@ -11,8 +11,40 @@
 		.emblem {
 			display: block;
 			position: static;
-			font-size: 5.5em;
-			margin:.25em auto 0 auto;
+			font-size: 4em;
+			margin:.25em auto .075em auto;
+		}
+	}
+
+	@media screen and(min-width: $screen-sm-min){
+		header.main-header {
+			.emblem {
+				font-size: 4.25em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-md-min){
+		header.main-header {
+			.emblem {
+				font-size: 4.5em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-lg-min){
+		header.main-header {
+			.emblem {
+				font-size: 5em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-xl-min){
+		header.main-header {
+			.emblem {
+				font-size: 5.5em;
+			}
 		}
 	}
 }
