@@ -11,10 +11,6 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		$state.go(CONSTANTS.STATE.TECHNICAL_SUMMARY.NAME);
 	});
 
-
-	angular.element(document).on("click", function(e){
-		$rootScope.$broadcast("documentClick", {$event: e});
-	});
 	angular.element("body").on("selectstart", function(){
 		return false;
 	});
