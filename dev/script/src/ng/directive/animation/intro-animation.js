@@ -1,8 +1,11 @@
-angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", function ($rootScope, $timeout) {
-	function animate(elements){
+angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", "CONSTANTS", function ($rootScope, $timeout, CONSTANTS) {
+	function animate(elements, endHandler){
 		wrapLetters(elements.title);
 		wrapLetters(elements.subtitle);
-		var t = new TimelineMax({paused: true});
+		var t = new TimelineMax({
+			paused: true,
+			onComplete: endHandler
+		});
 		var titleSpans = elements.title.find("span");
 		var subtitleSpans = elements.subtitle.find("span");
 
@@ -24,7 +27,8 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 			.addDelay(2)
 			.add("out")
 			.to(elements.emblem,.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
-			.to(elements.copy,.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out");
+			.to(elements.copy,.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
+			.addDelay(1.5);
 
 		t.play();
 	}
@@ -64,6 +68,10 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 				subtitle: ""
 			};
 
+			var animationEndHandler = function(){
+				scope.$emit(CONSTANTS.EVENT.ANIMATION.INTRO_COMPLETE);
+			};
+
 			//Force digest to complete
 			$timeout(function(){
 				t = new TimelineMax();
@@ -75,11 +83,11 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 				if(!elements.emblem.length){
 					$rootScope.$on("$includeContentLoaded", function(){
 						elements.emblem = getEmblem(element);
-						animate(elements);
+						animate(elements, animationEndHandler);
 					})
 				}
 				else {
-					animate(elements);
+					animate(elements, animationEndHandler);
 				}
 			}, 0);
 		}

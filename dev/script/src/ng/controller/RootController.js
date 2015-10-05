@@ -7,6 +7,10 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		AnimationService.transition.pageTransition(toState, fromState);
 	});
 
+	$scope.$on(CONSTANTS.EVENT.ANIMATION.INTRO_COMPLETE, function(){
+		$state.go(CONSTANTS.STATE.TECHNICAL_SUMMARY.NAME);
+	});
+
 
 	angular.element(document).on("click", function(e){
 		$rootScope.$broadcast("documentClick", {$event: e});

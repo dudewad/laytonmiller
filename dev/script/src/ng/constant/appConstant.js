@@ -11,6 +11,12 @@ angular.module("LMApp").constant("CONSTANTS", {
 		"WELCOME": "welcome.json"
 	},
 
+	"EVENT": {
+		"ANIMATION": {
+			"INTRO_COMPLETE": "INTRO_COMPLETE"
+		}
+	},
+
 	/**
 	 * Path/Directory constants
 	 */
