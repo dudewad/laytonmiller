@@ -1,18 +1,100 @@
 .intro {
-	//@include prefixProp("transition", "padding 500ms");
+	padding: 0;
+	overflow:hidden;
 
+	nav.main-nav,
 	header.main-header {
-		text-align:center;
+		display: none;
+	}
 
-		.content {
-			margin:0;
-		}
+	.content-main {
+		width:100%;
 
 		.emblem {
-			display: block;
-			position: static;
-			font-size: 5.5em;
-			margin:.25em auto 0 auto;
+			font-size: 18em;
+			margin-top: .25em;
+			opacity:0;
+			display:block;
+			text-align:center;
+		}
+
+		.copy{
+			margin-top:1em;
+			text-align:center;
+			font-size:1em;
+
+			h1,
+			h2{
+				opacity:0;
+			}
+
+			h1{
+				display:inline-block;
+			}
+
+			h2{
+				@include setFont("montserrat", 200, normal);
+			}
+		}
+	}
+
+	@media screen and (orientation: landscape) {
+		.content-main {
+			.emblem {
+				font-size: 12em;
+			}
+
+			.copy {
+				font-size: 1em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-sm-min) {
+		.content-main {
+			.emblem {
+				font-size: 24em;
+			}
+
+			.copy {
+				font-size: 1.25em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-md-min) {
+		.content-main {
+			.emblem {
+				font-size: 28em;
+			}
+
+			.copy {
+				font-size: 1.5em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-lg-min) {
+		.content-main {
+			.emblem {
+				font-size: 32em;
+			}
+
+			.copy {
+				font-size: 1.75em;
+			}
+		}
+	}
+
+	@media screen and(min-width: $screen-xl-min) {
+		.content-main {
+			.emblem {
+				font-size: 35em;
+			}
+
+			.copy {
+				font-size: 2em;
+			}
 		}
 	}
 }

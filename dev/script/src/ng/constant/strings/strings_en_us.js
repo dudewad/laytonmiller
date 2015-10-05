@@ -69,7 +69,7 @@ LMApp_conditionalLoadList.push({
 
 				EXPERIENCE: {
 					HEADER: {
-						TITLE: "Experience",
+						TITLE: "EXPERIENCE",
 						DESCRIPTION: "Here is a timeline of my employment, from today back to when I started. Feel free to explore! Swipe, drag, or mouse-wheel to navigate across the timeline."
 					},
 					EVENTS:{

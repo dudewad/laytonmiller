@@ -38,7 +38,6 @@ angular.module("LMApp").factory("AnimationService", [function () {
 
 			c.addClass(toState.name);
 			dimension && b.css(dimension, targetSize);
-			console.log(dimension, oW, oH);
 		}
 	};
 

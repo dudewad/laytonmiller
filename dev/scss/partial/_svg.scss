@@ -1,9 +1,11 @@
-svg {
-	&.emblem{
-		padding: .05em;
-		border: .035em solid;
+.emblem {
+	line-height:0;
+
+	svg {
+		width:auto;
+		height:1em;
+		padding: .025em;
+		border: .02em solid;
 		@include prefixProp(border-radius, 50%);
-		position:relative;
-		top:.15em;
 	}
 }

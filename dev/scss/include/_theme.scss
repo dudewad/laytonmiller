@@ -36,12 +36,10 @@
 		}
 	}
 
-	.main-header{
+	.emblem{
 		svg{
-			&.emblem {
-				border-color:$light;
-				fill: $light;
-			}
+			border-color: $light;
+			fill: $light;
 		}
 	}
 

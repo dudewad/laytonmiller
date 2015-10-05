@@ -46,7 +46,12 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 
 		$stateProvider
 			.state(STATE.INTRO.NAME, {
-				url: STATE.INTRO.URL
+				url: STATE.INTRO.URL,
+				views: {
+					"contentMain": {
+						templateUrl: PATH.PARTIAL + STATE.INTRO.TEMPLATE
+					}
+				}
 			})
 			.state(STATE.WELCOME.NAME, {
 				url: STATE.WELCOME.URL,

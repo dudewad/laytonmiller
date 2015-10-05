@@ -24,16 +24,6 @@ body{
 	@include prefixProp("transition", "color #{$section-transition-speed} linear, background-color #{$section-transition-speed} linear");
 	@include prefixProp("transition-duration", "1000ms");
 
-	&.intro{
-		padding:0;
-
-		.site-content {
-			display: none;
-			opacity: 0;
-			@include prefixProp("transition", "opacity 500ms");
-		}
-	}
-
 	.top-border{
 		position:absolute;
 		top:0;
