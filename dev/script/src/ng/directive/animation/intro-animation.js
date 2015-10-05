@@ -14,20 +14,20 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 		t.add("start");
 
 		titleSpans.each(function(){
-			t.from($(this),.75, {"opacity": 0}, "start+=" + letterStartOffset());
+			t.from($(this), 0.75, {"opacity": 0}, "start+=" + letterStartOffset());
 		});
 
 		subtitleSpans.each(function(){
-			t.from($(this), .75, {"opacity": 0}, "start+=" + letterStartOffset());
+			t.from($(this), 0.75, {"opacity": 0}, "start+=" + letterStartOffset());
 		});
 
 		t   .add("emblemStart")
-			.from(elements.emblem,.75, {"y": "-=10%", "ease": Power4.easeOut}, "emblemStart")
-			.to(elements.emblem,.75, {"opacity": 1, "ease": Power4.easeOut}, "emblemStart")
+			.from(elements.emblem, 0.75, {"y": "-=10%", "ease": Power4.easeOut}, "emblemStart")
+			.to(elements.emblem, 0.75, {"opacity": 1, "ease": Power4.easeOut}, "emblemStart")
 			.addDelay(2)
 			.add("out")
-			.to(elements.emblem,.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
-			.to(elements.copy,.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
+			.to(elements.emblem, 0.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
+			.to(elements.copy, 0.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
 			.addDelay(1.5);
 
 		t.play();
@@ -84,12 +84,12 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 					$rootScope.$on("$includeContentLoaded", function(){
 						elements.emblem = getEmblem(element);
 						animate(elements, animationEndHandler);
-					})
+					});
 				}
 				else {
 					animate(elements, animationEndHandler);
 				}
 			}, 0);
 		}
-	}
+	};
 }]);
