@@ -3,7 +3,9 @@ module.exports = {
         options: {
             quotmark: "double",
             curly: true,
-            indent: 4
+	        //"expr" Allows code like:
+	        //somevar && somevar.methodRequiringSomevar()
+	        expr: true
         },
         src: [
             "<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>**/*.js"
