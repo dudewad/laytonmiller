@@ -42,7 +42,46 @@ angular.module("LMApp").factory("AnimationService", [function () {
 	};
 
 
+
+	var string = {
+		randomFadeIn: function (element, duration, offsetLabel, offsetMin, offsetMax){
+			var t = new TimelineMax();
+			wrapLetters(element);
+			var spans = element.find("span");
+
+			spans.each(function () {
+				t.from($(this), duration, {"opacity": 0}, offsetLabel + "+=" + randomStartOffset(offsetMin, offsetMax));
+			});
+
+			return t;
+		}
+	};
+
+
+
+	/**
+	 * Wraps letters of a string in spans, skipping spaces
+	 *
+	 * @param element   {object}    A jQuery selection of the target string whose letters are to be wrapped.
+	 */
+	function wrapLetters(element) {
+		var str = element.text();
+		element.html("");
+		for (var i = 0; i < str.length; i++) {
+			var newLetter = str[i].trim().length ? $("<span>" + str[i] + "</span>") : str[i];
+			element.append(newLetter);
+		}
+	}
+
+
+
+	function randomStartOffset(min, max) {
+		return min + (Math.random() * (max - min));
+	}
+
+
 	return {
-		transition: transition
+		transition: transition,
+		string: string
 	};
 }]);
