@@ -5,7 +5,7 @@
 		width:auto;
 		height:1em;
 		padding: .025em;
-		border: .02em solid;
+		border: .035em solid;
 		@include prefixProp(border-radius, 50%);
 	}
 }

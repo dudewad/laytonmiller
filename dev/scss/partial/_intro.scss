@@ -10,9 +10,14 @@
 	.content-main {
 		width:100%;
 
+		div[data-intro-animation]{
+			width:100%;
+			position:absolute;
+			cursor:pointer;
+		}
+
 		.emblem {
 			font-size: 18em;
-			margin-top: .25em;
 			opacity:0;
 			display:block;
 			text-align:center;

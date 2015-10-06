@@ -22,6 +22,7 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 				var bp = BreakpointService.getCurrentBreakpoint().toLowerCase();
 				var img = $("<img>");
 				var path = CONSTANTS.PATH.BACKGROUND_IMAGE + toState.name + "/" + bp + ".jpg";
+				var windowW = _window.width();
 				element.show();
 
 				_toState = toState;
@@ -52,12 +53,16 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 				element.html("");
 
 				for (var i = 0; i < slots; i++) {
-					var d = $("<div>").css({
+					var d = $("<div><span></span></div>").css({
 						"width": slotsWidth + "%"
 					});
+					var s = d.find("span");
 					element.append(d);
 					//Using pixels gives more precision than percentages
-					d.css("background-position-x", -d.offset().left + "px");
+					s.css({
+						"left": (-d.offset().left) + "px",
+						"width": windowW
+					});
 				}
 
 				img.on("load", animateTransition);
