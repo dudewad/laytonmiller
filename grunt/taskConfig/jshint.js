@@ -8,7 +8,8 @@ module.exports = {
 	        expr: true
         },
         src: [
-            "<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>**/*.js"
+	        "<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>**/*.js",
+	        "!<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>polyfills.js"
         ]
     }
 };

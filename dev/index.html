@@ -8,10 +8,10 @@
 
 	<link type="text/css" href="style/default.css" rel="stylesheet"/>
 </head>
-<body ng-app="LMApp" class="transitions-off" ng-controller="RootController" ng-class="currentSection">
+<body ng-app="LMApp" ng-controller="RootController" ng-class="[currentSection, {transitioning: transitioning}]">
 	<hr class="top-border"/>
-	<div class="transition">
-		<div class="background"></div>
+	<div class="background-contain">
+		<div class="background" data-lm-page-background ng-class="[section, transitionState]"></div>
 	</div>
 
 	<div class="container-fluid">

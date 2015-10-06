@@ -1,9 +1,6 @@
 angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", "CONSTANTS", "AnimationService", function ($rootScope, $timeout, CONSTANTS, AnimationService) {
-	function animate(elements, endHandler){
-		var t = new TimelineMax({
-			paused: true,
-			onComplete: endHandler
-		});
+	function animate(elements){
+		var t = new TimelineMax({paused: true});
 
 		t   .set(elements.title, {"opacity": 1})
 			.set(elements.subtitle, {"opacity": 1})
@@ -13,9 +10,20 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 			.addDelay(1)
 			.add("emblemStart")
 			.from(elements.emblem, 0.75, {"y": "-=10%", "ease": Power4.easeOut}, "emblemStart")
-			.to(elements.emblem, 0.75, {"opacity": 1, "ease": Power4.easeOut}, "emblemStart")
-			.addDelay(1)
-			.add("out")
+			.to(elements.emblem, 0.75, {"opacity": 1, "ease": Power4.easeOut}, "emblemStart");
+
+		t.play();
+	}
+
+
+
+	function out(elements, endHandler){
+		var t = new TimelineMax({
+			paused: true,
+			onComplete: endHandler
+		});
+
+		t	.add("out")
 			.to(elements.emblem, 0.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
 			.to(elements.copy, 0.3, {"opacity": 0, "y": "-=10%", "ease": Power4.easeIn}, "out")
 			.addDelay(1);
@@ -56,13 +64,17 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 				if(!elements.emblem.length){
 					$rootScope.$on("$includeContentLoaded", function(){
 						elements.emblem = getEmblem(element);
-						animate(elements, animationEndHandler);
+						animate(elements);
 					});
 				}
 				else {
-					animate(elements, animationEndHandler);
+					animate(elements);
 				}
 			}, 0);
+
+			element.on("click", function(){
+				out(elements, animationEndHandler);
+			});
 		}
 	};
 }]);

@@ -1,0 +1,105 @@
+$pageNames: "intro", "technical-summary", "experience", "portfolio", "contact";
+
+body {
+	> .background-contain {
+		position:fixed;
+		top:0;
+		left:0;
+		width: 100%;
+		height:100%;
+		overflow: hidden;
+
+
+		.background {
+			position: absolute;
+			width: 100%;
+			height: 200%;
+			display: none;
+			background-size:cover;
+
+			div {
+				float: left;
+				height: 100%;
+				background-size: cover;
+			}
+		}
+	}
+
+	@each $page in $pageNames {
+		> .background-contain .background {
+			&.#{$page} {
+				background-image: url("../asset/image/background/#{$page}/xs.jpg");
+			}
+
+			&.transition-to-#{$page} {
+				div {
+					background-image: url("../asset/image/background/#{$page}/xs.jpg");
+				}
+			}
+		}
+	}
+
+	@media screen and (min-width: $screen-sm-min) {
+		@each $page in $pageNames {
+			> .background-contain .background {
+				&.#{$page} {
+					background-image: url("../asset/image/background/#{$page}/sm.jpg");
+				}
+
+				&.transition-to-#{$page} {
+					div{
+						background-image: url("../asset/image/background/#{$page}/sm.jpg");
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (min-width: $screen-md-min) {
+		@each $page in $pageNames {
+			> .background-contain .background {
+				&.#{$page} {
+					background-image: url("../asset/image/background/#{$page}/md.jpg");
+				}
+
+				&.transition-to-#{$page} {
+					div {
+						background-image: url("../asset/image/background/#{$page}/md.jpg");
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (min-width: $screen-lg-min) {
+		@each $page in $pageNames {
+			> .background-contain .background {
+				&.#{$page} {
+					background-image: url("../asset/image/background/#{$page}/lg.jpg");
+				}
+
+				&.transition-to-#{$page} {
+					div {
+						background-image: url("../asset/image/background/#{$page}/lg.jpg");
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (min-width: $screen-xl-min) {
+		@each $page in $pageNames {
+			> .background-contain .background {
+				&.#{$page} {
+					background-image: url("../asset/image/background/#{$page}/xl.jpg");
+				}
+
+				&.transition-to-#{$page} {
+					div {
+						background-image: url("../asset/image/background/#{$page}/xl.jpg");
+					}
+				}
+			}
+		}
+	}
+}
