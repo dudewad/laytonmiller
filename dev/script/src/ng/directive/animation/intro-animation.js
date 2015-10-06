@@ -32,14 +32,17 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 				}
 			}, 0);
 
-			element.on("click", function(){
-				out(animationEndHandler);
-			});
-
 			GlobalEventsService.registerResizeHandler(center);
 
 			function animate() {
-				var t = new TimelineMax({paused: true});
+				var t = new TimelineMax({
+					paused: true,
+					onComplete: function(){
+						scope.clickable = true;
+						applyScope();
+						element.on("click", out);
+					}
+				});
 				center();
 
 				t.set(elements.title, {"opacity": 1})
@@ -57,10 +60,12 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 
 
 
-			function out(endHandler) {
+			function out() {
+				element.off("click", out);
+
 				var t = new TimelineMax({
 					paused: true,
-					onComplete: endHandler
+					onComplete: animationEndHandler
 				});
 
 				t.add("out")
@@ -81,6 +86,17 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 
 			function center() {
 				element.css("top", angular.element(window).height() / 2 - element.height() / 2);
+			}
+
+
+
+			/**
+			 * Performs a forced apply scope call in a safe manner.
+			 */
+			function applyScope() {
+				if (!scope.$$phase) {
+					scope.$apply();
+				}
 			}
 		}
 	};

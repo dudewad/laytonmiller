@@ -9,11 +9,21 @@
 
 	.content-main {
 		width:100%;
+		cursor:default;
 
 		div[data-intro-animation]{
 			width:100%;
 			position:absolute;
-			cursor:pointer;
+		}
+
+		.clickable{
+			h1,
+			h2,
+			.emblem {
+				svg {
+					cursor: pointer;
+				}
+			}
 		}
 
 		.emblem {
@@ -21,6 +31,9 @@
 			opacity:0;
 			display:block;
 			text-align:center;
+			//For some reason, chrome extends the figure's hit area over the titles due to SVG placement.
+			//This appears to be a bug and overflow:hidden fixes it.
+			overflow: hidden;
 		}
 
 		.copy{
@@ -31,10 +44,7 @@
 			h1,
 			h2{
 				opacity:0;
-			}
-
-			h1{
-				display:inline-block;
+				display: inline-block;
 			}
 
 			h2{
