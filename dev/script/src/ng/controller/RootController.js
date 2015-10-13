@@ -7,6 +7,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	$rootScope.$on("$stateChangeStart", function (e, toState, params, fromState) {
 		$scope.transitioning = !$scope.transitioning;
 		if($scope.transitioning){
+			console.log("transition");
 			e.preventDefault();
 			for (var i = 0; i < transitionHandlers.length; i++) {
 				var h = transitionHandlers[i];

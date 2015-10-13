@@ -1,38 +1,21 @@
-<nav class="main-nav content-background" ng-controller="NavigationController">
+<nav class="main-nav" ng-controller="NavigationController">
 	<div data-lm-touchend="deactivate($event)">
-		<div class="navigation-wrapper-outer" ng-class="{'active': currentState.active}">
-			<div class="navigation-wrapper">
-				<ul class="link-list">
-					<li ui-sref-active="active"
-					    ng-repeat="item in navItems"
-					    data-mobile-hover="{{item.isHovered ? 'true' : 'false'}}"
-					    class="{{item.className}}">
-						<a ui-sref="{{item.sref}}"><span>{{item.text}}</span></a>
-					</li>
-				</ul>
-			</div>
+		<div class="emblem-wrapper">
+			<figure ng-include data-src="'partial/svg/emblem.html'" class="emblem"></figure>
 		</div>
-
-		<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-		     viewBox="0 0 70 70" preserveAspectRatio="xMidYMid slice"
-		     class="mobile-nav-menu visible-xs-block"
-		     data-lm-touchstart="activate($event)">
-			<filter id="mobile-nav-menu-shadow" height="150%">
-				<feGaussianBlur in="SourceAlpha" stdDeviation="2.25"></feGaussianBlur>
-				<feOffset dx="3" dy="3" result="offsetblur"></feOffset>
-				<feComponentTransfer xmlns="http://www.w3.org/2000/svg">
-					<feFuncA type="linear" slope="0.35"></feFuncA>
-				</feComponentTransfer>
-				<feMerge>
-					<feMergeNode></feMergeNode>
-					<feMergeNode in="SourceGraphic"></feMergeNode>
-				</feMerge>
-			</filter>
-			<circle cx="47%" cy="47%" r="43%" style="filter:url(#mobile-nav-menu-shadow)"></circle>
-			<rect id="mobile-nav-menu-hamburger-stripe" x="27%" y="31%" width="40%" height="3px" rx="1"
-			      ry="1"></rect>
-			<use xlink:href="#mobile-nav-menu-hamburger-stripe" y="13%"></use>
-			<use xlink:href="#mobile-nav-menu-hamburger-stripe" y="26%"></use>
-		</svg>
+		<ul class="link-list">
+			<li ui-sref-active="active"
+			    ng-repeat="item in navItems"
+			    data-mobile-hover="{{item.isHovered ? 'true' : 'false'}}"
+			    class="{{item.className}}">
+				<a ui-sref="{{item.sref}}">
+					<span class="alternator-bg"></span>
+					<div class="alternator">
+						<span class="highlight">{{item.text}}</span>
+						<span>{{item.text}}</span>
+					</div>
+				</a>
+			</li>
+		</ul>
 	</div>
 </nav>

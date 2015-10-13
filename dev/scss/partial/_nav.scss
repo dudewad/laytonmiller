@@ -1,186 +1,142 @@
 $navItemClasses: "technical-summary", "experience", "portfolio", "contact";
 $navBGColors: $color-blue-medium, $color-red-medium, $color-green-medium, $color-orange-medium;
 $navHoverBGColors: $color-blue-light, $color-red-light, $color-green-light, $color-orange-light;
+$navItemTransitionSpeed: 250ms;
 
 nav {
-	position: relative;
-	z-index: 10;
+	position: fixed;
+	top: 0;
+	left: 0;
 	font-size: 2em;
-	@include setFont("montserrat", 200, normal);
-	margin: 0 -15px;
-	cursor: pointer;
+	padding: 2em 0;
+	@include setFont("montserrat", 300, normal);
 	@include prefixProp("user-select", "none");
-
-	&.content-background {
-		padding: 0;
-	}
-
-	svg {
-		&.mobile-nav-menu {
-			width: 70px;
-			height: 70px;
-			position: fixed;
-			right: .5em;
-			bottom: .5em;
-			background: transparent;
-
-			circle,
-			rect {
-				@include prefixProp("transition", "fill #{$section-transition-speed} linear");
-			}
-
-			circle {
-				@include prefixProp("filter", "drop-shadow( -5px -5px 5px #{$color-black})");
-			}
-		}
-	}
-
-	.navigation-wrapper-outer {
-		position: fixed;
-		bottom: 0;
-		right: 0;
-		width:100%;
-		padding-bottom:100%;
-		@include prefixProp("transform", "scale(0)");
-		@include prefixProp("transition", "transform 150ms");
-		@include prefixProp("transform-origin", "bottom right");
-
-		&.active {
-			@include prefixProp("transform", "scale(1)");
-		}
-	}
-
-	.navigation-wrapper {
-		ul {
-			border-top-left-radius: 100%;
-			border-top-right-radius: 2%;
-			border-bottom-left-radius: 2%;
-			border-bottom-right-radius: 0;
-			display:block;
-			position:absolute;
-			overflow:hidden;
-			width: 100%;
-			height: 100%;
-
-			li {
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				width: 600%;
-				height: 100%;
-				@include prefixProp("transform-origin", "bottom right");
-
-				&.active {
-					@include setFont("montserrat", 400, normal);
-				}
-
-				//Outputs specific styles for nav LI elements
-				//To add to this, modify the arrays at the top of the file.
-				//The rest should handle itself.
-				@each $navItem in $navItemClasses {
-					$i: index($navItemClasses, $navItem);
-					$deg: 90 / length($navItemClasses); //#degrees each LI should take up in the wheel
-					$rotation: 90 - $deg * $i; //Calculate actual rotation
-
-					&.#{$navItem} {
-						@include prefixProp("transform", "rotate(#{$rotation}deg)");
-						z-index: 4 - $i;
-						background-color: nth($navBGColors, $i);
-
-						&:hover,
-						&:active,
-						&:focus,
-						&.active,
-						&[data-mobile-hover='true']{
-							background-color: nth($navHoverBGColors, $i);
-						}
-					}
-				}
-
-				a {
-					position: absolute;
-					right: 0;
-					bottom: 0;
-					display: block;
-					width: 16%;
-					height: 100%;
-					padding: 1em;
-
-					span {
-						position: absolute;
-						bottom: .75em;
-					}
-				}
-			}
-		}
-	}
-}
-
-@media screen and (orientation: landscape) {
-	nav {
-		.navigation-wrapper-outer {
-			width:50%;
-			padding-bottom: 50%;
-		}
-	}
 }
 
 @media screen and(min-width: $screen-sm-min) {
 	nav {
-		position: static;
-		font-size: 1.5em;
+		font-size: 1.25em;
+		height: 100%;
+		width: 15%;
+		margin-left: 5%;
+		border: 1px solid #000;
+		border-top: 0;
+		border-bottom: 0;
+		padding-top: 10em;
+
+		.emblem-wrapper {
+			padding: 3em;
+			border-bottom: 1px solid #000;
+		}
+
+		.emblem {
+			font-size: 4em;
+		}
 
 		ul {
-			position: static;
+			padding: 2em 3em;
 		}
 
 		li {
+			position: relative;
+			margin: 1em 0 2em 0;
 
-			a {
-				padding: .75em;
-			}
-		}
+			&.active {
+				@include setFont("montserrat", 500, italic);
+				.alternator-bg {
+					opacity: 1;
+					@include prefixProp("transform", "translateX(0)");
+				}
 
-		.navigation-wrapper-outer{
-			position:static;
-			width:auto;
-			height:auto;
-			padding-bottom: 0;
-			@include prefixProp("transform", "scale(1)");
-		}
+				a:hover {
+					span {
+						@include prefixProp("transform", "none");
+						opacity: 1;
 
-		.navigation-wrapper {
-			ul {
-				position: static;
-				width: auto;
-				height: auto;
-				border-radius:0;
-
-				li {
-					position: static;
-					width: auto;
-					height: auto;
-					background-color: transparent;
-
-					//Override to reset rotation property from mobile
-					@each $navItem in $navItemClasses {
-						&.#{$navItem} {
+						&.highlight {
+							opacity: 0;
 							@include prefixProp("transform", "none");
-							background-color:transparent;
-						}
-					}
 
-					a {
-						position: static;
-						width: auto;
-						height: auto;
-
-						span {
-							position: static;
 						}
 					}
 				}
 			}
+		}
+
+		a {
+			display: block;
+			position: relative;
+			cursor: pointer;
+
+			&:hover {
+				span {
+					@include prefixProp("transform", "translateY(.6em)  scale(1, .5)");
+					opacity: 0;
+
+					&.highlight {
+						opacity: 1;
+						@include prefixProp("transform", "translateY(0em) scale(1, 1)");
+
+					}
+				}
+
+				.alternator-bg {
+					@include prefixProp("transform", "translateX(0)");
+					opacity: 1;
+				}
+			}
+
+			span {
+				@include prefixProp("transition", "transform #{$navItemTransitionSpeed}, opacity #{$navItemTransitionSpeed}, scale #{$navItemTransitionSpeed}");
+				bottom: 0;
+
+				&.highlight {
+					position: absolute;
+					top: 0;
+					opacity: 0;
+					@include prefixProp("transform", "translateY(-.6em) scale(1, .5)");
+					font-weight: 400;
+					font-style: italic;
+				}
+			}
+		}
+
+		.alternator-bg {
+			display: block;
+			position: absolute;
+			top:-.4em;
+			height: 0;
+			width: 100%;
+			opacity: 0;
+			@include prefixProp("transition", "opacity #{$navItemTransitionSpeed}, transform #{$navItemTransitionSpeed}");
+			@include prefixProp("transform", "translateX(-.5em)");
+
+			&:before,
+			&:after {
+				display: block;
+				position: absolute;
+				top: 0;
+				content: " ";
+				margin-left: -1em;
+				height: 0;
+				width: 100%;
+				border-bottom: 2em solid #F3f3f3;
+				border-left: .5em solid transparent;
+				border-top: 0;
+				z-index: -1;
+			}
+
+			&:after {
+				border-left: 0;
+				border-right: .5em solid transparent;
+				border-bottom: 0;
+				border-top: 2em solid #F3F3F3;
+				margin-left: 1em;
+			}
+		}
+
+		.alternator {
+			position: relative;
 		}
 	}
 }
@@ -194,13 +150,11 @@ nav {
 @media screen and(min-width: $screen-lg-min) {
 	nav {
 		margin-right: .5em;
-		font-size: 1.6em;
 	}
 }
 
 @media screen and(min-width: $screen-xl-min) {
 	nav {
 		margin-right: 1em;
-		font-size: 1.75em;
 	}
 }
