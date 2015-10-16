@@ -2,11 +2,20 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin-left: -35px;
-	margin-top: -35px;
+	margin-left: -43px;
+	margin-top: -43px;
 	z-index: 1;
 	width: 8.5em;
 	height: 8.5em;
+	opacity:0;
+	@include prefixProp("transform", "translateY(-50px)");
+	@include prefixProp("transition", "opacity 250ms, transform 250ms");
+	@include prefixProp("transition-timing-function", "cubic-bezier(0.75, 0.2, 0.1, 0.9)");
+
+	&.visible {
+		@include prefixProp("transform", "translateY(0)");
+		opacity: 1;
+	}
 
 	canvas {
 		position: absolute;

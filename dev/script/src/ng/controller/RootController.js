@@ -2,12 +2,15 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	$scope.currentSection = "intro";
 	$scope.transitioning = false;
 	$scope.STRINGS = STRINGS.CORE;
+	$scope.state = {
+		loading: false
+	};
 	var transitionHandlers = [];
 
 	$rootScope.$on("$stateChangeStart", function (e, toState, params, fromState) {
+		$scope.state.loading = true;
 		$scope.transitioning = !$scope.transitioning;
 		if($scope.transitioning){
-			console.log("transition");
 			e.preventDefault();
 			for (var i = 0; i < transitionHandlers.length; i++) {
 				var h = transitionHandlers[i];
@@ -17,6 +20,10 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		else {
 			$scope.currentSection = toState.name;
 		}
+	});
+
+	$rootScope.$on("$stateChangeSuccess", function (e, toState, toParams, fromState, fromParams) {
+		$scope.state.loading = false;
 	});
 
 	$scope.$on(CONSTANTS.EVENT.ANIMATION.INTRO_COMPLETE, function(){

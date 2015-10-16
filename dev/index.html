@@ -24,12 +24,12 @@
 		<div class="row">
 			<div ng-include data-src="'partial/core/navigation.html'"></div>
 
-			<div ng-include data-src="'partial/element/lm-loading.html'"></div>
-			<div class="content-main" ui-view="contentMain"></div>
+			<div class="content-main" ui-view="contentMain" data-lm-3d></div>
 		</div>
 	</div>
+
+	<div ng-include data-src="'partial/element/lm-loading.html'"></div>
 	<script src="script/vendor.js" type="text/javascript"></script>
 	<script src="script/app.js" type="text/javascript"></script>
-
 </body>
 </html>

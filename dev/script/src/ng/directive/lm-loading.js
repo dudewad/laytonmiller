@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmLoading", ["$rootScope", function ($rootScope) {
+angular.module("LMApp").directive("lmLoading", ["$rootScope", "$timeout", function ($rootScope, $timeout) {
 	return {
 		scope: true,
 		restrict: "C",
@@ -14,19 +14,21 @@ angular.module("LMApp").directive("lmLoading", ["$rootScope", function ($rootSco
 				strokeWidth: 2,
 				stroke: "#BBBBBB",
 				animation:{
+					draw: true,
 					startPos: Math.PI * -0.5,
+					endPos: Math.PI * 1.5,
 					range: 0,
-					currentArcValue: 0,
 					currentFrame: 0,
 					duration: 60 //frames
 				}
 			};
-			circle.animation.range = Math.PI * 1.75 - circle.animation.startPos;
+			circle.animation.range = circle.animation.endPos - circle.animation.startPos;
 
 
 
 			scope.start = function () {
-				if(!raf){
+				reset();
+				if(scope.state.loading && !raf){
 					animate();
 				}
 			};
@@ -36,19 +38,6 @@ angular.module("LMApp").directive("lmLoading", ["$rootScope", function ($rootSco
 			scope.stop = function () {
 				window.cancelAnimationFrame(raf);
 				raf = null;
-				//clear();
-			};
-
-
-
-			scope.show = function(){
-
-			};
-
-
-
-			scope.hide = function(){
-
 			};
 
 
@@ -60,18 +49,30 @@ angular.module("LMApp").directive("lmLoading", ["$rootScope", function ($rootSco
 				canvas.height = canH;
 				var centerX = canW / 2;
 				var centerY = canH / 2;
-				circle.animation.currentArcValue = easeInOutQuint(circle.animation.currentFrame, circle.animation.startPos, circle.animation.range, circle.animation.duration);
+				var startPoint;
+				var endPoint;
+				var animPoint = easeInOutQuint(circle.animation.currentFrame, circle.animation.startPos, circle.animation.range, circle.animation.duration);
+				startPoint = circle.animation.draw ? circle.animation.startPos : animPoint;
+				endPoint = circle.animation.draw ? animPoint : circle.animation.endPos;
 				ctx = canvas.getContext("2d");
 
 				ctx.beginPath();
-				ctx.arc(centerX, centerY, circle.radius, circle.animation.startPos, circle.animation.currentArcValue);
+				ctx.arc(centerX, centerY, circle.radius, startPoint, endPoint);
 				ctx.lineWidth = circle.strokeWidth;
 				ctx.strokeStyle = circle.stroke;
 				ctx.stroke();
 
 				if(circle.animation.currentFrame == circle.animation.duration){
 					scope.stop();
-					emblemIn();
+					//At the end of a draw cycle, animate the emblem flash
+					if(circle.animation.draw) {
+						emblemIn();
+					}
+					//At the end of an undraw cycle, restart the animation
+					else{
+						circle.animation.draw = !circle.animation.draw;
+						$timeout(scope.start, 1000);
+					}
 				}
 				else {
 					circle.animation.currentFrame++;
@@ -87,20 +88,18 @@ angular.module("LMApp").directive("lmLoading", ["$rootScope", function ($rootSco
 				var t = new TimelineMax({
 					onComplete: function(){
 						reset();
+						circle.animation.draw = !circle.animation.draw;
 						scope.start();
 					}
 				});
 				t   .set(emblem, {opacity: 0})
-					.to(emblem, 1, {opacity: 1})
-					.addDelay(0.5)
-					.to(all, 1, {opacity: 0});
+					.to(emblem, 0.15, {opacity: 1, repeat: 5, yoyo: true});
 			}
 
 
 
 			function reset(){
 				canvas.width = canvas.width;
-				circle.animation.currentArcValue = 0;
 				circle.animation.currentFrame = 0;
 				element.find("canvas").css("opacity", 1);
 			}
@@ -127,7 +126,9 @@ angular.module("LMApp").directive("lmLoading", ["$rootScope", function ($rootSco
 				return delta / 2 * (currTime * currTime * currTime * currTime * currTime + 2) + startVal;
 			}
 
-			scope.start();
+			scope.$watch("state.loading", function(n){
+				n && scope.start();
+			});
 		}
 	};
 }]);
