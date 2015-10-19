@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lm3d", ["GlobalEventsService", function (GlobalEventsService) {
+angular.module("LMApp").directive("lm3d", ["LM3dService", "GlobalEventsService", function (LM3dService, GlobalEventsService) {
 	return {
 		scope: "&",
 		restrict: "A",
@@ -53,7 +53,10 @@ angular.module("LMApp").directive("lm3d", ["GlobalEventsService", function (Glob
 			scope.$on("$destroy", function(){
 				_body.off("mousemove", requestMouseMoveCall);
 				GlobalEventsService.unregisterResizeHandler(resizeHandlerID);
+				LM3dService.unregisterInstance(scope);
 			});
+
+			LM3dService.registerInstance(scope);
 		}
 	};
 }]);

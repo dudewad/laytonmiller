@@ -10,6 +10,7 @@ module.exports = {
 	dev: {
 		files: {
 			"<%=pkg.directories.dev_root %><%=pkg.directories.script %>app.js": [
+				"<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>polyfills.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>ng/ng-app.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>**/*.js",
 				"!<%=pkg.directories.dev_root %><%=pkg.directories.script %>app.js"
@@ -33,6 +34,7 @@ module.exports = {
 	dist: {
 		files: {
 			"<%=pkg.directories.prod_root %><%=pkg.directories.script %>app.js": [
+				"<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>polyfills.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>ng/ng-app.js",
 				"<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>**/*.js",
 				"!<%=pkg.directories.dev_root %><%=pkg.directories.script %>app.js"
