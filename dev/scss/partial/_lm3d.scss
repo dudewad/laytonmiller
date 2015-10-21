@@ -1,0 +1,4 @@
+[data-lm-3d],
+[lm-3d]{
+	@include prefixProp("transition", "transform 1000ms");
+}

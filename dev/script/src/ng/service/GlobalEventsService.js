@@ -2,18 +2,20 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	var _resizeHandlers = [];
 	var _resizeHandlerID = 0;
 	var _resizeTimeout = null;
+	var _lastResizeEvent = null;
 
 	var _scrollHandlers = [];
 	var _scrollHandlerID = 0;
 	var _pendingScrollHandlers = false;
+	var _lastScrollEvent = null;
 
 	var _mouseMoveHandlers = [];
 	var _mouseMoveHandlerID = 0;
 	var _pendingMouseMoveHandlers = false;
+	var _lastMouseEvent = null;
 
 	var _window = angular.element(window);
 	var _body = angular.element("body");
-	var _lastScrollY;
 
 
 
@@ -140,8 +142,8 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	 *
 	 * @private
 	 */
-	function _scrollHandler() {
-		_lastScrollY = _window.scrollTop();
+	function _scrollHandler(e) {
+		_lastScrollEvent = e;
 
 		if (!_pendingScrollHandlers) {
 			requestAnimationFrame(_callScrollHandlers);
@@ -152,15 +154,16 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 
 
 	/**
-	 * Calls all scroll handlers
+	 * Calls all scroll handlers and sets the last scrollEvent to null.
 	 *
 	 * @private
 	 */
 	function _callScrollHandlers(){
 		for (var i = 0; i < _scrollHandlers.length; i++) {
-			(_scrollHandlers[i].handler)(event);
+			(_scrollHandlers[i].handler)(_lastScrollEvent);
 		}
 		_pendingScrollHandlers = false;
+		_lastScrollEvent = null;
 	}
 
 
@@ -171,13 +174,16 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	 *
 	 * @private
 	 */
-	function _resizeHandler(){
+	function _resizeHandler(e){
 		$timeout.cancel(_resizeTimeout);
+		_lastResizeEvent = e;
 
+		//If user stops resizing, call all handlers passing the last resize event, and then set it to null.
 		_resizeTimeout = $timeout(function () {
 			for (var i = 0; i < _resizeHandlers.length; i++) {
-				(_resizeHandlers[i].handler)(event);
+				(_resizeHandlers[i].handler)(_lastResizeEvent);
 			}
+			_lastResizeEvent = null;
 		}, 150);
 	}
 
@@ -189,7 +195,9 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	 *
 	 * @private
 	 */
-	function _mouseMoveHandler() {
+	function _mouseMoveHandler(e) {
+		_lastMouseEvent = e;
+
 		if (!_pendingMouseMoveHandlers) {
 			requestAnimationFrame(_callMouseMoveHandlers);
 		}
@@ -205,9 +213,10 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	 */
 	function _callMouseMoveHandlers() {
 		for (var i = 0; i < _mouseMoveHandlers.length; i++) {
-			(_mouseMoveHandlers[i].handler)(event);
+			(_mouseMoveHandlers[i].handler)(_lastMouseEvent);
 		}
 		_pendingMouseMoveHandlers = false;
+		_lastMouseEvent = null;
 	}
 
 
