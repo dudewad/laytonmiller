@@ -12,9 +12,11 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 		scrollTop: null
 	};
 	var _mouse = {
-		viewport: {
+		page:{
 			x: null,
-			y: null,
+			y: null
+		},
+		viewport: {
 			percentageX: null,
 			percentageY: null
 		}
@@ -119,6 +121,7 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 				_viewport.height = _window.height();
 				_viewport.centerX = _viewport.width * 0.5;
 				_viewport.centerY = _viewport.height * 0.5;
+				_viewport.diagonal = Math.sqrt((_viewport.width * _viewport.width) + (_viewport.height * _viewport.height));
 				_viewport.scrollTop = _window.scrollTop();
 				break;
 		}
@@ -131,10 +134,10 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 
 
 	function _updateMouseStats(e) {
-		_mouse.viewport.x = e.pageX;
-		_mouse.viewport.y = e.pageY - _viewport.scrollTop;
-		_mouse.viewport.percentageX = _mouse.viewport.x / _viewport.width;
-		_mouse.viewport.percentageY = _mouse.viewport.y / _viewport.height;
+		_mouse.page.x = e.pageX;
+		_mouse.page.y = e.pageY;
+		_mouse.viewport.percentageX = _mouse.page.x / _viewport.width;
+		_mouse.viewport.percentageY = (_mouse.page.y - _viewport.scrollTop) / _viewport.height;
 	}
 
 

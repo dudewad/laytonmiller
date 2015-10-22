@@ -42,9 +42,10 @@
 			height: 100%;
 			vertical-align: middle;
 			text-align: center;
-			font-size: 6em;
+			padding:0;
 
 			svg {
+				font-size: 6em;
 				border: none;
 				fill: $color-gray-light;
 			}

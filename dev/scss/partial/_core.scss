@@ -12,8 +12,6 @@ body{
 	margin:0;
 	font-size:10px;
 	@include setFont("montserrat", 400, normal);
-	@include prefixProp("perspective", "1200px");
-	@include prefixProp("perspective-origin", "center");
 
 	/*Default theme*/
 	@include theme(null, $color-gray-lightest, $color-gray-medium, $color-gray-darkest);

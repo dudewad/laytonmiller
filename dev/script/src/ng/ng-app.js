@@ -33,9 +33,12 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 
 		//Manually inject cookies service since its too early for services yet
 		var $cookies;
-		angular.injector(["ngCookies"]).invoke(function (_$cookies_) {
+
+		//Minification-safe cookie injection
+		angular.injector(["ngCookies"]).invoke(["$cookies", function (_$cookies_) {
 			$cookies = _$cookies_;
-		});
+		}]);
+
 
 		LMApp.constant = function(name, factory){
 			$provide.constant(name, factory);

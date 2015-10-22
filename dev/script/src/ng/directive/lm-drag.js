@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmDrag", function () {
+angular.module("LMApp").directive("lmDrag", [function () {
 	return {
 		scope: {
 			lmDrag: "&"
@@ -78,4 +78,4 @@ angular.module("LMApp").directive("lmDrag", function () {
 			}
 		}
 	};
-});
+}]);

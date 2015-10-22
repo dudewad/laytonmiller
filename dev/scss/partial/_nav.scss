@@ -30,7 +30,11 @@ nav {
 		}
 
 		.emblem {
-			font-size: 4em;
+			padding:.5em;
+
+			svg {
+				font-size: 4em;
+			}
 		}
 
 		ul {

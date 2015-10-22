@@ -10,7 +10,7 @@ module.exports = function (grunt) {
         "dev",
         "sass:dist",
         "concat:dist",
-        "uglify:dist",
-        "copy:dist"
+        "copy:dist",
+	    "uglify:dist"
     ]);
 };

@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmTouchend", function () {
+angular.module("LMApp").directive("lmTouchend", [function () {
 	return {
 		scope: {
 			lmTouchend: "&"
@@ -18,4 +18,4 @@ angular.module("LMApp").directive("lmTouchend", function () {
 			});
 		}
 	};
-});
+}]);

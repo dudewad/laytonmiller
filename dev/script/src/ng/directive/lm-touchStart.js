@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmTouchstart", function () {
+angular.module("LMApp").directive("lmTouchstart", [function () {
 	return {
 		scope: {
 			lmTouchstart: "&"
@@ -18,4 +18,4 @@ angular.module("LMApp").directive("lmTouchstart", function () {
 			});
 		}
 	};
-});
+}]);

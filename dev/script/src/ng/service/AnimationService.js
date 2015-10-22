@@ -1,4 +1,4 @@
-angular.module("LMApp").factory("AnimationService", ["CONSTANTS", "BreakpointService", "GlobalEventsService", function (CONSTANTS, BreakpointService, GlobalEventsService) {
+angular.module("LMApp").factory("AnimationService", [function () {
 
 	var transition = {
 		pageBackground: function(element, duration, offsetLabel, offsetMin, offsetMax){

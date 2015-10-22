@@ -44,18 +44,42 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 					}
 				});
 				center();
+				var h1arr = bgToRGBArray(elements.title);
+				var h2arr = bgToRGBArray(elements.subtitle);
+				var h1Base = "rgba(" + h1arr[0] + "," + h1arr[1] + "," + h1arr[2] + ",";
+				var h2Base = "rgba(" + h2arr[0] + "," + h2arr[1] + "," + h2arr[2] + ",";
+				var h1Target = h1Base + h1arr[3] + ")";
+				var h2Target = h2Base + h2arr[3] + ")";
+				elements.title.css("background-color", h1Base + "0" + ")");
+				elements.subtitle.css("background-color", h2Base + "0" + ")");
 
 				t.set(elements.title, {"opacity": 1})
 					.set(elements.subtitle, {"opacity": 1})
 					.add("start")
 					.add(AnimationService.string.randomFadeIn(elements.title, 0.75, "start", 0, 1.5))
 					.add(AnimationService.string.randomFadeIn(elements.subtitle, 0.75, "start", 0, 1.5))
+					.to(elements.title, 0.75, {"background-color": h1Target}, "start")
+					.to(elements.subtitle, 0.75, {"background-color": h2Target}, "start+=2.25")
 					.addDelay(1)
 					.add("emblemStart")
 					.from(elements.emblem, 0.75, {"y": "-=10%", "ease": Power4.easeOut}, "emblemStart")
 					.to(elements.emblem, 0.75, {"opacity": 1, "ease": Power4.easeOut}, "emblemStart");
 
 				t.play();
+			}
+
+
+
+			function bgToRGBArray(el){
+				var reg = /\((.*)\)/g;
+				var match = reg.exec(el.css("background-color"));
+				var arr = match[1].replace(/\s*/g, "").split(",");
+
+				if(arr.length === 3){
+					arr.push(1);
+				}
+
+				return arr;
 			}
 
 
