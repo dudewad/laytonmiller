@@ -2,14 +2,40 @@
 	width:80%;
 	margin-left:20%;
 
+	//Needs to use padding, not margin, because of some strange bug where the top-margin causes the top of the body
+	//container to temporarily sit 230px from the top of the viewport, forcing a scrollbar on page load. Ridiculous.
+	padding-top: 230px;
+	@include prefixProp("transition", "transform 1500ms cubic-bezier(0, 1, 0, 1), opacity 500ms");
+
+	header {
+		margin-bottom: 1.5em;
+	}
+
 	h1{
 		font-size:2.5em;
+	}
+}
+
+.intro {
+	.content-main {
+		margin-left: 0;
+		padding:0;
+	}
+}
+
+.transitioning {
+	.content-main {
+		display:none;
+		opacity: 0;
+		@include prefixProp("transform", "translateY(-100px)");
+		@include prefixProp("transition", "none");
 	}
 }
 
 @media screen and(min-width: $screen-sm-min) {
 	.content-main {
 		> section {
+			width: 90%;
 			padding: 1em 1.5em 0 1.5em;
 		}
 
@@ -21,8 +47,10 @@
 
 @media screen and(min-width: $screen-md-min) {
 	.content-main {
+		margin-left: 25%;
+
 		> section {
-			margin-left: .25em;
+			margin-left: 2.25em;
 		}
 
 		h1 {
@@ -33,9 +61,12 @@
 
 @media screen and(min-width: $screen-lg-min) {
 	.content-main {
+		margin-left:23%;
+
 		> section {
+			width: 85%;
 			padding-top: 2em;
-			margin-left: .5em;
+			margin-left: 2.5em;
 		}
 
 		h1{
@@ -47,7 +78,8 @@
 @media screen and(min-width: $screen-xl-min) {
 	.content-main {
 		> section {
-			margin-left: 1em;
+			width: 60%;
+			margin-left: 3em;
 		}
 
 		h1 {

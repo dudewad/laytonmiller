@@ -27,9 +27,9 @@ function LMApp_conditionalLoad($cookies) {
 
 var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 	//Set up routing
-	.config(["$stateProvider", "$urlRouterProvider", "CONSTANTS", "$provide", function ($stateProvider, $urlRouterProvider, CONSTANTS, $provide) {
-		var STATE = CONSTANTS.STATE;
-		var PATH = CONSTANTS.PATH;
+	.config(["$stateProvider", "$urlRouterProvider", "CONSTANT", "$provide", function ($stateProvider, $urlRouterProvider, CONSTANT, $provide) {
+		var STATE = CONSTANT.STATE;
+		var PATH = CONSTANT.PATH;
 
 		//Manually inject cookies service since its too early for services yet
 		var $cookies;

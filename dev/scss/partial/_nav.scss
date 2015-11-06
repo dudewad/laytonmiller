@@ -17,8 +17,8 @@ nav {
 	nav {
 		font-size: 1.25em;
 		height: 100%;
-		width: 15%;
-		margin-left: 5%;
+		width: 20%;
+		margin-left: 1%;
 		border: 1px solid #000;
 		border-top: 0;
 		border-bottom: 0;
@@ -60,7 +60,6 @@ nav {
 						&.highlight {
 							opacity: 0;
 							@include prefixProp("transform", "none");
-
 						}
 					}
 				}
@@ -111,7 +110,7 @@ nav {
 			top:-.4em;
 			height: 0;
 			width: 100%;
-			opacity: 0;
+			opacity: .5;
 			@include prefixProp("transition", "opacity #{$navItemTransitionSpeed}, transform #{$navItemTransitionSpeed}");
 			@include prefixProp("transform", "translateX(-.5em)");
 
@@ -124,7 +123,7 @@ nav {
 				margin-left: -1em;
 				height: 0;
 				width: 100%;
-				border-bottom: 2em solid #F3f3f3;
+				border-bottom: 2em solid;
 				border-left: .5em solid transparent;
 				border-top: 0;
 				z-index: -1;
@@ -134,7 +133,7 @@ nav {
 				border-left: 0;
 				border-right: .5em solid transparent;
 				border-bottom: 0;
-				border-top: 2em solid #F3F3F3;
+				border-top: 2em solid;
 				margin-left: 1em;
 			}
 		}
@@ -147,18 +146,21 @@ nav {
 
 @media screen and(min-width: $screen-md-min) {
 	nav {
-		margin-right: .25em;
+		width: 23%;
+		margin-left: 2%;
 	}
 }
 
 @media screen and(min-width: $screen-lg-min) {
 	nav {
-		margin-right: .5em;
+		width: 20%;
+		margin-left: 3%;
 	}
 }
 
 @media screen and(min-width: $screen-xl-min) {
 	nav {
-		margin-right: 1em;
+		width: 15%;
+		margin-left: 5%;
 	}
 }

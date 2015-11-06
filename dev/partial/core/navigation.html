@@ -4,14 +4,14 @@
 			<figure ng-include data-src="'partial/svg/emblem.html'" class="emblem"></figure>
 		</div>
 		<ul class="link-list">
-			<li ui-sref-active="active"
+			<li data-ng-class="{'active': currentSection === item.sref}"
 			    ng-repeat="item in navItems"
 			    class="{{item.className}}">
-				<a ui-sref="{{item.sref}}">
+				<a data-lm-sref="{{item.sref}}">
 					<span class="alternator-bg"></span>
 					<div class="alternator">
 						<span class="highlight">{{item.text}}</span>
-						<span>{{item.text}}</span>
+						<span class="content">{{item.text}}</span>
 					</div>
 				</a>
 			</li>

@@ -1,7 +1,6 @@
 .tooltip {
 	@include setFont("quattrocento-sans", 100, italic);
 	font-size: 1.4em;
-	display: block;
 	position: absolute;
 	padding: 1.5em;
 	border-radius: 4px;
@@ -44,18 +43,7 @@
 	&.active {
 		z-index: 1;
 		opacity: 1;
+		height:auto;
 		@include prefixProp("transform", "translateY(0)");
-	}
-}
-
-.no-touch {
-	[data-lm-tooltip] {
-		&:hover {
-			.tooltip {
-				z-index: 1;
-				opacity: 1;
-				@include prefixProp("transform", "translateY(0)");
-			}
-		}
 	}
 }

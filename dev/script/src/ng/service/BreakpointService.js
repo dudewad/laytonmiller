@@ -1,5 +1,5 @@
-angular.module("LMApp").factory("BreakpointService", ["CONSTANTS", "GlobalEventsService", function (CONSTANTS, GlobalEventsService) {
-	var SCREEN = CONSTANTS.SCREEN;
+angular.module("LMApp").factory("BreakpointService", ["CONSTANT", "GlobalEventsService", function (CONSTANT, GlobalEventsService) {
+	var SCREEN = CONSTANT.SCREEN;
 	var currentBreakpoint;
 
 

@@ -8,24 +8,17 @@
 
 	<link type="text/css" href="style/default.css" rel="stylesheet"/>
 </head>
-<body ng-app="LMApp" ng-controller="RootController" ng-class="[currentSection, {transitioning: transitioning}]">
+<body ng-app="LMApp" ng-controller="RootController" ng-class="[state.current.name, {transitioning: state.transitioning}]">
+
 	<hr class="top-border"/>
 	<div class="background-contain">
 		<div class="background" data-lm-page-background ng-class="[section, transitionState]"></div>
 	</div>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12" ng-include data-src="'partial/core/header.html'"></div>
-		</div>
-	</div>
+	<div class="site-content">
+		<div ng-include data-src="'partial/core/navigation.html'"></div>
 
-	<div class="container-fluid site-content">
-		<div class="row">
-			<div ng-include data-src="'partial/core/navigation.html'"></div>
-
-			<div class="content-main" ui-view="contentMain"></div>
-		</div>
+		<div class="content-main" ui-view="contentMain"></div>
 	</div>
 
 	<div ng-include data-src="'partial/element/lm-loading.html'"></div>

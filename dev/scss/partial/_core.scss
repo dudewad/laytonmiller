@@ -1,7 +1,3 @@
-html{
-	height:100%;
-}
-
 html,
 body{
 	min-height: 100%;
@@ -77,75 +73,4 @@ ul{
 
 .clearfix {
 	zoom: 1;
-}
-
-.content-main{
-	header{
-		margin-bottom:1.5em;
-	}
-}
-
-.content-background,{
-	padding:3em;
-
-	$start: rgba(0, 0, 0, .1);
-	$mid: rgba(0, 0, 0, .25);
-	$end: rgba(0, 0, 0, .4);
-	$startPercent: 0%;
-	$midPercent: 50%;
-	$endPercent: 100%;
-	background: rgba(0, 0, 0, .4);
-	background: -moz-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-	background: -webkit-gradient(radial, left top, 0px, bottom right, 100%, color-stop($startPercent, $start), color-stop($midPercent, $mid), color-stop($endPercent, $end));
-	background: -webkit-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-	background: -o-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-	background: -ms-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-	html.cssgradients & {
-		background: radial-gradient(ellipse at left top, $start $startPercent, $mid $midPercent, $end $endPercent);
-	}
-}
-
-
-
-@media screen and(max-width: $screen-xs-max){
-	nav li.active {
-		background: transparent;
-	}
-}
-
-
-
-@media screen and(min-width: $screen-sm-min){
-	body{
-		> .container-fluid{
-			padding-left:15px;
-			padding-right:15px;
-		}
-	}
-
-	/*
-	nav li.active,
-	nav li:hover {
-		$start: rgba(0, 0, 0, .2);
-		$mid: rgba(0, 0, 0, .35);
-		$end: rgba(0, 0, 0, .6);
-		$startPercent: 0%;
-		$midPercent: 50%;
-		$endPercent: 100%;
-		background: rgba(0, 0, 0, .4);
-		background: -moz-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-		background: -webkit-gradient(radial, left top, 0px, bottom right, 100%, color-stop($startPercent, $start), color-stop($midPercent, $mid), color-stop($endPercent, $end));
-		background: -webkit-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-		background: -o-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-		background: -ms-radial-gradient(left top, ellipse cover, $start $startPercent, $mid $midPercent, $end $endPercent);
-		html.cssgradients & {
-			background: radial-gradient(ellipse at left top, $start $startPercent, $mid $midPercent, $end $endPercent);
-		}
-	}*/
-
-	.content-main {
-		header {
-			margin-bottom: 5em;
-		}
-	}
 }

@@ -4,23 +4,25 @@
 	//background-color: $medium;
 
 	.top-border {
-		border:0;
+		border: 0;
 		border-top: 5px solid $light;
-		margin:0;
+		margin: 0;
 	}
 
 	nav {
-		.highlight{
-			color: lighten($dark, 10%);
-		}
+		.alternator-bg {
+			&::before{
+				border-bottom-color: $light;
+			}
 
-		a:active{
-			color:lighten($dark, 30%);
+			&::after{
+				border-top-color: $light;
+			}
 		}
 	}
 
 	.emblem{
-		svg{
+	 	svg{
 			border-color: $dark;
 			fill: $dark;
 		}
@@ -32,13 +34,20 @@
 
 	.rating-visual{
 		.fill-bar{
-			background-color:$light;
+			background-color:$dark;
+		}
+	}
+
+	.summary-group{
+		[data-lm-3d] {
+			background: rgba($light, .8);
 		}
 	}
 
 	.tooltip{
-		background: $medium;
+		background: $dark;
 		border: 1px solid $light;
+		color:$light;
 
 		&::before{
 			border-left:10px solid transparent;
@@ -47,21 +56,21 @@
 
 		&.top {
 			&::before {
-				border-top: 10px solid $light;
+				border-top: 10px solid $dark;
 				border-bottom: 0;
 			}
 		}
 
 		&.bottom{
 			&::before {
-				border-bottom: 10px solid $light;
+				border-bottom: 10px solid $dark;
 				border-top: 0;
 			}
 		}
 	}
 
-	.timeline{
-		hr{
+	.time line{
+ 		hr{
 			border-color: $light;
 		}
 
@@ -79,7 +88,7 @@
 		}
 
 		.timeline-event {
-			span{
+			 span{
 				&.outer{
 					border: 3px solid $light;
 					background-color: $medium;

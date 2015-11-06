@@ -1,4 +1,4 @@
-angular.module("LMApp").constant("CONSTANTS", {
+angular.module("LMApp").constant("CONSTANT", {
 	/**
 	 * Data files
 	 */
@@ -13,12 +13,17 @@ angular.module("LMApp").constant("CONSTANTS", {
 
 	"EVENT": {
 		"ANIMATION": {
-			"INTRO_COMPLETE": "INTRO_COMPLETE",
-			"PAGE_TRANSITION_COMPLETE": "PAGE_TRANSITION_COMPLETE"
+			"INTRO_COMPLETE": "INTRO_COMPLETE"
+		},
+		"PAGE": {
+			"TRANSITION_COMPLETE": "TRANSITION_COMPLETE"
 		},
 		"LM3D": {
 			"VIEWPORT_STATE_UPDATED": "VIEWPORT_STATE_UPDATED",
 			"MOUSE_MOVE": "MOUSE_MOVE"
+		},
+		"LMSREF": {
+			"SREF_CHANGE": "SREF_CHANGE"
 		}
 	},
 

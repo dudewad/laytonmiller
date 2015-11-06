@@ -1,11 +1,11 @@
-angular.module("LMApp").controller("TechnicalSummaryController", ["$rootScope", "$scope", "$http", "CONSTANTS", "STRINGS",
-	function($rootScope, $scope, $http, CONSTANTS, STRINGS){
+angular.module("LMApp").controller("TechnicalSummaryController", ["$rootScope", "$scope", "$http", "CONSTANT", "STRINGS",
+	function($rootScope, $scope, $http, CONSTANT, STRINGS){
 		$scope.STRINGS = STRINGS.TECHNICAL_SUMMARY;
 		$scope.sectionTitle = $scope.STRINGS.HEADER.TITLE;
 		$scope.sectionIntro = $scope.STRINGS.HEADER.DESCRIPTION;
 		$scope.summaryGroups = null;
 
-		$http.get(CONSTANTS.PATH.DATA + CONSTANTS.DATA_FILES.TECHNICAL_SUMMARY).
+		$http.get(CONSTANT.PATH.DATA + CONSTANT.DATA_FILES.TECHNICAL_SUMMARY).
 			success(function (data, status, headers, config) {
 				var GROUPSTRINGS = $scope.STRINGS.SUMMARY_GROUPS;
 				var parsedSummaryGroups = [];

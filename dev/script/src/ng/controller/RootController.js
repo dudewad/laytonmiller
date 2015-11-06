@@ -1,45 +1,96 @@
-angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "CONSTANTS", "STRINGS", "AnimationService", "$timeout", function($rootScope, $scope, $state, CONSTANTS, STRINGS, AnimationService){
-	$scope.currentSection = "intro";
-	$scope.transitioning = false;
+angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "$q", "CONSTANT", "STRINGS", "$timeout", function ($rootScope, $scope, $state, $q, CONSTANT, STRINGS, $timeout) {
 	$scope.STRINGS = STRINGS.CORE;
 	$scope.state = {
-		loading: false
+		current: {
+			name: null
+		},
+		loading: false,
+		transitioning: false
 	};
-	var transitionHandlers = [];
+	var _transitionHandlers = [];
+	var _pageLoadPromise = null;
+
+
+
+	/**
+	 * Performs a transition, which then goes to a target state.
+	 *
+	 * @param toState
+	 *
+	 * @private
+	 */
+	function _triggerTransition(toState) {
+		if ($scope.state.transitioning || toState.name === $scope.state.current.name) {
+			return;
+		}
+		if (!$scope.state.current.name) {
+			$scope.state.current = toState;
+		}
+
+		var fromState = $scope.state.current;
+		var promises = [];
+
+		$scope.state.loading = true;
+		$scope.state.transitioning = true;
+		for (var i = 0; i < _transitionHandlers.length; i++) {
+			var h = _transitionHandlers[i];
+			var p = $q.defer();
+			typeof h === "function" && (h)(p, toState, fromState);
+			promises.push(p.promise);
+		}
+		_pageLoadPromise = $q.defer();
+		promises.push(_pageLoadPromise.promise);
+
+		var all = $q.all(promises);
+		$state.go(toState.name);
+		all.then(function () {
+			_pageTransitionCompleteHandler(toState, fromState);
+		});
+	}
+
+
+
+	/**
+	 * When a transition completes, this will begin the load of the next section. This should be the only instance of
+	 * the state.go call in the entire application.
+	 *
+	 * @param toState
+	 *
+	 * @param fromState
+	 */
+	function _pageTransitionCompleteHandler(toState, fromState) {
+		//$state.go(toState.name);
+		$scope.state.loading = false;
+		$scope.state.current.name = toState.name;
+		$scope.state.transitioning = false;
+		$rootScope.$broadcast(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE);
+	}
+
+
 
 	$rootScope.$on("$stateChangeStart", function (e, toState, params, fromState) {
-		$scope.state.loading = true;
-		$scope.transitioning = !$scope.transitioning;
-		if($scope.transitioning){
+		if (!$scope.state.current.name) {
 			e.preventDefault();
-			for (var i = 0; i < transitionHandlers.length; i++) {
-				var h = transitionHandlers[i];
-				typeof h === "function" && (h)(toState, fromState);
-			}
-		}
-		else {
-			$scope.currentSection = toState.name;
+			_triggerTransition(toState);
 		}
 	});
 
+	/**
+	 * When a state load completes,
+	 */
 	$rootScope.$on("$stateChangeSuccess", function (e, toState, toParams, fromState, fromParams) {
-		$scope.state.loading = false;
+		_pageLoadPromise && _pageLoadPromise.resolve();
 	});
 
-	$scope.$on(CONSTANTS.EVENT.ANIMATION.INTRO_COMPLETE, function(){
-		$state.go(CONSTANTS.STATE.TECHNICAL_SUMMARY.NAME);
-	});
-
-	$scope.$on(CONSTANTS.EVENT.ANIMATION.PAGE_TRANSITION_COMPLETE, function(e, toState, fromState){
-		$state.go(toState);
+	$scope.$on(CONSTANT.EVENT.LMSREF.SREF_CHANGE, function (e, data) {
 	});
 
 
-	$scope.registerTransitionHandler = function(handler){
-		transitionHandlers.push(handler);
+	$scope.registerTransitionHandler = function (handler) {
+		_transitionHandlers.push(handler);
 	};
 
-	angular.element("body").on("selectstart", function(){
+	angular.element("body").on("selectstart", function () {
 		return false;
 	});
 }]);

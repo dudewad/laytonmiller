@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", "CONSTANTS", "GlobalEventsService", "AnimationService", function ($rootScope, $timeout, CONSTANTS, GlobalEventsService, AnimationService) {
+angular.module("LMApp").directive("introAnimation", ["$rootScope", "$timeout", "CONSTANT", "GlobalEventsService", "AnimationService", "LMRoute", function ($rootScope, $timeout, CONSTANT, GlobalEventsService, AnimationService, LMRoute) {
 	return {
 		scope: true,
 		restrict: "A",
@@ -8,36 +8,40 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 				title: "",
 				subtitle: ""
 			};
+			var t;
 
-			var animationEndHandler = function(){
-				scope.$emit(CONSTANTS.EVENT.ANIMATION.INTRO_COMPLETE);
-			};
+
 
 			//Force digest to complete
-			$timeout(function(){
+			$timeout(function () {
 				t = new TimelineMax();
 				elements.emblem = getEmblem(element);
 				elements.copy = element.find(".copy");
 				elements.title = element.find("h1");
 				elements.subtitle = element.find("h2");
 
-				if(!elements.emblem.length){
-					$rootScope.$on("$includeContentLoaded", function(){
-						elements.emblem = getEmblem(element);
-						animate(elements);
-					});
-				}
-				else {
-					animate();
-				}
+				scope.$on(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE, function () {
+					if (!elements.emblem.length) {
+						scope.$on("$includeContentLoaded", function () {
+							console.log("includeContentLoaded");
+							elements.emblem = getEmblem(element);
+							animate(elements);
+						});
+					}
+					else {
+						animate();
+					}
+				});
 			}, 0);
 
 			GlobalEventsService.registerResizeHandler(center);
 
+
+
 			function animate() {
 				var t = new TimelineMax({
 					paused: true,
-					onComplete: function(){
+					onComplete: function () {
 						scope.clickable = true;
 						applyScope();
 						element.on("click", out);
@@ -56,8 +60,8 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 				t.set(elements.title, {"opacity": 1})
 					.set(elements.subtitle, {"opacity": 1})
 					.add("start")
-					.add(AnimationService.string.randomFadeIn(elements.title, 0.75, "start", 0, 1.5))
-					.add(AnimationService.string.randomFadeIn(elements.subtitle, 0.75, "start", 0, 1.5))
+					.add(AnimationService.string.randomFadeIn(elements.title, 0.75, 0, 0, 1.5), "start")
+					.add(AnimationService.string.randomFadeIn(elements.subtitle, 0.75, 0, 0, 1.5))
 					.to(elements.title, 0.75, {"background-color": h1Target}, "start")
 					.to(elements.subtitle, 0.75, {"background-color": h2Target}, "start+=2.25")
 					.addDelay(1)
@@ -70,12 +74,12 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 
 
 
-			function bgToRGBArray(el){
+			function bgToRGBArray(el) {
 				var reg = /\((.*)\)/g;
 				var match = reg.exec(el.css("background-color"));
 				var arr = match[1].replace(/\s*/g, "").split(",");
 
-				if(arr.length === 3){
+				if (arr.length === 3) {
 					arr.push(1);
 				}
 
@@ -89,7 +93,9 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope",  "$timeout", 
 
 				var t = new TimelineMax({
 					paused: true,
-					onComplete: animationEndHandler
+					onComplete: function(){
+						LMRoute.go(CONSTANT.STATE.TECHNICAL_SUMMARY.NAME);
+					}
 				});
 
 				t.add("out")

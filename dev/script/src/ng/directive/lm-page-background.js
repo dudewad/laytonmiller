@@ -1,13 +1,12 @@
-angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEventsService", "BreakpointService", "AnimationService", function (CONSTANTS, GlobalEventsService, BreakpointService, AnimationService) {
+angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEventsService", "BreakpointService", "AnimationService", function (CONSTANT, GlobalEventsService, BreakpointService, AnimationService) {
 	return {
 		scope: true,
 		restrict: "A",
 		link: function (scope, element, attrs) {
 			var _toState;
 			var _fromState;
-			var _body = angular.element("body");
 			var _window = angular.element(window);
-			var docHeight;
+			var _document = angular.element(document);
 			var viewportHeight;
 			var scrollableHeight;
 
@@ -16,12 +15,13 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 			GlobalEventsService.registerResizeHandler(resizeHandler);
 
 
-			function transition(toState, fromState) {
+			function transition(promise, toState, fromState) {
 				var slots;
-				var slotsWidth;
+				var slotWidth;
+				var finalSlotWidth;
 				var bp = BreakpointService.getCurrentBreakpoint().toLowerCase();
 				var img = $("<img>");
-				var path = CONSTANTS.PATH.BACKGROUND_IMAGE + toState.name + "/" + bp + ".jpg";
+				var path = CONSTANT.PATH.BACKGROUND_IMAGE + toState.name + "/" + bp + ".jpg";
 				var windowW = _window.width();
 				element.show();
 
@@ -49,15 +49,21 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 						break;
 				}
 
-				slotsWidth = 100 / slots;
+				//Needs to use Math.ceil. Sub-pixels unfortunately will cause background to show through on most screen
+				//sizes and that's horribly ugly.
+				slotWidth = Math.ceil(100 / slots / 100 * windowW);
+				finalSlotWidth = windowW - (slotWidth * (slots - 1));
 				element.html("");
 
 				for (var i = 0; i < slots; i++) {
+					var w = (i == slots - 1) ? finalSlotWidth : slotWidth;
 					var d = $("<div><span></span></div>").css({
-						"width": slotsWidth + "%"
+						"width": w + "px"
 					});
+
 					var s = d.find("span");
 					element.append(d);
+					element.outerHeight();
 					//Using pixels gives more precision than percentages
 					s.css({
 						"left": (-d.offset().left) + "px",
@@ -65,21 +71,29 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 					});
 				}
 
-				img.on("load", animateTransition);
+				img.on("load", function(){
+					animateTransition(promise);
+				});
 				img.attr("src", path);
 			}
 
 
-
-			function animateTransition() {
+			/**
+			 * Animate the page transition. Since the root controller needs to know when this is completed, we need to
+			 * resolve the promise that was provided when the transition began.
+			 *
+			 * @param completePromise
+			 */
+			function animateTransition(completePromise) {
 				setTransitionState(_toState.name);
 				var t = new TimelineMax({
 					paused: true,
 					onComplete: function () {
-						scope.$emit(CONSTANTS.EVENT.ANIMATION.PAGE_TRANSITION_COMPLETE, _toState, _fromState);
 						setSection(_toState.name);
 						element.html("");
 						setTransitionState();
+						//All done, resolve the promise back to root
+						completePromise.resolve();
 					}
 				});
 
@@ -105,10 +119,9 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 
 
 			function scrollHandler(e){
-				docHeight = _body.outerHeight();
-				scrollableHeight = docHeight - viewportHeight;
-				var bottom = _window.scrollTop() + viewportHeight;
-				var percent = 1 - ((docHeight - bottom) / scrollableHeight);
+				viewportHeight = _window.height();
+				scrollableHeight = _document.height() - viewportHeight;
+				var percent = (_window.scrollTop() / scrollableHeight);
 				element.css("top", -15 * percent + "%");
 			}
 
@@ -116,8 +129,7 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANTS", "GlobalEvent
 
 			function resizeHandler(){
 				viewportHeight = _window.height();
-				docHeight = _body.outerHeight();
-				scrollableHeight = docHeight - viewportHeight;
+				scrollableHeight = _document.outerHeight() - viewportHeight;
 			}
 
 

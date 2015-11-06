@@ -1,4 +1,4 @@
-angular.module("LMApp").controller("NavigationController", ["$scope", "STRINGS", function($scope, STRINGS){
+angular.module("LMApp").controller("NavigationController", ["$scope", "CONSTANT", "STRINGS", function($scope, CONSTANT, STRINGS){
 	$scope.currentState = {
 		active: false
 	};
@@ -7,25 +7,25 @@ angular.module("LMApp").controller("NavigationController", ["$scope", "STRINGS",
 	$scope.navItems = [
 		{
 			"className": "technical-summary",
-			"sref": "technical-summary",
+			"sref": CONSTANT.STATE.TECHNICAL_SUMMARY.NAME,
 			"text": $scope.STRINGS.TECHNICAL_SUMMARY,
 			"isHovered": false
 		},
 		{
 			"className": "experience",
-			"sref": "experience",
+			"sref": CONSTANT.STATE.EXPERIENCE.NAME,
 			"text": $scope.STRINGS.EXPERIENCE,
 			"isHovered": false
 		},
 		{
 			"className": "portfolio",
-			"sref": "portfolio",
+			"sref": CONSTANT.STATE.PORTFOLIO.NAME,
 			"text": $scope.STRINGS.PORTFOLIO,
 			"isHovered": false
 		},
 		{
 			"className": "contact",
-			"sref": "contact",
+			"sref": CONSTANT.STATE.CONTACT.NAME,
 			"text": $scope.STRINGS.CONTACT,
 			"isHovered": false
 		}

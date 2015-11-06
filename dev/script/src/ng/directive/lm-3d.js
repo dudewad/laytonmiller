@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lm3d", ["$timeout", "LM3dService", "CONSTANTS", function ($timeout, LM3dService, CONSTANTS) {
+angular.module("LMApp").directive("lm3d", ["$timeout", "LM3dService", "CONSTANT", function ($timeout, LM3dService, CONSTANT) {
 	return {
 		scope: "&",
 		restrict: "A",
@@ -6,8 +6,8 @@ angular.module("LMApp").directive("lm3d", ["$timeout", "LM3dService", "CONSTANTS
 			var _lastMouse = null;
 			var _lastViewport = LM3dService.getViewport();
 			var _traits = {
-				percentageX: null,
-				percentageY: null,
+				centerX: 0,
+				centerY: 0,
 				percentageZ: -0.1
 			};
 			var _maxAngle = "45";
@@ -46,10 +46,8 @@ angular.module("LMApp").directive("lm3d", ["$timeout", "LM3dService", "CONSTANTS
 
 			function _updateTraits(){
 				var offset = element.offset();
-				_traits.percentageX = (offset.left + (element.outerWidth() / 2)) / _lastViewport.width;
-				_traits.percentageY = (offset.top - _lastViewport.scrollTop + (element.outerHeight() / 2)) / _lastViewport.height;
 				_traits.centerX = offset.left + (element.outerWidth() / 2);
-				_traits.centerY = offset.top + (element.outerHeight() / 2);
+				_traits.centerY = offset.top + (element.outerHeight() / 2) - _lastViewport.scrollTop;
 			}
 
 
@@ -59,7 +57,7 @@ angular.module("LMApp").directive("lm3d", ["$timeout", "LM3dService", "CONSTANTS
 
 			//Register listeners and handlers
 			scope.$on("$destroy", _destroyHandler);
-			scope.$on(CONSTANTS.EVENT.LM3D.MOUSE_MOVE, _mouseMoveHandler);
+			scope.$on(CONSTANT.EVENT.LM3D.MOUSE_MOVE, _mouseMoveHandler);
 
 
 			$timeout(function(){

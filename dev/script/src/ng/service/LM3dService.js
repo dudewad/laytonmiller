@@ -1,4 +1,4 @@
-angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANTS", function (GlobalEventsService, CONSTANTS) {
+angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT", function (GlobalEventsService, CONSTANT) {
 	var _instances = [];
 	var _mouseMoveHandlerID = null;
 	var _resizeHandlerID = null;
@@ -89,7 +89,7 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 
 		for (var i = 0; i < _instances.length; i++) {
 			var inst = _instances[i];
-			_instances[i].$broadcast(CONSTANTS.EVENT.LM3D.MOUSE_MOVE, data);
+			_instances[i].$broadcast(CONSTANT.EVENT.LM3D.MOUSE_MOVE, data);
 		}
 	}
 
@@ -127,7 +127,7 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 		}
 
 		for (var i = 0; i < _instances.length; i++) {
-			_instances[i].$broadcast(CONSTANTS.EVENT.LM3D.VIEWPORT_STATE_UPDATED);
+			_instances[i].$broadcast(CONSTANT.EVENT.LM3D.VIEWPORT_STATE_UPDATED);
 		}
 	}
 
