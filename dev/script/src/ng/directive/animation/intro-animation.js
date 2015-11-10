@@ -23,7 +23,6 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope", "$timeout", "
 				scope.$on(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE, function () {
 					if (!elements.emblem.length) {
 						scope.$on("$includeContentLoaded", function () {
-							console.log("includeContentLoaded");
 							elements.emblem = getEmblem(element);
 							animate(elements);
 						});
@@ -47,7 +46,6 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope", "$timeout", "
 						element.on("click", out);
 					}
 				});
-				center();
 				var h1arr = bgToRGBArray(elements.title);
 				var h2arr = bgToRGBArray(elements.subtitle);
 				var h1Base = "rgba(" + h1arr[0] + "," + h1arr[1] + "," + h1arr[2] + ",";
@@ -70,6 +68,7 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope", "$timeout", "
 					.to(elements.emblem, 0.75, {"opacity": 1, "ease": Power4.easeOut}, "emblemStart");
 
 				t.play();
+				window.requestAnimationFrame(center);
 			}
 
 

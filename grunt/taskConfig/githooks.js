@@ -3,6 +3,6 @@
  */
 module.exports = {
 	all: {
-		//'pre-commit': 'jshint'
+		'pre-commit': 'jshint'
 	}
 };

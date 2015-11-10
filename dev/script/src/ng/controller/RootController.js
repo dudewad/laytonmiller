@@ -1,4 +1,4 @@
-angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "$q", "CONSTANT", "STRINGS", "$timeout", function ($rootScope, $scope, $state, $q, CONSTANT, STRINGS, $timeout) {
+angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "$q", "CONSTANT", "STRINGS", function ($rootScope, $scope, $state, $q, CONSTANT, STRINGS) {
 	$scope.STRINGS = STRINGS.CORE;
 	$scope.state = {
 		current: {
@@ -83,6 +83,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	});
 
 	$scope.$on(CONSTANT.EVENT.LMSREF.SREF_CHANGE, function (e, data) {
+		_triggerTransition(data);
 	});
 
 

@@ -146,7 +146,7 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 		_lastScrollEvent = e;
 
 		if (!_pendingScrollHandlers) {
-			requestAnimationFrame(_callScrollHandlers);
+			window.requestAnimationFrame(_callScrollHandlers);
 		}
 		_pendingScrollHandlers = true;
 	}
@@ -199,7 +199,7 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 		_lastMouseEvent = e;
 
 		if (!_pendingMouseMoveHandlers) {
-			requestAnimationFrame(_callMouseMoveHandlers);
+			window.requestAnimationFrame(_callMouseMoveHandlers);
 		}
 		_pendingMouseMoveHandlers = true;
 	}
