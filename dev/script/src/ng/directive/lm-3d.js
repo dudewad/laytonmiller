@@ -10,7 +10,7 @@ angular.module("LMApp").directive("lm3d", ["$timeout", "LM3dService", "CONSTANT"
 				centerY: 0,
 				percentageZ: -0.1
 			};
-			var _maxAngle = "45";
+			var _maxAngle = "25";
 
 			function _orient(){
 				if (_lastMouse) {

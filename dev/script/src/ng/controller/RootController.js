@@ -5,6 +5,9 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 			name: null
 		},
 		loading: false,
+		next: {
+			name: null
+		},
 		transitioning: false
 	};
 	var _transitionHandlers = [];
@@ -32,6 +35,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 		$scope.state.loading = true;
 		$scope.state.transitioning = true;
+		$scope.state.next = toState;
 		for (var i = 0; i < _transitionHandlers.length; i++) {
 			var h = _transitionHandlers[i];
 			var p = $q.defer();
@@ -63,6 +67,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		$scope.state.loading = false;
 		$scope.state.current.name = toState.name;
 		$scope.state.transitioning = false;
+		$scope.state.next = null;
 		$rootScope.$broadcast(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE);
 	}
 

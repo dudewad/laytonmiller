@@ -13,7 +13,7 @@ body{
 	@include theme(null, $color-gray-lightest, $color-gray-medium, $color-gray-darkest);
 	@include theme("technical-summary", $color-blue-lightest, $color-blue-medium, $color-blue-darkest);
 	@include theme("portfolio", $color-green-lightest, $color-green-medium, $color-green-darkest);
-	@include theme("experience", $color-red-lightest, $color-red-medium, $color-red-darkest);
+	@include theme("experience", $color-blue-gray-lightest, $color-blue-gray-medium, $color-blue-gray-darkest);
 	@include theme("contact", $color-orange-lightest, $color-orange-medium, $color-orange-darkest);
 	@include prefixProp("transition", "color #{$section-transition-speed} linear, background-color #{$section-transition-speed} linear");
 	@include prefixProp("transition-duration", "1000ms");

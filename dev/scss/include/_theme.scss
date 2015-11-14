@@ -11,6 +11,11 @@
 
 	nav {
 		.alternator-bg {
+			&::before,
+			&::after {
+				@include prefixProp("transition", "border 500ms");
+			}
+
 			&::before{
 				border-bottom-color: $light;
 			}
@@ -25,6 +30,7 @@
 	 	svg{
 			border-color: $dark;
 			fill: $dark;
+		    @include prefixProp("transition", "border 500ms, fill 500ms");
 		}
 	}
 
@@ -69,7 +75,7 @@
 		}
 	}
 
-	.time line{
+	.timeline{
  		hr{
 			border-color: $light;
 		}
