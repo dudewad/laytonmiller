@@ -9,29 +9,23 @@
 		margin: 0;
 	}
 
-	nav {
-		.alternator-bg {
-			&::before,
-			&::after {
-				@include prefixProp("transition", "border 500ms");
-			}
+	.alternator-bg {
+		&::before,
+		&::after {
+			@include prefixProp("transition", "border 500ms");
+		}
 
-			&::before{
-				border-bottom-color: $light;
-			}
+		&::before{
+			border-bottom-color: $light;
+		}
 
-			&::after{
-				border-top-color: $light;
-			}
+		&::after{
+			border-top-color: $light;
 		}
 	}
 
 	.emblem{
-	 	svg{
-			border-color: $dark;
-			fill: $dark;
-		    @include prefixProp("transition", "border 500ms, fill 500ms");
-		}
+		background: rgba($light, .5);
 	}
 
 	.content-background {
@@ -109,6 +103,11 @@
 		.range-indicator {
 			border:1px solid $light;
 		}
+	}
+
+	.experience-summary{
+		background: $dark;
+		border-color: $light;
 	}
 }
 

@@ -83,8 +83,8 @@ angular.module("LMApp").directive("lmLoading", ["$rootScope", "$timeout", functi
 
 
 			function emblemIn(){
-				var all = element.find(".emblem, canvas");
-				var emblem = all.filter(".emblem");
+				var all = element.find(".lmIcon-emblem-no-border, canvas");
+				var emblem = all.filter(".lmIcon-emblem-no-border");
 				var t = new TimelineMax({
 					onComplete: function(){
 						reset();

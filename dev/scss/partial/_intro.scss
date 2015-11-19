@@ -46,21 +46,13 @@
 	.clickable {
 		h1,
 		h2,
-		.emblem svg {
+		.emblem {
 			cursor: pointer;
 		}
 	}
 
-	.emblem {
+	.emblem{
 		opacity: 0;
-		text-align: center;
-		//For some reason, chrome extends the figure's hit area over the titles due to SVG placement.
-		//This appears to be a bug and overflow:hidden fixes it.
-		overflow: hidden;
-
-		svg{
-			font-size: 10em;
-		}
 	}
 
 	@media screen and (orientation: landscape) {

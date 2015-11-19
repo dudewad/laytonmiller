@@ -6,10 +6,10 @@ dist/
 prod/
 .ftppass
 *.iml
-dev/script/app.js
-dev/script/vendor.js
-dev/style/default.css
-dev/style/default.css.map
-dev/asset/image/sprite.png
-dev/asset/image/sprite-retina.png
-dev/scss/generated/_sprite.scss
+/dev/asset/font/lmIcon/*
+/dev/script/app.js
+/dev/script/vendor.js
+/dev/scss/generated
+/dev/style/
+
+!/dev/asset/font/lmIcon/src/

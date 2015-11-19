@@ -1,0 +1,100 @@
+$transitionSpeed: 250ms;
+
+.alternator{
+	&.active {
+		@include setFont("montserrat", 500, italic);
+		.alternator-bg {
+			opacity: 1;
+			@include prefixProp("transform", "translateX(0)");
+		}
+
+		a:hover {
+			span {
+				@include prefixProp("transform", "none");
+				opacity: 1;
+
+				&.highlight {
+					opacity: 0;
+					@include prefixProp("transform", "none");
+				}
+			}
+		}
+	}
+
+	&:hover,
+	.alternator-content:hover{
+		span {
+			@include prefixProp("transform", "translateY(.6em)  scale(1, .5)");
+			opacity: 0;
+
+			&.highlight {
+				opacity: 1;
+				@include prefixProp("transform", "translateY(0em) scale(1, 1)");
+
+			}
+		}
+
+		.alternator-bg {
+			@include prefixProp("transform", "translateX(0)");
+			opacity: 1;
+		}
+	}
+
+	.alternator-content {
+		display: block;
+		position: relative;
+		cursor: pointer;
+
+		span {
+			@include prefixProp("transition", "transform #{$transitionSpeed}, opacity #{$transitionSpeed}, scale #{$transitionSpeed}");
+			bottom: 0;
+
+			&.highlight {
+				position: absolute;
+				top: 0;
+				opacity: 0;
+				@include prefixProp("transform", "translateY(-.6em) scale(1, .5)");
+				font-weight: 400;
+				font-style: italic;
+			}
+		}
+	}
+
+	.alternator-bg {
+		display: block;
+		position: absolute;
+		top: -.4em;
+		height: 0;
+		width: 100%;
+		opacity: .5;
+		@include prefixProp("transition", "opacity #{$transitionSpeed}, transform #{$transitionSpeed}");
+		@include prefixProp("transform", "translateX(-.5em)");
+
+		&:before,
+		&:after {
+			display: block;
+			position: absolute;
+			top: 0;
+			content: " ";
+			margin-left: -1em;
+			height: 0;
+			width: 100%;
+			border-bottom: 2em solid;
+			border-left: .5em solid transparent;
+			border-top: 0;
+			z-index: -1;
+		}
+
+		&:after {
+			border-left: 0;
+			border-right: .5em solid transparent;
+			border-bottom: 0;
+			border-top: 2em solid;
+			margin-left: 1em;
+		}
+	}
+
+	.alternator-content {
+		position: relative;
+	}
+}
