@@ -4,6 +4,7 @@
 	border-radius: 50%;
 	border: .25em solid;
 	@include prefixProp("transition", "transform 150ms");
+	text-align:center;
 
 	&:hover{
 		@include prefixProp("transform", "scale(1.8)");

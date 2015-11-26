@@ -21,8 +21,7 @@ $transitionSpeed: 250ms;
 		}
 	}
 
-	&:hover,
-	.alternator-content:hover{
+	&:hover .alternator-content{
 		span {
 			@include prefixProp("transform", "translateY(.6em)  scale(1, .5)");
 			opacity: 0;
