@@ -1,203 +1,113 @@
 .timeline {
-	h4 {
-		&.label {
-			margin-bottom: 1em;
-			text-align:right;
-
-			span{
-				position:relative;
-				right:90%;
-			}
-
-			.year {
-				display: block;
-				font-size: 3em;
-
-				&::before {
-					content: "\2190";
-					font-size: .5em;
-					display: inline-block;
-					position: relative;
-					bottom: .15em;
-					margin-right: .5em;
-				}
-			}
-
-			.month {
-				@include setFont("quattrocento-sans", 200, italic);
-				font-size: 1.4em;
+	.timeline-wrapper{
+		&.pause{
+			.timeline-event{
+				@include prefixProp("transform", "translateY(-5em)");
+				opacity:0;
+				@include prefixProp("opacity 150ms, transform 150ms, transition", "z-index 150ms");
+				z-index: -1;
 			}
 		}
 	}
-	/*h4 {
-		&.label {
-			margin-bottom: 1em;
 
-			.year {
-				display: block;
-				font-size: 3em;
-				position: relative;
-				right: 90%;
-
-				&::before {
-					content: "\2190";
-					font-size: .5em;
-					display: inline-block;
-					position: relative;
-					bottom: .15em;
-					margin-right: .5em;
-				}
-			}
-
-			.month {
-				@include setFont("quattrocento-sans", 200, italic);
-				font-size: 1.4em;
-			}
-		}
-	}*/
-
-	hr{
-		position: relative;
-		top: 71px;
-		border-width: 1px 0 0 0;
-		border-style: dashed;
-		opacity: .5;
-	}
-
-	.timeline-range{
-		position:relative;
-		margin-left: 15px;
-	}
-
-	.timeline-intervals,
-	.timeline-events{
-		position: relative;
-		top: 65px;
-	}
-
-	.timeline-events{
-		position:relative;
-	}
-
-	.timeline-interval,
 	.timeline-event {
-		bottom: 100%;
-	}
-
-	.timeline-interval{
-		position: absolute;
-		opacity:.5;
-		margin-bottom: -8px;
-	}
-
-	.interval {
 		display: block;
-		width: 5px;
-		height: 15px;
-	}
-
-	.timeline-event {
+		position: absolute;
+		left: 50%;
+		opacity:1;
+		font-weight: 500;
 		cursor: pointer;
-		z-index: 2;
-		border: none;
+		width: 11.5em;
+		height: 11.5em;
+		margin-left:-5.75em;
+		border-radius: 50%;
+		border: .25em solid;
+		@include prefixProp("transition", "opacity 150ms, transform 150ms");
+		text-align: center;
+		z-index: 100;
 
-		&:hover{
-			.eventEnd,
-			.range-indicator{
+		&:hover {
+			border-width: .3em;
+			@include prefixProp("transform", "scale(1.8)");
+
+			.date,
+			.sublabel {
 				opacity:1;
 			}
 
-			span{
-				&.outer{
-					padding: 2px;
-					@include prefixProp("transform", "scale(1.25)");
-					box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.25);
+			.alternator-bg {
+				&:before,
+				&:after {
+					opacity: 1;
 				}
 			}
+
+			.highlight {
+				font-style: normal;
+				font-weight: 900;
+			}
 		}
 
-		.eventStart,
-		.eventEnd{
-			margin-left: -12px;
+		.date,
+		.sublabel{
 			position: absolute;
-			bottom: -7px;
+			opacity:0;
+			@include prefixProp("transition", "opacity, 150ms");
+			font-weight: 200;
+			font-size: .75em;
+			left: 0;
+			right: 0;
 		}
 
-		.eventEnd,
-		.range-indicator{
-			opacity:.15;
-			@include prefixProp("transition", "opacity 100ms");
+		.date {
+			top: -1.7em;
 		}
 
-		.range-indicator{
-			position:absolute;
-			top: 15px;
-			margin-left: 3px;
-			border-top:none !important;
+		.sublabel {
+			top: 2.5em;
+			font-style: italic;
 		}
 
-		span {
-			&.outer {
-				display: block;
-				width: 30px;
-				height: 30px;
-				margin-bottom: -8px;
-				padding: 8px;
-				border-radius: 50%;
-				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-				@include prefixProp("transform", "scale(1)");
-				@include prefixProp("transition", "transform 100ms ease-out, padding 100ms ease-out");
+		a {
+			font-weight: 900;
+			position: absolute;
+			top: 50%;
+			margin-top: -8px;
+			left: 0;
+			right: 0;
+		}
+
+		.alternator-bg {
+			&:before,
+			&:after {
+				border-bottom-width: 1.5em;
+				top: .3em;
+				opacity: 0;
+				@include prefixProp("transition", "opacity 150ms");
 			}
 
-			&.center {
-				display: block;
-				border-radius: 50%;
-				width: 100%;
-				height: 100%;
+			&:after {
+				border-top-width: 1.5em;
 			}
 		}
 	}
-
-	.timeline-end {
-		left: 0;
-	}
-
-	.tooltip {
-		width: 250px;
-		left: 50%;
-		margin-left: -125px;
-	}
 }
 
-@media screen and (min-width: $screen-sm-min) {
-	.timeline {
-		.timeline-wrapper {
-			//width: 750%;
-		}
-	}
+/*
+@media screen and(min-width: $screen-sm-min) {
 }
 
-@media screen and (min-width: $screen-md-min) {
-	.timeline {
-		.timeline-wrapper {
-			//width: 550%;
-		}
-	}
-
+@media screen and(min-width: $screen-md-min) {
 }
 
-@media screen and (min-width: $screen-lg-min) {
-	.timeline {
-		.timeline-wrapper {
-			//width: 400%;
-		}
-	}
+@media screen and(min-width: $screen-lg-min) {
 }
+*/
 
-@media screen and (min-width: $screen-xl-min) {
+@media screen and(min-width: $screen-xl-min) {
 	.timeline {
-		.timeline-wrapper {
-			/*width: 250%;*/
+		.timeline-event{
+			left:40%;
 		}
 	}
 }

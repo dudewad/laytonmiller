@@ -80,6 +80,8 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		}
 	});
 
+
+
 	/**
 	 * When a state load completes,
 	 */
@@ -87,14 +89,43 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		_pageLoadPromise && _pageLoadPromise.resolve();
 	});
 
+
+
+	/**
+	 * Fires when a component needs the loader to appear
+	 */
+	$scope.$on(CONSTANT.EVENT.COMPONENT_LOAD_START, function () {
+		$scope.state.loading = true;
+	});
+
+
+
+	/**
+	 * Fires when a component has finished loading and no longer needs the loader
+	 */
+	$scope.$on(CONSTANT.EVENT.COMPONENT_LOAD_COMPLETE, function () {
+		$scope.state.loading = false;
+	});
+
+
+
 	$scope.$on(CONSTANT.EVENT.LMSREF.SREF_CHANGE, function (e, data) {
 		_triggerTransition(data);
 	});
 
 
+
 	$scope.registerTransitionHandler = function (handler) {
 		_transitionHandlers.push(handler);
 	};
+
+
+
+	$scope.parseRootStateName = function(){
+		return $scope.state.current.name ? $scope.state.current.name.split(".")[0] : $scope.state.current.name;
+	};
+
+
 
 	angular.element("body").on("selectstart", function () {
 		return false;

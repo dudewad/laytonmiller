@@ -8,7 +8,7 @@
 
 	<link type="text/css" href="style/default.css" rel="stylesheet"/>
 </head>
-<body ng-app="LMApp" ng-controller="RootController" ng-class="[state.current.name, {transitioning: state.transitioning}]">
+<body ng-app="LMApp" ng-controller="RootController" ng-class="[parseRootStateName(), {transitioning: state.transitioning}]">
 
 	<hr class="top-border"/>
 	<div class="background-contain">

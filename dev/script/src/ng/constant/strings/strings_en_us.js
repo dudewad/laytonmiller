@@ -150,19 +150,24 @@ LMApp_conditionalLoadList.push({
 					},
 					EVENTS:{
 						DESIGN_MILL: {
-							NAME: "Design Mill"
+							LABEL: "Design Mill",
+							SUBLABEL: "Founder - CEO"
 						},
 						YACHT_VID: {
-							NAME: "Yacht Vid"
+							LABEL: "Yacht Vid",
+							SUBLABEL: "CTO"
 						},
 						MUTUAL_AUTO_MEDIA: {
-							NAME: "Mutual Auto Media"
+							LABEL: "Mutual Auto Media",
+							SUBLABEL: "CTO"
 						},
 						GLOBANT: {
-							NAME: "Globant"
+							LABEL: "Globant",
+							SUBLABEL: "Senior Front-End Developer"
 						},
 						RAZORFISH: {
-							NAME: "Razorfish"
+							LABEL: "Razorfish",
+							SUBLABEL: "Presentation Layer Architect"
 						}
 					}
 				},

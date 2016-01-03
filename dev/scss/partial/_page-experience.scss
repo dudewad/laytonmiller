@@ -1,8 +1,10 @@
 body.experience{
 	.content-main{
-		.alternator {
-			display: inline-block;
-			position: relative;
-		}
+		padding:0;
+		position:absolute;
+		right:0;
+		top:0;
+		height:100%;
+		overflow:hidden;
 	}
 }

@@ -4,17 +4,19 @@
 	top: 50%;
 	margin-left: -43px;
 	margin-top: -43px;
-	z-index: 1;
 	width: 8.5em;
 	height: 8.5em;
 	opacity:0;
+	z-index: -1;
 	@include prefixProp("transform", "translateY(-50px)");
-	@include prefixProp("transition", "opacity 250ms, transform 250ms");
+	@include prefixProp("transition", "opacity 250ms, transform 250ms, z-index 250ms");
 	@include prefixProp("transition-timing-function", "cubic-bezier(0.75, 0.2, 0.1, 0.9)");
 
 	&.visible {
 		@include prefixProp("transform", "translateY(0)");
+		@include prefixProp("transition", "opacity 250ms, transform 250ms");
 		opacity: 1;
+		z-index: 100;
 	}
 
 	canvas {

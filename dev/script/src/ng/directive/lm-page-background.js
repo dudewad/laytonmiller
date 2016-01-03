@@ -10,18 +10,20 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 			var viewportHeight;
 			var scrollableHeight;
 
-			scope.registerTransitionHandler(transition);
-			GlobalEventsService.registerScrollHandler(scrollHandler);
-			GlobalEventsService.registerResizeHandler(resizeHandler);
+			scope.registerTransitionHandler(_transition);
+			GlobalEventsService.registerScrollHandler(_scrollHandler);
+			GlobalEventsService.registerResizeHandler(_resizeHandler);
 
 
-			function transition(promise, toState, fromState) {
+			function _transition(promise, toState, fromState) {
 				var slots;
 				var slotWidth;
 				var finalSlotWidth;
 				var bp = BreakpointService.getCurrentBreakpoint().toLowerCase();
 				var img = $("<img>");
-				var path = CONSTANT.PATH.BACKGROUND_IMAGE + toState.name + "/" + bp + ".jpg";
+				//Parse out state name from nested states - they should use the root state's background.
+				var stateName = toState.name && toState.name.split(".")[0];
+				var path = CONSTANT.PATH.BACKGROUND_IMAGE + stateName + "/" + bp + ".jpg";
 				var windowW = _window.width();
 				element.show();
 
@@ -72,7 +74,7 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 				}
 
 				img.on("load", function(){
-					animateTransition(promise);
+					_animateTransition(promise);
 				});
 				img.attr("src", path);
 			}
@@ -84,14 +86,14 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 			 *
 			 * @param completePromise
 			 */
-			function animateTransition(completePromise) {
-				setTransitionState(_toState.name);
+			function _animateTransition(completePromise) {
+				_setTransitionState(_toState.name);
 				var t = new TimelineMax({
 					paused: true,
 					onComplete: function () {
-						setSection(_toState.name);
+						_setSection(_toState.name);
 						element.html("");
-						setTransitionState();
+						_setTransitionState();
 						//All done, resolve the promise back to root
 						completePromise.resolve();
 					}
@@ -104,21 +106,29 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 
 
 
-			function setSection(section){
+			function _setSection(section){
+				section = _parseRootStateName(section);
 				scope.section = section;
-				applyScope();
+				_applyScope();
 			}
 
 
 
-			function setTransitionState(state){
+			function _setTransitionState(state){
+				state = _parseRootStateName(state);
 				scope.transitionState = state && "transition-to-" + state || undefined;
-				applyScope();
+				_applyScope();
 			}
 
 
 
-			function scrollHandler(e){
+			function _parseRootStateName(stateName){
+				return stateName ? stateName.split(".")[0] : stateName;
+			}
+
+
+
+			function _scrollHandler(e){
 				viewportHeight = _window.height();
 				scrollableHeight = _document.height() - viewportHeight;
 				var percent = (_window.scrollTop() / scrollableHeight);
@@ -127,7 +137,7 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 
 
 
-			function resizeHandler(){
+			function _resizeHandler(){
 				viewportHeight = _window.height();
 				scrollableHeight = _document.outerHeight() - viewportHeight;
 			}
@@ -137,13 +147,13 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 			/**
 			 * Performs a forced apply scope call in a safe manner.
 			 */
-			function applyScope() {
+			function _applyScope() {
 				if (!scope.$$phase) {
 					scope.$apply();
 				}
 			}
 
-			resizeHandler();
+			_resizeHandler();
 		}
 	};
 }]);

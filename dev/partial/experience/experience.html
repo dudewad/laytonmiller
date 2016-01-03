@@ -1,11 +1,12 @@
 <section class="experience">
-	<header>
+	<!--<header>
 		<h1>{{sectionTitle}}</h1>
 
 		<p>{{sectionIntro}}</p>
-	</header>
+	</header>-->
 
 	<section class="subsection-content clearfix">
-		<div ng-include data-src="'partial/experience/experience-summary.html'"></div>
+		<div ng-include ng-controller="TimelineController" data-src="'partial/timeline/timeline.html'"></div>
+		<div ui-view="event"></div>
 	</section>
 </section>

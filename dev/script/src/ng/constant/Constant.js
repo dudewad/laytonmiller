@@ -8,7 +8,19 @@ angular.module("LMApp").constant("CONSTANT", {
 		"EXPERIENCE_TIMELINE": "experience-timeline.json",
 		"PORTFOLIO": "portfolio.json",
 		"TECHNICAL_SUMMARY": "technical-summary.json",
-		"WELCOME": "welcome.json"
+		"WELCOME": "welcome.json",
+		"TIMELINE":{
+			"EXPERIENCE": {
+				"RAZORFISH": "/experience/razorfish.json",
+				"DESIGN_MILL": "/experience/design-mill.json",
+				"YACHT_VID": "/experience/yachtvid.json",
+				"MUTUAL_AUTO_MEDIA": "/experience/mutual-auto-media.json",
+				"GLOBANT": "/experience/globant.json"
+			},
+			"PORTFOLIO":{
+
+			}
+		}
 	},
 
 	"EVENT": {
@@ -24,7 +36,15 @@ angular.module("LMApp").constant("CONSTANT", {
 		},
 		"LMSREF": {
 			"SREF_CHANGE": "SREF_CHANGE"
-		}
+		},
+		"TIMELINE": {
+			"BUILT": "BUILT",
+			"DATA_RECEIVED": "DATA_RECEIVED",
+			"EVENT_OPENED": "EVENT_OPENED",
+			"EVENT_CLOSED": "EVENT_CLOSED"
+		},
+		"COMPONENT_LOAD_START": "COMPONENT_LOAD_START",
+		"COMPONENT_LOAD_COMPLETE": "COMPONENT_LOAD_COMPLETE"
 	},
 
 	/**
@@ -88,10 +108,20 @@ angular.module("LMApp").constant("CONSTANT", {
 			"URL": "/experience",
 			"TEMPLATE": "experience/experience.html"
 		},
+		"EXPERIENCE_EVENT": {
+			"NAME": "experience.event",
+			"URL": "/{event}",
+			"TEMPLATE": "timeline/timeline-event.html"
+		},
 		"PORTFOLIO": {
 			"NAME": "portfolio",
 			"URL": "/portfolio",
 			"TEMPLATE": "portfolio/portfolio.html"
+		},
+		"PORTFOLIO_EVENT": {
+			"NAME": "portfolio.event",
+			"URL": "/{event}",
+			"TEMPLATE": "timeline/timeline-event.html"
 		},
 		"CONTACT": {
 			"NAME": "contact",

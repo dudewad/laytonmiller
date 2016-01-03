@@ -82,6 +82,15 @@ var LMApp = angular.module("LMApp", ["ui.router", "ngCookies"])
 					}
 				}
 			})
+			.state(STATE.EXPERIENCE_EVENT.NAME, {
+				url: STATE.EXPERIENCE_EVENT.URL,
+				views: {
+					event: {
+						templateUrl: PATH.PARTIAL + STATE.EXPERIENCE_EVENT.TEMPLATE,
+						controller: "TimelineEventController"
+					}
+				}
+			})
 			.state(STATE.PORTFOLIO.NAME, {
 				url: STATE.PORTFOLIO.URL,
 				views: {

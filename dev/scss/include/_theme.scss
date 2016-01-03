@@ -105,9 +105,28 @@
 		}
 	}
 
-	.experience-summary{
+	.timeline-event{
 		background: $dark;
 		border-color: $light;
+		color:$light;
+
+		&:hover{
+			.label {
+				color: $dark;
+			}
+		}
+
+		.alternator-bg {
+			opacity:1;
+
+			&:before{
+				border-bottom-color:$light;
+			}
+
+			&:after{
+				border-top-color:$light;
+			}
+		}
 	}
 }
 

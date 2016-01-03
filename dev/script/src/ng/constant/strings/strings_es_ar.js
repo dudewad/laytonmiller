@@ -69,24 +69,29 @@ LMApp_conditionalLoadList.push({
 
 				EXPERIENCE: {
 					HEADER: {
-						TITLE: "Experiencia",
-						DESCRIPTION: "Lo que sigue es una linea de tiempo de mi experiencia profesional, desde hoy hasta que empecé a trabajar. Explore! Hacé swipe, arrastrar, o use la rueda del mouse para navegar atravez de la linea de tiempo."
+						TITLE: "EXPERIENCE",
+						DESCRIPTION: "Here is a timeline of my employment, from today back to when I started. Feel free to explore! Swipe, drag, or mouse-wheel to navigate across the timeline."
 					},
 					EVENTS: {
 						DESIGN_MILL: {
-							NAME: "Design Mill"
+							LABEL: "Design Mill",
+							SUBLABEL: "Dueño"
 						},
 						YACHT_VID: {
-							NAME: "Yacht Vid"
+							LABEL: "Yacht Vid",
+							SUBLABEL: "CTO"
 						},
 						MUTUAL_AUTO_MEDIA: {
-							NAME: "Mutual Auto Media"
+							LABEL: "Mutual Auto Media",
+							SUBLABEL: "CTO"
 						},
 						GLOBANT: {
-							NAME: "Globant"
+							LABEL: "Globant",
+							SUBLABEL: "Engeniero Web, Senior"
 						},
 						RAZORFISH: {
-							NAME: "Razorfish"
+							LABEL: "Razorfish",
+							SUBLABEL: "Architecto Web"
 						}
 					}
 				},

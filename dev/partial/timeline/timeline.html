@@ -1,4 +1,5 @@
 <div class="timeline" data-lm-timeline>
+	<!--
 	<div class="timeline-wrapper">
 		<div class="timeline-range"
 		     ng-style="{width: timeline.intervals.length * 90 + 'px',
@@ -39,6 +40,23 @@
 					     ng-style="{'left': event.endPosition, 'width': event.rangeIndicator, 'height': event.height}"
 					     ng-if="event.endPosition"></div>
 				</figure>
+			</div>
+		</div>
+	</div>
+	-->
+	<div class="timeline-wrapper" ng-class="{pause: state.pause}">
+		<div ng-repeat="event in timeline.events">
+			<div class="timeline-event alternator event-type-{{event.type}}" >
+				<a ui-sref="{{event.type.toLowerCase() + '.event'}}({event:'{{event.stringId.toLowerCase()}}'})">
+					<span class="alternator-bg"></span>
+
+					<div class="date">{{event.dateString}}</div>
+					<div class="alternator-content label">
+						<span class="highlight">{{event.label}}</span>
+						<span class="content">{{event.label}}</span>
+					</div>
+					<div class="sublabel">{{event.sublabel}}</div>
+				</a>
 			</div>
 		</div>
 	</div>
