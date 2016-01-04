@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("introAnimation", ["$rootScope", "$timeout", "CONSTANT", "GlobalEventsService", "AnimationService", "LMRoute", function ($rootScope, $timeout, CONSTANT, GlobalEventsService, AnimationService, LMRoute) {
+angular.module("LMApp").directive("introAnimation", ["$rootScope", "$state", "$timeout", "CONSTANT", "GlobalEventsService", "AnimationService", function ($rootScope, $state, $timeout, CONSTANT, GlobalEventsService, AnimationService) {
 	return {
 		scope: true,
 		restrict: "A",
@@ -93,7 +93,7 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope", "$timeout", "
 				var t = new TimelineMax({
 					paused: true,
 					onComplete: function(){
-						LMRoute.go(CONSTANT.STATE.TECHNICAL_SUMMARY.NAME);
+						$state.go(CONSTANT.STATE.TECHNICAL_SUMMARY.NAME);
 					}
 				});
 

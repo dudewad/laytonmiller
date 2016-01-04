@@ -46,16 +46,19 @@
 	-->
 	<div class="timeline-wrapper" ng-class="{pause: state.pause}">
 		<div ng-repeat="event in timeline.events">
-			<div class="timeline-event alternator event-type-{{event.type}}" >
+			<div class="timeline-event alternator event-type-{{event.type}}"
+			     data-lm-drag="dragHandler(pointerData, $event)">
 				<a ui-sref="{{event.type.toLowerCase() + '.event'}}({event:'{{event.stringId.toLowerCase()}}'})">
-					<span class="alternator-bg"></span>
+					<div class="event-content">
+						<span class="alternator-bg"></span>
 
-					<div class="date">{{event.dateString}}</div>
-					<div class="alternator-content label">
-						<span class="highlight">{{event.label}}</span>
-						<span class="content">{{event.label}}</span>
+						<div class="date">{{event.dateString}}</div>
+						<div class="alternator-content label">
+							<span class="highlight">{{event.label}}</span>
+							<span class="content">{{event.label}}</span>
+						</div>
+						<div class="sublabel">{{event.sublabel}}</div>
 					</div>
-					<div class="sublabel">{{event.sublabel}}</div>
 				</a>
 			</div>
 		</div>

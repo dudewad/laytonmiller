@@ -1,4 +1,6 @@
 .timeline {
+	min-height:100%;
+
 	.timeline-wrapper{
 		&.pause{
 			.timeline-event{
@@ -13,6 +15,7 @@
 	.timeline-event {
 		display: block;
 		position: absolute;
+		top:110%;
 		left: 50%;
 		opacity:1;
 		font-weight: 500;
@@ -70,11 +73,17 @@
 
 		a {
 			font-weight: 900;
-			position: absolute;
-			top: 50%;
-			margin-top: -8px;
+			height:100%;
 			left: 0;
 			right: 0;
+			display:block;
+		}
+
+		.event-content{
+			position:absolute;
+			top:50%;
+			width:100%;
+			margin-top: -8px;
 		}
 
 		.alternator-bg {

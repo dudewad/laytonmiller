@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmDrag", [function () {
+angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", function (GlobalEventsService) {
 	return {
 		scope: {
 			lmDrag: "&"
@@ -10,17 +10,20 @@ angular.module("LMApp").directive("lmDrag", [function () {
 			var lastY = null;
 			var lastTimestamp = null;
 			var lastPointerData = null;
+			var pointerListenerID;
 
 			/*Support handlers to each bound listener that is triggered when the user touches/mousedowns*/
 			function touchEndFn (e) {
-				body.off("touchmove", handler);
+				GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
+				pointerListenerID = null;
 				body.off("touchend", touchEndFn);
 				handler(e);
 				resetPointer();
 			}
 
 			function mouseUpFn (e) {
-				body.off("mousemove", handler);
+				GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
+				pointerListenerID = null;
 				body.off("mouseup", mouseUpFn);
 				handler(e);
 				resetPointer();
@@ -28,13 +31,13 @@ angular.module("LMApp").directive("lmDrag", [function () {
 
 			/*Bind Mousedown/touchstart events*/
 			elm.on("touchstart", function (e) {
-				body.on("touchmove", handler);
+				pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
 				body.on("touchend", touchEndFn);
 				handler(e);
 			});
 
 			elm.on("mousedown", function (e) {
-				body.on("mousemove", handler);
+				pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
 				body.on("mouseup", mouseUpFn);
 				handler(e);
 			});
@@ -46,6 +49,7 @@ angular.module("LMApp").directive("lmDrag", [function () {
 					scope.lmDrag({"pointerData": lastPointerData, "$event": e});
 					return;
 				}
+				e.preventDefault();
 				var pageX = e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX;
 				var pageY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
 				var xDif = lastX !== null ? pageX - lastX : 0;
@@ -76,6 +80,18 @@ angular.module("LMApp").directive("lmDrag", [function () {
 				lastTimestamp = null;
 				lastPointerData = null;
 			}
+
+
+
+			function _destroy(){
+				if(pointerListenerID){
+					GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
+				}
+			}
+
+
+
+			scope.$on("$destroy", _destroy);
 		}
 	};
 }]);

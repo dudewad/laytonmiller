@@ -81,7 +81,9 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 	 }*/
 
 
-
+	/**
+	 * Build timeline intervals
+	 */
 	/*function buildTimelineIntervals(){
 	 var current = new Date($scope.timeline.startDate.date.getFullYear(), $scope.timeline.startDate.date.getMonth(), 1);
 	 var currentYear = current.getFullYear();
@@ -170,13 +172,24 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 	}
 
 
-	function _hide(){
+
+	/**
+	 * Pauses the timeline (hide it)
+	 *
+	 * @private
+	 */
+	function _pause(){
 		$scope.state.pause = true;
 	}
 
 
 
-	function show(){
+	/**
+	 * Un-pauses the timeline (un-hide it)
+	 *
+	 * @private
+	 */
+	function _unpause(){
 		$scope.state.pause = false;
 	}
 
@@ -222,12 +235,12 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 
 
 	$scope.$on(CONSTANT.EVENT.TIMELINE.EVENT_OPENED, function(){
-		_hide();
+		_pause();
 	});
 
 
 
 	$scope.$on(CONSTANT.EVENT.TIMELINE.EVENT_CLOSED, function(){
-		show();
+		_unpause();
 	});
 }]);

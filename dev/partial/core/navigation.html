@@ -8,11 +8,14 @@
 		<ul class="link-list">
 			<li ng-repeat="item in navItems"
 			    class="{{item.className}}">
-				<a data-lm-sref="{{item.sref}}"
+				<a ui-sref="{{item.sref}}"
 				   class="alternator"
-				   data-ng-class="{'active': (!state.transitioning && state.current.name === item.sref) || (state.transitioning && state.next.name === item.sref)}">
+				   data-ng-class="{'active': (!state.transitioning && state.next.name === item.sref)
+				   || (state.transitioning && state.next.name === item.sref)
+				   || parseRootStateName() === parseRootStateName(item.sref)}">
 					<span class="alternator-bg"></span>
 					<div class="alternator-content">
+						<span class="highlight">{{item.text}}</span>
 						<span class="highlight">{{item.text}}</span>
 						<span class="content">{{item.text}}</span>
 					</div>

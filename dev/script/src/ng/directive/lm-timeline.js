@@ -1,28 +1,74 @@
-angular.module("LMApp").directive("lmTimeline", [function () {
+angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsService", function (CONSTANT, GlobalEventsService) {
 	return {
 		scope: "=",
 		restrict: "A",
 		link: function (scope, element, attrs) {
-			var decelerationTween = null;
-			var slider = null;
+			var _swipeTarget = null;
+			var _swipeTargetTween = null;
+			var _positioning = {};
+			var _hasClickCancel = null;
+			var _resizeHandlerID;
+			var _pageTransitionComplete = false;
+			var _timelineBuilt = false;
+			var _acceleration = 50;
 
 
 
-			function decelerateTimeline(currentSpeed, event) {
-				var duration = Math.abs(currentSpeed / 4);
-				var offset = (currentSpeed * 400) + parseInt(slider.css("left"));
-				if (offset > 0) {
-					offset = 0;
+			function _init() {
+				if(!_pageTransitionComplete || ! _timelineBuilt){
+					return;
 				}
-				else if (offset < scope.timeline.position.minX) {
-					offset = scope.timeline.position.minX;
-				}
-				decelerationTween = TweenMax.to(slider, duration, {"left": offset + "px"});
+
+				_resizeHandlerID = GlobalEventsService.registerResizeHandler(_resizeHandler);
+				_enter();
 			}
 
 
 
-			function applyScope() {
+			function _enter() {
+				_killSwipeTween();
+				var target = element.find(".timeline-event").eq(scope.timeline.currentEvent);
+				var center = angular.element(window).outerHeight() / 2 - target.outerHeight() / 2;
+
+				_swipeTargetTween = new TimelineMax();
+				_swipeTargetTween.to(target, 2.5, {top: center, ease: Power4.easeOut});
+			}
+
+
+
+			function _next() {
+				scope.timeline.currentEvent++;
+				if(scope.timeline.currentEvent === scope.timeline.events.length){
+					scope.timeline.currentEvent = 0;
+				}
+				_enter();
+			}
+
+
+
+			function _previous() {
+				scope.timeline.currentEvent--;
+				if (scope.timeline.currentEvent < 0) {
+					scope.timeline.currentEvent = scope.timeline.events.length - 1;
+				}
+				_enter();
+			}
+
+
+
+			function _killSwipeTween(){
+				_swipeTargetTween && _swipeTargetTween.kill && _swipeTargetTween.kill();
+			}
+
+
+
+			function _resizeHandler(){
+
+			}
+
+
+
+			function _applyScope() {
 				if (!scope.$$phase) {
 					scope.$apply();
 				}
@@ -30,45 +76,102 @@ angular.module("LMApp").directive("lmTimeline", [function () {
 
 
 
+			function _clickCancel(e){
+				e.preventDefault();
+				_hasClickCancel = false;
+			}
+
+
+
+			function _willStopOffScreen(distance){
+				var currentY = _swipeTarget.offset().top;
+				//console.log("swipe target offset",_swipeTarget.offset());
+				if(distance > 0){
+					//console.log(angular.element(window).outerHeight(), currentY + distance, currentY, distance);
+					return currentY + distance > angular.element(window).outerHeight();
+				}
+				else{
+					//console.log(currentY + _swipeTarget.outerHeight() + distance, currentY, _swipeTarget.outerHeight(), distance);
+					return currentY + _swipeTarget.outerHeight() + distance < 0;
+				}
+			}
+
+
+
 			scope.$on("interactionEnd", function (e, pointerData, originalEvent) {
-				decelerateTimeline(pointerData.xSpeed, originalEvent);
-				applyScope();
+				_positioning = {};
+				var speed = pointerData.ySpeed * 250;
+				//Time = vf - vi / acceleration
+				var time = Math.abs(-speed / _acceleration);
+				//Distance = (vi * t) + (1/2 * a * t^2)
+				var distance = speed * time + 0.5 * _acceleration * time * time;
+
+				/*_swipeTarget.find("a").off("click", _clickCancel);
+				 _hasClickCancel = false;*/
+				//Return to center if it's not going to be far enough to put it off screen
+				if(!_willStopOffScreen(distance)){
+					_enter();
+				}
+				else{
+					var t = new TimelineMax();
+					t.to(_swipeTarget, time, {top: "+=" + distance + "px"});
+					if(distance > 0){
+						_previous();
+					}
+					else{
+						_next();
+					}
+				}
+				_applyScope();
 			});
 
 
 
 			scope.$on("interactionSwipe", function (e, pointerData, originalEvent) {
-				var offset = scope.timeline.position.x + pointerData.xDif;
-				if (offset > 0) {
-					offset = 0;
+				if(!_hasClickCancel){
+					var anchor = _swipeTarget.find("a");
+					//Remove any previously hanging-around instances of the call
+					anchor.off("click", _clickCancel);
+					anchor.one("click", _clickCancel);
+					_hasClickCancel = true;
 				}
-				else if(offset < scope.timeline.position.minX){
-					offset = scope.timeline.position.minX;
-				}
-				scope.timeline.position.x = offset;
-				applyScope();
+				_positioning = {
+					top: _positioning.top + pointerData.yDif
+				};
+
+				_swipeTarget.css({
+					top: _positioning.top + "px"
+				});
+				_applyScope();
 			});
 
 
 
 			scope.$on("interactionStart", function (e, pointerData, originalEvent) {
-				var t = scope.timeline;
-				/*Get the size of the timeline range so we know what to limit movement to*/
-				t.dimensions.width = element.find(".timeline-range").outerWidth();
-				t.mask.width = element.outerWidth();
-				t.position.minX = parseInt(t.mask.width) - parseInt(t.dimensions.width) - 150;
-
-				if (decelerationTween) {
-					decelerationTween.kill();
-				}
-				t.position.x = parseInt(angular.element(originalEvent.delegateTarget).css("left"));
+				_swipeTarget = $(originalEvent.target).closest(".timeline-event");
+				_positioning = {
+					top: parseInt(_swipeTarget.css("top"))
+				};
 			});
 
 
 
-			scope.$on("timelineBuilt", function(){
-				slider = element.find(".timeline-range");
-				scope.timeline.dimensions.marginLeft = element.find(".timeline-interval").eq(0).find(".month").outerWidth();
+			scope.$on("$destroy", function () {
+				GlobalEventsService.unregisterResizeHandler(_resizeHandlerID);
+			});
+
+
+
+			scope.$on(CONSTANT.EVENT.TIMELINE.BUILT, function () {
+				_timelineBuilt = true;
+				_init();
+			});
+
+
+
+			scope.$on(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE, function(){
+				_pageTransitionComplete = true;
+				_init();
 			});
 		}
 	};

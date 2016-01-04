@@ -4,10 +4,10 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		current: {
 			name: null
 		},
-		loading: false,
 		next: {
 			name: null
 		},
+		loading: false,
 		transitioning: false
 	};
 	var _transitionHandlers = [];
@@ -22,20 +22,20 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	 *
 	 * @private
 	 */
-	function _triggerTransition(toState) {
-		if ($scope.state.transitioning || toState.name === $scope.state.current.name) {
+	function _triggerTransition(e, toState, params, fromState) {
+		if ($scope.state.transitioning) {
+			e.preventDefault();
 			return;
 		}
 		if (!$scope.state.current.name) {
-			$scope.state.current = toState;
+			$scope.state.current.name = toState.name;
 		}
 
-		var fromState = $scope.state.current;
 		var promises = [];
 
 		$scope.state.loading = true;
 		$scope.state.transitioning = true;
-		$scope.state.next = toState;
+		$scope.state.next.name = toState.name;
 		for (var i = 0; i < _transitionHandlers.length; i++) {
 			var h = _transitionHandlers[i];
 			var p = $q.defer();
@@ -67,18 +67,13 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		$scope.state.loading = false;
 		$scope.state.current.name = toState.name;
 		$scope.state.transitioning = false;
-		$scope.state.next = null;
+		$scope.state.next.name = null;
 		$rootScope.$broadcast(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE);
 	}
 
 
 
-	$rootScope.$on("$stateChangeStart", function (e, toState, params, fromState) {
-		if (!$scope.state.current.name) {
-			e.preventDefault();
-			_triggerTransition(toState);
-		}
-	});
+	$rootScope.$on("$stateChangeStart", _triggerTransition);
 
 
 
@@ -109,20 +104,15 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
-	$scope.$on(CONSTANT.EVENT.LMSREF.SREF_CHANGE, function (e, data) {
-		_triggerTransition(data);
-	});
-
-
-
 	$scope.registerTransitionHandler = function (handler) {
 		_transitionHandlers.push(handler);
 	};
 
 
 
-	$scope.parseRootStateName = function(){
-		return $scope.state.current.name ? $scope.state.current.name.split(".")[0] : $scope.state.current.name;
+	$scope.parseRootStateName = function(state){
+		var s = state ? state : $scope.state.current.name;
+		return s ? s.split(".")[0] : s;
 	};
 
 

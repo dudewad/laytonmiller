@@ -9,10 +9,10 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	var _pendingScrollHandlers = false;
 	var _lastScrollEvent = null;
 
-	var _mouseMoveHandlers = [];
-	var _mouseMoveHandlerID = 0;
-	var _pendingMouseMoveHandlers = false;
-	var _lastMouseEvent = null;
+	var _pointerMoveHandlers = [];
+	var _pointerMoveHandlerID = 0;
+	var _pendingPointerMoveHandlers = false;
+	var _lastPointerEvent = null;
 
 	var _window = angular.element(window);
 	var _body = angular.element("body");
@@ -58,19 +58,20 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 
 
 	/**
-	 * Registers a mousemove handler to perform when body.onmousemove occurs. This should be the single point globally
-	 * where body-only mousemove events are handled. Should be used sparingly, obviously.
+	 * Registers a pointer handler to perform when body.onmousemove or body.touchmove occurs. This should be the
+	 * single point globally where body-only mousemove/touchmove events are handled.
+	 * Should be used sparingly, obviously.
 	 *
-	 * @param handler   {function}      The handler function to be executed on body.onmousemove
+	 * @param handler   {function}      The handler function to be executed on body.onmousemove or body.ontouchmove
 	 *
 	 * @returns {int}                   Returns an integer ID number of the handler to be called with the
-	 *                                  unregisterMouseMoveHandler() method so it knows what to unregister.
+	 *                                   unregisterPointerMoveHandler() method so it knows what to unregister.
 	 */
-	function registerMouseMoveHandler(handler){
-		var h = _MouseMoveHandlerInstance(handler);
-		_mouseMoveHandlers.push(h);
-		//When adding the first listener, add the window.scroll handler
-		_mouseMoveHandlers.length === 1 && _body.on("mousemove", _mouseMoveHandler);
+	function registerPointerMoveHandler(handler) {
+		var h = _PointerMoveHandlerInstance(handler);
+		_pointerMoveHandlers.push(h);
+		//When adding the first listener, add the global handler
+		_pointerMoveHandlers.length === 1 && _body.on("mousemove touchmove", _pointerMoveHandler);
 		return h.id;
 	}
 
@@ -117,21 +118,21 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 
 
 	/**
-	 * Unregister a mousemove handler with a given ID
+	 * Unregister a pointer handler with a given ID
 	 *
-	 * @param id    {int}               The ID of the mousemove handler to unregister, given by the return value of the
-	 *                                   registerMouseMoveHandler() method.
+	 * @param id    {int}               The ID of the pointer move handler to unregister, given by the return value of
+	 *                                   the registerPointerMoveHandler() method.
 	 */
-	function unregisterMouseMoveHandler(id){
-		for (var i = 0; i < _mouseMoveHandlers.length; i++) {
-			var h = _mouseMoveHandlers[i];
-			if(h.id === id){
-				_mouseMoveHandlers.splice(i, 1);
+	function unregisterPointerMoveHandler(id) {
+		for (var i = 0; i < _pointerMoveHandlers.length; i++) {
+			var h = _pointerMoveHandlers[i];
+			if (h.id === id) {
+				_pointerMoveHandlers.splice(i, 1);
 				break;
 			}
 		}
-		//When unregistering the last handler, remove the window.onscroll handler
-		!_mouseMoveHandlers.length && _body.off("mousemove", _mouseMoveHandler);
+		//When unregistering the last handler, remove the global handler
+		!_pointerMoveHandlers.length && _body.off("mousemove touchmove", _pointerMoveHandler);
 	}
 
 
@@ -190,33 +191,33 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 
 
 	/**
-	 * Requests that all mousemove handlers be called. The reason this is a "request" is because to stay performant it's
-	 * wrapped in a window.rAF call and may not fire listeners if a pending call is waiting to occur.
+	 * Requests that all pointer move handlers be called. The reason this is a "request" is because to stay performant
+	 * it's wrapped in a window.rAF call and may not fire listeners if a pending call is waiting to occur.
 	 *
 	 * @private
 	 */
-	function _mouseMoveHandler(e) {
-		_lastMouseEvent = e;
+	function _pointerMoveHandler(e) {
+		_lastPointerEvent = e;
 
-		if (!_pendingMouseMoveHandlers) {
-			window.requestAnimationFrame(_callMouseMoveHandlers);
+		if (!_pendingPointerMoveHandlers) {
+			window.requestAnimationFrame(_callPointerMoveHandlers);
 		}
-		_pendingMouseMoveHandlers = true;
+		_pendingPointerMoveHandlers = true;
 	}
 
 
 
 	/**
-	 * Calls all mousemove handlers
+	 * Calls all pointer move handlers
 	 *
 	 * @private
 	 */
-	function _callMouseMoveHandlers() {
-		for (var i = 0; i < _mouseMoveHandlers.length; i++) {
-			(_mouseMoveHandlers[i].handler)(_lastMouseEvent);
+	function _callPointerMoveHandlers() {
+		for (var i = 0; i < _pointerMoveHandlers.length; i++) {
+			(_pointerMoveHandlers[i].handler)(_lastPointerEvent);
 		}
-		_pendingMouseMoveHandlers = false;
-		_lastMouseEvent = null;
+		_pendingPointerMoveHandlers = false;
+		_lastPointerEvent = null;
 	}
 
 
@@ -272,9 +273,9 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 
 
 	/**
-	 * Creates a _MouseMoveHandler object, to track ID and handler function.
+	 * Creates a _PointerMoveHandlerInstance object, to track ID and handler function.
 	 *
-	 * @param handler   {function}          The function to be executed as a handler
+	 * @param handler   {function}              The function to be executed as a handler
 	 *
 	 * @returns {{id: number, handler: function}}
 	 *
@@ -282,14 +283,14 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	 *
 	 * @private
 	 */
-	function _MouseMoveHandlerInstance(handler) {
+	function _PointerMoveHandlerInstance(handler) {
 		//Requires a function for handler
-		if(typeof handler !== "function"){
-			throw new Error("Cannot create _MouseMoveHandlerInstance. Handler must be a function.");
+		if (typeof handler !== "function") {
+			throw new Error("Cannot create _PointerMoveHandlerInstance. Handler must be a function.");
 		}
 
 		return {
-			id: ++_mouseMoveHandlerID,
+			id: ++_pointerMoveHandlerID,
 			handler: handler
 		};
 	}
@@ -299,9 +300,9 @@ angular.module("LMApp").factory("GlobalEventsService", ["$timeout", function ($t
 	return {
 		registerResizeHandler: registerResizeHandler,
 		registerScrollHandler: registerScrollHandler,
-		registerMouseMoveHandler: registerMouseMoveHandler,
+		registerPointerMoveHandler: registerPointerMoveHandler,
 		unregisterResizeHandler: unregisterResizeHandler,
 		unregisterScrollHandler: unregisterScrollHandler,
-		unregisterMouseMoveHandler: unregisterMouseMoveHandler
+		unregisterPointerMoveHandler: unregisterPointerMoveHandler
 	};
 }]);
