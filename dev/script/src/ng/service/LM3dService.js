@@ -49,7 +49,7 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 			//It shouldn't do so until the first call, and then, only on the first call (we don't want multiple listeners)
 			if(_instances.length === 1){
 				_resizeHandlerID = GlobalEventsService.registerResizeHandler(_resizeHandler);
-				_mouseMoveHandlerID = GlobalEventsService.registerMouseMoveHandler(_mouseMoveHandler);
+				_mouseMoveHandlerID = GlobalEventsService.registerPointerMoveHandler(_mouseMoveHandler);
 				_scrollHandlerID = GlobalEventsService.registerScrollHandler(_scrollHandler);
 			}
 		}
@@ -72,7 +72,7 @@ angular.module("LMApp").factory("LM3dService", ["GlobalEventsService", "CONSTANT
 
 		if(!_instances.length){
 			GlobalEventsService.unregisterResizeHandler(_resizeHandlerID);
-			GlobalEventsService.unregisterMouseMoveHandler(_mouseMoveHandlerID);
+			GlobalEventsService.unregisterPointerMoveHandler(_mouseMoveHandlerID);
 			GlobalEventsService.unregisterScrollHandler(_scrollHandlerID);
 		}
 	}

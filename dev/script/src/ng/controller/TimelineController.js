@@ -195,6 +195,11 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 
 
 
+	function _displayUIHelper(){
+
+	}
+
+
 
 	$scope.dragHandler = function (pointerData, event) {
 		switch (event.type) {

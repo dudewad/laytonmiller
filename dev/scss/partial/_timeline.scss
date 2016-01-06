@@ -34,7 +34,8 @@
 			@include prefixProp("transform", "scale(1.8)");
 
 			.date,
-			.sublabel {
+			.sublabel,
+			.cta{
 				opacity:1;
 			}
 
@@ -52,10 +53,15 @@
 		}
 
 		.date,
+		.sublabel,
+		.cta{
+			@include prefixProp("transition", "opacity, 150ms");
+		}
+
+		.date,
 		.sublabel{
 			position: absolute;
 			opacity:0;
-			@include prefixProp("transition", "opacity, 150ms");
 			font-weight: 200;
 			font-size: .75em;
 			left: 0;
@@ -69,6 +75,13 @@
 		.sublabel {
 			top: 2.5em;
 			font-style: italic;
+		}
+
+		.cta{
+			position:relative;
+			top:2.65em;
+			opacity:0;
+			font-size:.8em;
 		}
 
 		a {
@@ -98,6 +111,28 @@
 			&:after {
 				border-top-width: 1.5em;
 			}
+		}
+	}
+
+	.counter{
+		position:absolute;
+		right:0;
+		top:3em;
+		padding:.5em;
+		font-weight:200;
+
+		.wrapper{
+			min-width: 200px;
+			font-size:2em;
+		}
+
+		.year{
+			font-size:2em;
+		}
+
+		.alternator-bg{
+			top: .5em;
+			z-index:-1;
 		}
 	}
 }

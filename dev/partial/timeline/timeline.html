@@ -1,51 +1,11 @@
 <div class="timeline" data-lm-timeline>
-	<div class="counter">
-	</div>
-	<!--
-	<div class="timeline-wrapper">
-		<div class="timeline-range"
-		     ng-style="{width: timeline.intervals.length * 90 + 'px',
-		     height: timeline.events.length * 2 + 100 + 'px',
-		     'left': timeline.position.x,
-		     'margin-left': timeline.dimensions.marginLeft + 'px'}"
-             data-lm-drag="dragHandler(pointerData, $event)">
-			<hr />
-			<div class="timeline-intervals">
-				<figure class="timeline-interval"
-				        ng-class="{'tooltip-trigger': tooltip, 'timeline-end': $first}"
-				        ng-repeat="interval in timeline.intervals"
-				        ng-style="{'left': interval.position}">
-					<h4 class="label">
-						<span class="year" ng-if="interval.label.year">{{interval.label.year}}</span>
-						<span class="month">{{interval.label.month}}</span>
-					</h4>
-					<span class="interval"></span>
-				</figure>
-			</div>
-
-			<div class="timeline-events">
-				<figure class="timeline-event"
-				        ng-repeat="event in timeline.events" data-lm-tooltip>
-					<div class="eventStart" ng-style="{'left': event.startPosition}">
-						<span class="outer">
-							<span class="center"></span>
-						</span>
-						<span ng-include data-src="'partial/element/tooltip.html'"
-						      ng-init="tooltipContent = event.tooltipContent; position = 'top'"></span>
-					</div>
-					<div class="eventEnd" ng-style="{'left': event.endPosition}" ng-if="event.endPosition">
-						<span class="outer">
-							<span class="center"></span>
-						</span>
-					</div>
-					<div class="range-indicator"
-					     ng-style="{'left': event.endPosition, 'width': event.rangeIndicator, 'height': event.height}"
-					     ng-if="event.endPosition"></div>
-				</figure>
-			</div>
+	<div class="counter alternator">
+		<div class="wrapper">
+			<span class="alternator-bg"></span>
+			<span class="month">{{eventMonth}}</span>:<span class="year">{{eventYear}}</span>
 		</div>
 	</div>
-	-->
+
 	<div class="timeline-wrapper" ng-class="{pause: state.pause}">
 		<div ng-repeat="event in timeline.events">
 			<div class="timeline-event alternator event-type-{{event.type}}"
@@ -60,9 +20,14 @@
 							<span class="content">{{event.label}}</span>
 						</div>
 						<div class="sublabel">{{event.sublabel}}</div>
+						<i class="cta lmIcon lmIcon-chevrons-right"></i>
 					</div>
 				</a>
 			</div>
+		</div>
+
+		<div class="ui-helper">
+			<i class="lmIcon lmIcon-double-arrow-up-down"></i>
 		</div>
 	</div>
 </div>

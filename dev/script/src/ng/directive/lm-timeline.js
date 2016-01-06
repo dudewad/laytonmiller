@@ -3,28 +3,49 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 		scope: "=",
 		restrict: "A",
 		link: function (scope, element, attrs) {
-			var _swipeTarget = null;
-			var _swipeTargetTween = null;
-			var _positioning = {};
-			var _hasClickCancel = null;
-			var _resizeHandlerID;
-			var _pageTransitionComplete = false;
-			var _timelineBuilt = false;
+			//Config
 			var _acceleration = 50;
 			var _defaultTransitionTime = 2;
-			var _mouseWheelTransition = false;
+
+			//Local Constants
 			var _direction = {
 				next: "next",
 				prev: "prev"
 			};
 
+			//DOM elements
+			var _swipeTarget;
+			var _cta;
+			var _month;
+			var _year;
+
+			//Cache
+			var _positioning = {};
+			var _resizeHandlerID;
+			var _currentTimelineTime = {
+				currentMonthCount: 23836
+			};
+
+			//Flags
+			var _hasClickCancel = false;
+			var _mouseWheelTransition = false;
+			var _pageTransitionComplete = false;
+			var _timelineBuilt = false;
+
+			//Animation
+			var _ctaAnimationTween;
+			var _swipeTargetTween;
+
 
 
 			function _init() {
-				if(!_pageTransitionComplete || ! _timelineBuilt){
+				if(!_pageTransitionComplete || !_timelineBuilt){
 					return;
 				}
 
+				_cta = element.find(".cta");
+				_month = element.find(".counter .month");
+				_year = element.find(".counter .year");
 				_resizeHandlerID = GlobalEventsService.registerResizeHandler(_resizeHandler);
 				_enter();
 			}
@@ -37,10 +58,27 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 				var target = element.find(".timeline-event").eq(scope.timeline.currentEvent);
 				var center = angular.element(window).outerHeight() / 2 - target.outerHeight() / 2;
 				var topPos = dir === _direction.next ? "100%" : "-" + target.outerHeight();
+				var date = new Date(scope.timeline.events[scope.timeline.currentEvent].start);
+				var month = (date.getMonth());
+				var year = date.getFullYear() * 12;
+				var newMonthCount = year + month;
+				var dateTween = new TimelineMax({
+					onComplete: function () {
+						_currentTimelineTime.currentMonthCount = newMonthCount;
+					}
+				});
+
+				dateTween.to(_currentTimelineTime, _defaultTransitionTime, {currentMonthCount: newMonthCount, onUpdate: _updateDateDisplay});
 
 				_swipeTargetTween = new TimelineMax();
 				_swipeTargetTween   .set(target, {top: topPos})
-									.to(target, _defaultTransitionTime, {top: center, ease: Power4.easeOut});
+									.add("start")
+									.add(dateTween)
+									.to(target, _defaultTransitionTime, {top: center, ease: Power4.easeOut}, "start");
+
+
+				_updateDateDisplay();
+
 
 				_prevEvent = scope.timeline.currentEvent;
 			}
@@ -79,6 +117,20 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 
 
+			function _updateDateDisplay(){
+				var m = Math.floor(_currentTimelineTime.currentMonthCount % 12 + 1);
+				var y = Math.floor(_currentTimelineTime.currentMonthCount / 12);
+				//Leading zeros in the display
+				if(m.toString().length === 1){
+					m = "0" + m;
+				}
+				scope.eventMonth = m;
+				scope.eventYear = y;
+				_applyScope();
+			}
+
+
+
 			function _applyScope() {
 				if (!scope.$$phase) {
 					scope.$apply();
@@ -96,13 +148,10 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 			function _willStopOffScreen(distance){
 				var currentY = _swipeTarget.offset().top;
-				//console.log("swipe target offset",_swipeTarget.offset());
 				if(distance > 0){
-					//console.log(angular.element(window).outerHeight(), currentY + distance, currentY, distance);
 					return currentY + distance > angular.element(window).outerHeight();
 				}
 				else{
-					//console.log(currentY + _swipeTarget.outerHeight() + distance, currentY, _swipeTarget.outerHeight(), distance);
 					return currentY + _swipeTarget.outerHeight() + distance < 0;
 				}
 			}
@@ -169,6 +218,23 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 
 
+			function _animateCTAStart(){
+				_ctaAnimationTween.kill();
+				_ctaAnimationTween = new TimelineMax({repeat: -1, repeatDelay: 0.5});
+				_ctaAnimationTween  .set(_cta, {autoAlpha:0, left:"-=15px"})
+									.to(_cta, 0.25, {ease: Power4.easeIn, autoAlpha:1, left: "+=15px"})
+									.to(_cta, 0.25, {ease: Power4.easeOut, autoAlpha: 0, left: "+=15px"})
+									.set(_cta, {autoAlpha: 0, left: "-=30px"});
+			}
+
+
+
+			function _animateCTAStop() {
+
+			}
+
+
+
 			scope.$on("interactionSwipe", function (e, pointerData, originalEvent) {
 				if(!_hasClickCancel){
 					var anchor = _swipeTarget.find("a");
@@ -218,6 +284,7 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 
 			angular.element("body").on("mousewheel", _handleMouseWheel);
+			element.on("mouseenter", _animateCTAStart);
 		}
 	};
 }]);
