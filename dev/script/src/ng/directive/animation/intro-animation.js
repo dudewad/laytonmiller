@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("introAnimation", ["$rootScope", "$state", "$timeout", "CONSTANT", "GlobalEventsService", "AnimationService", function ($rootScope, $state, $timeout, CONSTANT, GlobalEventsService, AnimationService) {
+angular.module("LMApp").directive("introAnimation", ["$rootScope", "$state", "$timeout", "CONSTANT", "GlobalEventsService", "AnimationService", "LMRoute", function ($rootScope, $state, $timeout, CONSTANT, GlobalEventsService, AnimationService, LMRoute) {
 	return {
 		scope: true,
 		restrict: "A",
@@ -20,7 +20,7 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope", "$state", "$t
 				elements.title = element.find("h1");
 				elements.subtitle = element.find("h2");
 
-				scope.$on(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE, function () {
+				scope.$on(CONSTANT.EVENT.PAGE.TRANSITION_OUT_COMPLETE, function () {
 					if (!elements.emblem.length) {
 						scope.$on("$includeContentLoaded", function () {
 							elements.emblem = getEmblem(element);
@@ -93,7 +93,7 @@ angular.module("LMApp").directive("introAnimation", ["$rootScope", "$state", "$t
 				var t = new TimelineMax({
 					paused: true,
 					onComplete: function(){
-						$state.go(CONSTANT.STATE.TECHNICAL_SUMMARY.NAME);
+						LMRoute.go(CONSTANT.STATE.TECHNICAL_SUMMARY.NAME);
 					}
 				});
 

@@ -3,39 +3,39 @@
 
 	.timeline-wrapper{
 		&.pause{
-			.timeline-event{
-				@include prefixProp("transform", "translateY(-5em)");
-				opacity:0;
-				@include prefixProp("opacity 150ms, transform 150ms, transition", "z-index 150ms");
-				z-index: -1;
-			}
+			display:none;
 		}
 	}
 
 	.timeline-event {
-		display: block;
 		position: absolute;
+		z-index: 100;
+		display: block;
 		top:110%;
 		left: 50%;
-		opacity:1;
-		font-weight: 500;
-		cursor: pointer;
 		width: 11.5em;
 		height: 11.5em;
-		margin-left:-5.75em;
+		opacity:1;
+		margin-left: -5.75em;
+		font-weight: 500;
 		border-radius: 50%;
 		border: .25em solid;
-		@include prefixProp("transition", "opacity 150ms, transform 150ms");
+		cursor: pointer;
 		text-align: center;
-		z-index: 100;
+		@include prefixProp("transition", "opacity 150ms, transform 150ms");
+		@include prefixProp("touch-action", "none");
 
-		&:hover {
+		&:hover,
+		&.active{
 			border-width: .3em;
 			@include prefixProp("transform", "scale(1.8)");
 
+			a{
+				height:100%;
+			}
+
 			.date,
-			.sublabel,
-			.cta{
+			.sublabel{
 				opacity:1;
 			}
 
@@ -50,12 +50,21 @@
 				font-style: normal;
 				font-weight: 900;
 			}
+
+			.cta-container {
+				opacity: 1;
+			}
+		}
+
+		&.isSwiping{
+			a{
+				height:0 !important;
+			}
 		}
 
 		.date,
-		.sublabel,
-		.cta{
-			@include prefixProp("transition", "opacity, 150ms");
+		.sublabel{
+			@include prefixProp("transition", "opacity 150ms");
 		}
 
 		.date,
@@ -77,22 +86,33 @@
 			font-style: italic;
 		}
 
+		.cta-container{
+			opacity:0;
+			@include prefixProp("transition", "opacity 150ms");
+
+		}
+
 		.cta{
 			position:relative;
 			top:2.65em;
 			opacity:0;
 			font-size:.8em;
+			margin-left: -40px;
 		}
 
-		a {
-			font-weight: 900;
-			height:100%;
+		a{
+			height:0;
+			width:100%;
 			left: 0;
 			right: 0;
-			display:block;
+			position:absolute;
+			z-index:1;
 		}
 
 		.event-content{
+			left: 0;
+			right: 0;
+			font-weight: 900;
 			position:absolute;
 			top:50%;
 			width:100%;
@@ -120,6 +140,7 @@
 		top:3em;
 		padding:.5em;
 		font-weight:200;
+		z-index:101;
 
 		.wrapper{
 			min-width: 200px;
@@ -133,6 +154,7 @@
 		.alternator-bg{
 			top: .5em;
 			z-index:-1;
+			opacity:1;
 		}
 	}
 }

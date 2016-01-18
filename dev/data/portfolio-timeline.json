@@ -1,0 +1,14 @@
+{
+	"events": [
+		{
+			"stringId": "INTEL",
+			"start": "1/15/2015",
+			"end": "current"
+		},
+		{
+			"stringId": "RYSE",
+			"start": "9/1/2013",
+			"end": "10/1/2013"
+		}
+	]
+}

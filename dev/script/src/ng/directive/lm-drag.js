@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", function (GlobalEventsService) {
+angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", "$timeout", function (GlobalEventsService, $timeout) {
 	return {
 		scope: {
 			lmDrag: "&"
@@ -16,7 +16,6 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", function (Gl
 			function touchEndFn (e) {
 				GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
 				pointerListenerID = null;
-				body.off("touchend", touchEndFn);
 				handler(e);
 				resetPointer();
 			}
@@ -24,22 +23,27 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", function (Gl
 			function mouseUpFn (e) {
 				GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
 				pointerListenerID = null;
-				body.off("mouseup", mouseUpFn);
 				handler(e);
 				resetPointer();
 			}
 
 			/*Bind Mousedown/touchstart events*/
 			elm.on("touchstart", function (e) {
-				pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
-				body.on("touchend", touchEndFn);
+				body.one("touchend", touchEndFn);
 				handler(e);
+				//Needs timeout because Chrome fires mouse move and click despite there being no mousemove.
+				$timeout(function () {
+					pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
+				}, 0);
 			});
 
 			elm.on("mousedown", function (e) {
-				pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
-				body.on("mouseup", mouseUpFn);
+				body.one("mouseup", mouseUpFn);
 				handler(e);
+				//Needs timeout because Chrome fires mouse move and click despite there being no mousemove.
+				$timeout(function(){
+					pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
+				},0);
 			});
 
 
@@ -49,7 +53,9 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", function (Gl
 					scope.lmDrag({"pointerData": lastPointerData, "$event": e});
 					return;
 				}
-				e.preventDefault();
+				if(e.type.toLowerCase().indexOf("mouse") !== -1) {
+					e.preventDefault();
+				}
 				var pageX = e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX;
 				var pageY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
 				var xDif = lastX !== null ? pageX - lastX : 0;
@@ -64,6 +70,7 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", function (Gl
 					xSpeed: xSpeed,
 					ySpeed: ySpeed
 				};
+
 				scope.lmDrag({"pointerData": pointerData, "$event": e});
 
 				lastTimestamp = e.timeStamp;

@@ -1,0 +1,97 @@
+.timeline-event-full {
+	margin-top:130px;
+	position:relative;
+
+	h2 {
+		display: block;
+		width: 50%;
+		float: left;
+		font-weight: 200;
+		font-size: 2.15em;
+		margin-top:0;
+
+		&.date {
+			text-align: right;
+		}
+	}
+
+	h3 {
+		@include setFont("montserrat", 300, normal);
+		font-size:2em;
+		margin:0;
+	}
+
+	h4{
+		font-size:1.25em;
+		font-weight:200;
+
+		a{
+			font-weight:400;
+		}
+	}
+
+	p{
+		font-size:1.2em;
+	}
+
+	.title{
+		padding:1.5em 3em;
+	}
+
+	.body{
+		padding:3em;
+	}
+
+	.col-left,
+	.col-right{
+		margin-bottom:3em;
+	}
+
+	.column-title {
+		margin:2em auto;
+	}
+
+	.thumb{
+		max-width:100%;
+		display:block;
+		margin-bottom:1em;
+
+		img{
+			width:100%;
+		}
+	}
+
+	.ui-back{
+		font-size:1.5em;
+		position:absolute;
+		top:-3em;
+		right:0;
+		margin-top: -1px;
+	}
+
+	@media screen and (min-width: $screen-sm-min){
+		margin-top: 260px;
+
+		p {
+			font-size: 1.5em;
+		}
+
+		.col-left,
+		.col-right {
+			float: left;
+			width: 45%;
+		}
+
+		.col-right {
+			float: right;
+		}
+
+		.title {
+			padding: 1.5em 5em;
+		}
+
+		.body {
+			padding: 5em;
+		}
+	}
+}

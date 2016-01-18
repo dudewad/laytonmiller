@@ -87,21 +87,38 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 			 * @param completePromise
 			 */
 			function _animateTransition(completePromise) {
+				console.log(_toState, _fromState);
+				var stateName = _toState.name && _toState.name.split(".")[0];
+				var fromStateName = _fromState && _fromState.split(".")[0];
+
 				_setTransitionState(_toState.name);
+
+				//If from/to state are nested states, jump straight to the completion handler.
+				if (stateName == fromStateName) {
+					_transitionCompleteHandler(completePromise);
+				}
+
+				//Otherwise, continue with the transition
 				var t = new TimelineMax({
 					paused: true,
-					onComplete: function () {
-						_setSection(_toState.name);
-						element.html("");
-						_setTransitionState();
-						//All done, resolve the promise back to root
-						completePromise.resolve();
+					onComplete: function(){
+						_transitionCompleteHandler(completePromise);
 					}
 				});
 
 				t   .add("start")
 					.add(AnimationService.transition.pageBackground(element, 0.75, "start", 0, 1.5));
 				t.play();
+			}
+
+
+
+			function _transitionCompleteHandler(completePromise){
+				_setSection(_toState.name);
+				element.html("");
+				_setTransitionState();
+				//All done, resolve the promise back to root
+				completePromise.resolve();
 			}
 
 

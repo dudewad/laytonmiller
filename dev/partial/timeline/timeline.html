@@ -2,27 +2,29 @@
 	<div class="counter alternator">
 		<div class="wrapper">
 			<span class="alternator-bg"></span>
-			<span class="month">{{eventMonth}}</span>:<span class="year">{{eventYear}}</span>
+			<span class="month">{{eventMonth}}</span>_<span class="year">{{eventYear}}</span>
 		</div>
 	</div>
 
-	<div class="timeline-wrapper" ng-class="{pause: state.pause}">
+	<div class="timeline-wrapper" ng-class="{pause: currentState.pause}">
 		<div ng-repeat="event in timeline.events">
 			<div class="timeline-event alternator event-type-{{event.type}}"
-			     data-lm-drag="dragHandler(pointerData, $event)">
-				<a ui-sref="{{event.type.toLowerCase() + '.event'}}({event:'{{event.stringId.toLowerCase()}}'})">
-					<div class="event-content">
-						<span class="alternator-bg"></span>
+			     data-lm-drag="dragHandler(pointerData, $event)"
+				 ng-class="{active: eventTouchActive==$index, isSwiping: isSwiping }">
+				<a data-lm-sref='{{event.type.toLowerCase() + ".event"}}({"event":"{{event.stringId.toLowerCase()}}"})'></a>
+				<div class="event-content">
+					<span class="alternator-bg"></span>
 
-						<div class="date">{{event.dateString}}</div>
-						<div class="alternator-content label">
-							<span class="highlight">{{event.label}}</span>
-							<span class="content">{{event.label}}</span>
-						</div>
-						<div class="sublabel">{{event.sublabel}}</div>
+					<div class="date">{{event.dateString}}</div>
+					<div class="alternator-content label">
+						<span class="highlight">{{event.label}}</span>
+						<span class="content">{{event.label}}</span>
+					</div>
+					<div class="sublabel">{{event.sublabel}}</div>
+					<div class="cta-container">
 						<i class="cta lmIcon lmIcon-chevrons-right"></i>
 					</div>
-				</a>
+				</div>
 			</div>
 		</div>
 

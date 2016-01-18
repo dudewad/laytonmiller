@@ -36,14 +36,16 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+		font-size: 7em;
+		text-align:center;
+		line-height:1;
 
 		.lmIcon-emblem-no-border {
-			font-size: 3.5em;
 			position: relative;
-			left: .1em;
-			top: .55em;
+			top: .02em;
+			padding: 0;
 			opacity:0;
-			padding:0;
+			vertical-align: top;
 			color: $color-gray-light;
 		}
 	}

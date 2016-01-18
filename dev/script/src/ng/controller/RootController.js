@@ -10,6 +10,10 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		loading: false,
 		transitioning: false
 	};
+	$scope.load = {
+		component: false,
+		page: false
+	};
 	var _transitionHandlers = [];
 	var _pageLoadPromise = null;
 
@@ -18,22 +22,26 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	/**
 	 * Performs a transition, which then goes to a target state.
 	 *
-	 * @param toState
+	 * @param e         {object}        The change event
+	 *
+	 * @param data      {object}        Contains data about lm-sref being targeted
 	 *
 	 * @private
 	 */
-	function _triggerTransition(e, toState, params, fromState) {
+	function _triggerTransitionOut(e, data) {
+		var fromState = $state.$current && $state.$current.name || null;
+		var toState = $state.get(data.name);
+		var all;
+		var promises = [];
+
 		if ($scope.state.transitioning) {
 			e.preventDefault();
 			return;
 		}
-		if (!$scope.state.current.name) {
+		 if (!$scope.state.current.name) {
 			$scope.state.current.name = toState.name;
 		}
 
-		var promises = [];
-
-		$scope.state.loading = true;
 		$scope.state.transitioning = true;
 		$scope.state.next.name = toState.name;
 		for (var i = 0; i < _transitionHandlers.length; i++) {
@@ -42,13 +50,18 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 			typeof h === "function" && (h)(p, toState, fromState);
 			promises.push(p.promise);
 		}
-		_pageLoadPromise = $q.defer();
-		promises.push(_pageLoadPromise.promise);
+		//If there's no from state, this is a manual call from the initial page load. Don't fire another load go call.
+		if(fromState) {
+			_pageLoadPromise = $state.go(data.name, data.params);
+			promises.push(_pageLoadPromise.promise);
+		}
 
-		var all = $q.all(promises);
-		$state.go(toState.name);
+		all = $q.all(promises);
+		$scope.load.page = true;
+		_applyScope();
+
 		all.then(function () {
-			_pageTransitionCompleteHandler(toState, fromState);
+			_transitionOutCompleteHandler(toState, fromState);
 		});
 	}
 
@@ -62,26 +75,36 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	 *
 	 * @param fromState
 	 */
-	function _pageTransitionCompleteHandler(toState, fromState) {
-		//$state.go(toState.name);
-		$scope.state.loading = false;
+	function _transitionOutCompleteHandler(toState, fromState) {
 		$scope.state.current.name = toState.name;
 		$scope.state.transitioning = false;
 		$scope.state.next.name = null;
-		$rootScope.$broadcast(CONSTANT.EVENT.PAGE.TRANSITION_COMPLETE);
+		$scope.load.page = false;
+		$rootScope.$broadcast(CONSTANT.EVENT.PAGE.TRANSITION_OUT_COMPLETE);
+		_applyScope();
 	}
 
 
 
-	$rootScope.$on("$stateChangeStart", _triggerTransition);
+	$rootScope.$on(CONSTANT.EVENT.LMSREF.SREF_CHANGE, _triggerTransitionOut);
+
+
+
+	/**
+	 * When a state load starts,
+	 */
+	$rootScope.$on("$stateChangeSuccess", function (e, toState, toParams, fromState, fromParams) {
+	});
 
 
 
 	/**
 	 * When a state load completes,
 	 */
-	$rootScope.$on("$stateChangeSuccess", function (e, toState, toParams, fromState, fromParams) {
-		_pageLoadPromise && _pageLoadPromise.resolve();
+	$rootScope.$on("$stateChangeStart", function (e, toState, toParams, fromState, fromParams) {
+		if(!fromState.name) {
+			_triggerTransitionOut(e, toState);
+		}
 	});
 
 
@@ -90,7 +113,8 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	 * Fires when a component needs the loader to appear
 	 */
 	$scope.$on(CONSTANT.EVENT.COMPONENT_LOAD_START, function () {
-		$scope.state.loading = true;
+		$scope.load.component = true;
+		_applyScope();
 	});
 
 
@@ -99,7 +123,8 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	 * Fires when a component has finished loading and no longer needs the loader
 	 */
 	$scope.$on(CONSTANT.EVENT.COMPONENT_LOAD_COMPLETE, function () {
-		$scope.state.loading = false;
+		$scope.load.component = false;
+		_applyScope();
 	});
 
 
@@ -114,6 +139,34 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		var s = state ? state : $scope.state.current.name;
 		return s ? s.split(".")[0] : s;
 	};
+
+
+
+	$scope.parseFullStateName = function(state){
+		var s = state ? state : $scope.state.current.name;
+		s = s ? s.split(".").join("-") : s;
+		return s;
+	};
+
+
+
+	$scope.$watch(function(){
+		return $scope.load.page || $scope.load.component || $scope.state.transitioning;
+	}, _setLoadState);
+
+
+
+	function _applyScope() {
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	}
+
+
+
+	function _setLoadState(isLoading){
+		$scope.state.loading = isLoading;
+	}
 
 
 

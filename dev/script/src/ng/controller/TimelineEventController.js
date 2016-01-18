@@ -1,7 +1,7 @@
-angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$scope", "$http", "$state", "CONSTANT", "STRINGS", function ($rootScope, $scope, $http, $state, CONSTANT, STRINGS) {
+angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$scope", "$http", "$state", "$sce", "CONSTANT", "LMRoute", "STRINGS", function ($rootScope, $scope, $http, $state, $sce, CONSTANT, LMRoute, STRINGS) {
 	//Do a little magic parsing to find the correct data file
-	var rootState = _parseRootStateName().toUpperCase();
-	var file = CONSTANT.PATH.DATA + CONSTANT.DATA_FILES.TIMELINE[rootState][$state.params.event.toUpperCase()];
+	$scope.rootState = _parseRootStateName().toUpperCase();
+	var file = "./" + CONSTANT.PATH.DATA + CONSTANT.DATA_FILES.TIMELINE[$scope.rootState][$state.params.event.toUpperCase()];
 	$scope.data = {};
 
 	$scope.$emit(CONSTANT.EVENT.COMPONENT_LOAD_START);
@@ -9,18 +9,26 @@ angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$s
 		success(function (data, status, headers, config) {
 			$scope.$emit(CONSTANT.EVENT.COMPONENT_LOAD_COMPLETE);
 			$rootScope.$broadcast(CONSTANT.EVENT.TIMELINE.EVENT_OPENED);
-			$scope.data = data;
+			for (var obj in data) {
+				if(typeof data[obj] === "string") {
+					$scope.data[obj] = $sce.trustAsHtml(data[obj]);
+				}
+				else{
+					$scope.data[obj] = data[obj];
+				}
+			}
 		}).
 		error(function (data, status, headers, config) {
+		console.log(data);
 			$scope.$emit(CONSTANT.EVENT.COMPONENT_LOAD_COMPLETE);
 			//Revert to root state if there is an invalid file
-			$state.go(_parseRootStateName());
+			LMRoute.go(_parseRootStateName());
 		});
 
 
 
 	function _parseRootStateName() {
-		return $scope.state.current.name ? $scope.state.current.name.split(".")[0] : $scope.state.current.name;
+		return $state.current.name ? $state.current.name.split(".")[0] : $state.current.name;
 	}
 
 

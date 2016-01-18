@@ -5,15 +5,68 @@ $navHoverBGColors: $color-blue-light, $color-red-light, $color-green-light, $col
 nav {
 	position: fixed;
 	top: 0;
-	left: 0;
-	font-size: 2em;
-	padding: 2em 0;
+	left: -100%;
+	font-size: 1.5em;
 	@include setFont("montserrat", 300, normal);
 	@include prefixProp("user-select", "none");
+	height: 100%;
+	width: 100%;
+	border: 1px solid #000;
+	border-top: 0;
+	border-bottom: 0;
+	z-index:200;
+	@include prefixProp("transition", "left 250ms");
+
+	&.active{
+		left:0;
+	}
+
+	.emblem-wrapper {
+		text-align:center;
+		padding: 1.5em;
+		border-bottom: 1px solid #000;
+	}
+
+	.emblem {
+		padding: .5em;
+
+		.lmIcon-emblem {
+			font-size: 2em;
+		}
+	}
+
+	ul {
+		padding: 2em 3em;
+	}
+
+	li {
+		position: relative;
+		margin: 1em 0 2em 0;
+	}
+}
+
+.nav-toggle {
+	position: fixed;
+	right: 2em;
+	bottom: 2em;
+	z-index: 201;
+	display: block;
+	border-radius: 6px;
+	cursor: pointer;
+	padding:10px;
+
+	span {
+		width:30px;
+		height:30px;
+		display: block;
+		background-image: url("../asset/image/misc/hamburger.png");
+	}
 }
 
 @media screen and(min-width: $screen-sm-min) {
 	nav {
+		left:0;
+		padding: 2em 0;
 		font-size: 1.25em;
 		height: 100%;
 		width: 20%;
@@ -22,6 +75,7 @@ nav {
 		border-top: 0;
 		border-bottom: 0;
 		padding-top: 10em;
+		z-index:0;
 
 		.emblem-wrapper {
 			padding: 3em;
@@ -30,10 +84,6 @@ nav {
 
 		.emblem {
 			padding:.5em;
-
-			.lmIcon-emblem{
-				font-size: .7em;
-			}
 		}
 
 		ul {
@@ -44,6 +94,10 @@ nav {
 			position: relative;
 			margin: 1em 0 2em 0;
 		}
+	}
+
+	.nav-toggle{
+		display:none;
 	}
 }
 

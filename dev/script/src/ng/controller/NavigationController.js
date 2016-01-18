@@ -1,8 +1,8 @@
-angular.module("LMApp").controller("NavigationController", ["$scope", "CONSTANT", "STRINGS", function($scope, CONSTANT, STRINGS){
+angular.module("LMApp").controller("NavigationController", ["$scope", "CONSTANT", "GlobalEventsService", "STRINGS", function ($scope, CONSTANT, GlobalEventsService, STRINGS) {
+	$scope.STRINGS = STRINGS.CORE.NAVIGATION;
 	$scope.currentState = {
 		active: false
 	};
-	$scope.STRINGS = STRINGS.CORE.NAVIGATION;
 
 	$scope.navItems = [
 		{
@@ -31,120 +31,30 @@ angular.module("LMApp").controller("NavigationController", ["$scope", "CONSTANT"
 		}
 	];
 
-	var currentMobileHoverDOMItem = null;
-	var currentMobileHoverNavObject = null;
 
 
-
-	$scope.activate = function(e){
-		$scope.currentState.active = true;
-		e.preventDefault();
-		disablePageScrolling(e);
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
+	//quick and dirty to get it done. Come back later and fix this garbage.
+	$scope.toggleNavigation = function () {
+		$scope.currentState.active = !$scope.currentState.active;
+		_applyScope();
 	};
 
 
 
-	$scope.deactivate = function(e){
-		var target;
-		var isMouse = e.type === "mouseup";
-
-		if(isMouse){
-			target = angular.element(e.originalEvent.target);
+	function _applyScope() {
+		if (!$scope.$$phase) {
+			$scope.$apply();
 		}
-		else{
-			target = angular.element(elementFromPoint(e));
-			currentMobileHoverDOMItem = null;
-			currentMobileHoverNavObject = null;
-			setCurrentMobileNavHover();
-		}
+	}
 
+
+
+	function _resizeHandler() {
 		$scope.currentState.active = false;
-		enablePageScrolling(e);
-
-
-		if(target.closest(".link-list").length){
-			if(isMouse) {
-				e.stopPropagation();
-			}
-			target.trigger("click");
-		}
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
-	};
-
-
-
-	function disablePageScrolling(e){
-		var target = e.type === "mousedown" ? angular.element(e.originalEvent.target) : angular.element(elementFromPoint(e));
-		target.closest("nav").on("touchmove", touchMoveListener);
 	}
 
 
 
-	function enablePageScrolling(e){
-		var target = e.type === "mouseup" ? angular.element(e.originalEvent.target) : angular.element(elementFromPoint(e));
-		target.closest("nav").off("touchmove", touchMoveListener);
-	}
-
-
-
-	function touchMoveListener(e){
-		e.preventDefault();
-		var target = angular.element(elementFromPoint(e));
-		if(!target.length){
-			currentMobileHoverDOMItem = null;
-			return;
-		}
-
-		if(!target.is("li")){
-			target = target.closest("li");
-		}
-
-		if(!target.length){
-			currentMobileHoverDOMItem = null;
-			return;
-		}
-
-		if (target.is(currentMobileHoverDOMItem)) {
-			return;
-		}
-
-		currentMobileHoverDOMItem = target;
-		setCurrentMobileNavHover();
-		$scope.$apply();
-	}
-
-
-
-	function setCurrentMobileNavHover(){
-		//Un-hover all items if the current item is null.
-		if(!currentMobileHoverDOMItem){
-			for (var index in $scope.navItems) {
-				$scope.navItems[index].isHovered = false;
-			}
-			return;
-		}
-
-		for (var ind in $scope.navItems) {
-			var i = $scope.navItems[ind];
-			if (currentMobileHoverDOMItem.attr("class").indexOf(i.className) != -1) {
-				if (currentMobileHoverNavObject) {
-					currentMobileHoverNavObject.isHovered = false;
-				}
-				currentMobileHoverNavObject = i;
-				currentMobileHoverNavObject.isHovered = true;
-				return;
-			}
-		}
-	}
-
-
-	function elementFromPoint(e){
-		var changedTouch = e.originalEvent.changedTouches[0];
-		return document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
-	}
+	angular.element(".nav-toggle").on("click", $scope.toggleNavigation);
+	GlobalEventsService.registerResizeHandler(_resizeHandler);
 }]);

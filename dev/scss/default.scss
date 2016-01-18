@@ -38,6 +38,7 @@
 @import "partial/_nav";
 @import "partial/_summary-group";
 @import "partial/_timeline";
+@import "partial/_timeline-event-full";
 @import "partial/_tooltip";
 @import "partial/_transition-elements";
 
@@ -46,5 +47,7 @@
 /**
  * Page-specific overrides
  */
+@import "partial/_page-contact";
 @import "partial/_page-experience";
+@import "partial/_page-portfolio";
 @import "partial/_page-technical-summary";

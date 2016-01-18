@@ -3,6 +3,36 @@
 	color: $dark;
 	//background-color: $medium;
 
+	p{
+		a{
+			background:$dark;
+			color:$light;
+			padding:.25em;
+
+			&:hover{
+				background:$medium;
+			}
+		}
+	}
+
+	button{
+		background: $light;
+		border: 1px solid $dark;
+
+		&:hover{
+			background: darken($light, 10%);
+		}
+
+		&:active{
+			background:$medium;
+			color:darken($dark, 50%);
+		}
+	}
+
+	nav.main-nav{
+		background:rgba($dark,.9);
+	}
+
 	.top-border {
 		border: 0;
 		border-top: 5px solid $light;
@@ -26,10 +56,6 @@
 
 	.emblem{
 		background: rgba($light, .5);
-	}
-
-	.content-background {
-		border-left: 4px solid $dark;
 	}
 
 	.rating-visual{
@@ -110,7 +136,8 @@
 		border-color: $light;
 		color:$light;
 
-		&:hover{
+		&:hover,
+		&.active{
 			.label {
 				color: $dark;
 			}
@@ -126,6 +153,37 @@
 			&:after{
 				border-top-color:$light;
 			}
+		}
+	}
+
+	.timeline-event-full{
+		h4 {
+			a {
+				color: $medium;
+
+				&:hover{
+					color: lighten($medium, 10%);
+				}
+			}
+		}
+
+		.content {
+			background: rgba($light, .8);
+		}
+
+		.title{
+			background:$dark;
+			color:$light;
+		}
+	}
+
+	.nav-toggle{
+		background-color:$dark;
+	}
+
+	@media screen and (min-width: $screen-sm-min){
+		nav.main-nav {
+			background: transparent;
 		}
 	}
 }

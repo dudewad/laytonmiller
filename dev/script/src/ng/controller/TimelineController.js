@@ -1,7 +1,7 @@
 angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope", "$http", "$timeout", "CONSTANT", "STRINGS", function ($rootScope, $scope, $http, $timeout, CONSTANT, STRINGS) {
 	var TIMELINE_STRS = STRINGS.TIMELINE;
 
-	$scope.state = {
+	$scope.currentState = {
 		pause: false
 	};
 
@@ -33,6 +33,7 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 		currentEvent: 0
 	};
 
+	$scope.eventTouchActive = null;
 
 
 	/**
@@ -143,7 +144,7 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 
 
 
-	function applyScope() {
+	function _applyScope() {
 		if (!$scope.$$phase) {
 			$scope.$apply();
 		}
@@ -179,7 +180,7 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 	 * @private
 	 */
 	function _pause(){
-		$scope.state.pause = true;
+		$scope.currentState.pause = true;
 	}
 
 
@@ -190,13 +191,7 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 	 * @private
 	 */
 	function _unpause(){
-		$scope.state.pause = false;
-	}
-
-
-
-	function _displayUIHelper(){
-
+		$scope.currentState.pause = false;
 	}
 
 
@@ -239,7 +234,7 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 
 
 
-	$scope.$on(CONSTANT.EVENT.TIMELINE.EVENT_OPENED, function(){
+	$scope.$on(CONSTANT.EVENT.TIMELINE.EVENT_OPENED, function(e){
 		_pause();
 	});
 

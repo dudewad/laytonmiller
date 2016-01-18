@@ -7,18 +7,20 @@ angular.module("LMApp").constant("CONSTANT", {
 		"EXPERIENCE": "experience.json",
 		"EXPERIENCE_TIMELINE": "experience-timeline.json",
 		"PORTFOLIO": "portfolio.json",
+		"PORTFOLIO_TIMELINE": "portfolio-timeline.json",
 		"TECHNICAL_SUMMARY": "technical-summary.json",
 		"WELCOME": "welcome.json",
 		"TIMELINE":{
 			"EXPERIENCE": {
-				"RAZORFISH": "/experience/razorfish.json",
-				"DESIGN_MILL": "/experience/design-mill.json",
+				"RAZORFISH": "/experience/razorfish.json"
+				/*"DESIGN_MILL": "/experience/design-mill.json",
 				"YACHT_VID": "/experience/yachtvid.json",
 				"MUTUAL_AUTO_MEDIA": "/experience/mutual-auto-media.json",
-				"GLOBANT": "/experience/globant.json"
+				"GLOBANT": "/experience/globant.json"*/
 			},
 			"PORTFOLIO":{
-
+				"INTEL": "/portfolio/intel.json",
+				"RYSE": "/portfolio/ryse.json"
 			}
 		}
 	},
@@ -28,7 +30,8 @@ angular.module("LMApp").constant("CONSTANT", {
 			"INTRO_COMPLETE": "INTRO_COMPLETE"
 		},
 		"PAGE": {
-			"TRANSITION_COMPLETE": "TRANSITION_COMPLETE"
+			"TRANSITION_OUT_COMPLETE": "TRANSITION_OUT_COMPLETE",
+			"TRANSITION_IN_COMPLETE": "TRANSITION_IN_COMPLETE"
 		},
 		"LM3D": {
 			"VIEWPORT_STATE_UPDATED": "VIEWPORT_STATE_UPDATED",
@@ -111,7 +114,7 @@ angular.module("LMApp").constant("CONSTANT", {
 		"EXPERIENCE_EVENT": {
 			"NAME": "experience.event",
 			"URL": "/{event}",
-			"TEMPLATE": "timeline/timeline-event.html"
+			"TEMPLATE": "timeline/timeline-event-full.html"
 		},
 		"PORTFOLIO": {
 			"NAME": "portfolio",
@@ -121,7 +124,7 @@ angular.module("LMApp").constant("CONSTANT", {
 		"PORTFOLIO_EVENT": {
 			"NAME": "portfolio.event",
 			"URL": "/{event}",
-			"TEMPLATE": "timeline/timeline-event.html"
+			"TEMPLATE": "timeline/timeline-event-full.html"
 		},
 		"CONTACT": {
 			"NAME": "contact",

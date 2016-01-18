@@ -13,7 +13,8 @@ module.exports = {
 		    templateOptions: {
 			    baseClass: 'lmIcon',
 			    classPrefix: 'lmIcon-'
-		    }
+		    },
+		    normalize: true
 	    }
     }
 };

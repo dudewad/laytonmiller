@@ -1,9 +1,22 @@
-angular.module("LMApp").directive("lmSref", ["$rootScope", "LMRoute", "CONSTANT", function ($rootScope, LMRoute, CONSTANT) {
+angular.module("LMApp").directive("lmSref", ["$rootScope", "$state", "CONSTANT", function ($rootScope, $state, CONSTANT) {
 	return {
 		scope: true,
 		restrict: "A",
 		link: function (scope, element, attrs) {
-			var _sref = attrs.lmSref;
+			var _sref;
+			var _params;
+
+
+
+			/**
+			 * Directive setup encapsulated here
+			 *
+			 * @private
+			 */
+			function _init() {
+				scope.$on("destroy", _destroy);
+				element.on("click", _clickHandler);
+			}
 
 
 
@@ -12,22 +25,47 @@ angular.module("LMApp").directive("lmSref", ["$rootScope", "LMRoute", "CONSTANT"
 			 *
 			 * @private
 			 */
-			function _clickHandler(){
-				LMRoute.go(_sref);
+			function _clickHandler() {
+				if (attrs.disabled) {
+					return;
+				}
+				_parseParams();
+				$rootScope.$broadcast(CONSTANT.EVENT.LMSREF.SREF_CHANGE, {name: _sref, params: _params});
 			}
 
-			scope.$watch(function(){
-				return attrs.disabled;
-			}, function(newval, oldval){
-				element.off("click", _clickHandler);
-				if (newval !== oldval && newval === false || newval === undefined) {
-					element.on("click", _clickHandler);
-				}
-			});
 
-			scope.$on("destroy", function() {
+
+			/**
+			 * Parse passed parameters object if applicable
+			 *
+			 * @private
+			 */
+			function _parseParams() {
+				if (attrs.lmSref.indexOf("(") !== -1) {
+					_sref = attrs.lmSref.split("(")[0];
+					_params = attrs.lmSref.split("(")[1];
+					_params = _params.trim().substr(0, _params.length - 1);
+					_params = JSON.parse(_params.replace("'", "\""));
+				}
+				else{
+					_sref = attrs.lmSref;
+				}
+			}
+
+
+
+			/**
+			 * On destroy...
+			 *
+			 * @private
+			 */
+			function _destroy() {
 				element.off("click", _clickHandler);
-			});
+			}
+
+
+
+			_init();
 		}
 	};
 }]);

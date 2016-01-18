@@ -1,6 +1,4 @@
 {
-	"sectionTitle": "TECHNICAL SUMMARY",
-	"sectionIntro": "Pecus virtus qui validus ullamcorper utrum. Oppeto mos ullamcorper erat exerci cogo aliquam vero adsum te patria.",
 	"summaryGroups": {
 		"LANGUAGES": {
 			"JAVASCRIPT": "10",
@@ -9,28 +7,6 @@
 			"PHP": "7"
 		},
 		"TECHNOLOGIES": {
-			"GRUNT": "10",
-			"HANDLEBARS": "10",
-			"ANGULARJS": "8"
-		},
-		"LANGUAGES1": {
-			"JAVASCRIPT": "10",
-			"HTML": "10",
-			"CSS": "10",
-			"PHP": "7"
-		},
-		"TECHNOLOGIES1": {
-			"GRUNT": "10",
-			"HANDLEBARS": "10",
-			"ANGULARJS": "8"
-		},
-		"LANGUAGES2": {
-			"JAVASCRIPT": "10",
-			"HTML": "10",
-			"CSS": "10",
-			"PHP": "7"
-		},
-		"TECHNOLOGIES2": {
 			"GRUNT": "10",
 			"HANDLEBARS": "10",
 			"ANGULARJS": "8"

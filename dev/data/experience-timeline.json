@@ -1,26 +1,6 @@
 {
 	"events": [
 		{
-			"stringId": "DESIGN_MILL",
-			"start": "9/08/2007",
-			"end": "1/1/2013"
-		},
-		{
-			"stringId": "YACHT_VID",
-			"start": "9/20/2009",
-			"end": "11/1/2010"
-		},
-		{
-			"stringId": "MUTUAL_AUTO_MEDIA",
-			"start": "11/15/2010",
-			"end": "2/12/2012"
-		},
-		{
-			"stringId": "GLOBANT",
-			"start": "10/1/2012",
-			"end": "2/30/2013"
-		},
-		{
 			"stringId": "RAZORFISH",
 			"start": "6/10/2013",
 			"end": "current"

@@ -7,4 +7,11 @@ body.experience{
 		height:100%;
 		overflow:hidden;
 	}
+
+	&.experience-event {
+		.content-main {
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
 }

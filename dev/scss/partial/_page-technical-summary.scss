@@ -1,2 +1,10 @@
 body.technical-summary{
+	.content-main {
+		overflow: hidden;
+	}
+
+	header,
+	.subsection-content{
+		padding:0 3em 3em 3em;
+	}
 }

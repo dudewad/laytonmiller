@@ -1,0 +1,37 @@
+<div class="timeline-event-full">
+	<button data-lm-sref="{{rootState.toLowerCase()}}" class="ui-back">
+		<i class="lmIcon lmIcon-close-x"></i>
+	</button>
+	<div class="content">
+		<div class="title clearfix">
+			<h2 class="name" ng-bind-html="data.label"></h2>
+			<h2 class="date" ng-bind-html="data.dateString"></h2>
+		</div>
+		<div class="body clearfix">
+			<div class="col-left">
+				<div class="column-title">
+					<h3 class="sublabel" ng-bind-html="data.subLabel"></h3>
+					<h4>
+						Client:
+						<a ng-if="data.client.sref"
+						   data-lm-sref="{{data.client.sref}}"
+						   href="javascript:void(0)">
+							{{data.client.name}}
+						</a>
+						<span ng-if="!data.client.sref" ng-bind-html="data.client.name"></span>
+					</h4>
+				</div>
+				<div ng-bind-html="data.content"></div>
+			</div>
+			<div class="col-right">
+				<div ng-repeat="thumb in data.thumbs">
+					<a href="javascript:void(0);" ng-if="thumb.sref" data-lm-sref="{{thumb.sref}}">
+						<img src="{{thumb.url}}" class="thumb"/>
+					</a>
+
+					<img ng-if="!thumb.sref" src="{{thumb.url}}" class="thumb"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

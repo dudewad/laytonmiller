@@ -1,0 +1,17 @@
+body.portfolio{
+	.content-main{
+		padding:0;
+		position:absolute;
+		right:0;
+		top:0;
+		height:100%;
+		overflow:hidden;
+	}
+
+	&.portfolio-event {
+		.content-main {
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
+}

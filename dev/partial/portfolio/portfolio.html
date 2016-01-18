@@ -1,11 +1,6 @@
 <section class="portfolio">
-	<header>
-		<h1>PORTFOLIO</h1>
-
-		<p>Pecus virtus qui validus ullamcorper utrum. Oppeto mos ullamcorper erat exerci cogo aliquam vero adsum te
-			patria.
-			Appellatio gemino utinam facilisi. Acsi esse os praemitto genitus usitas vulputate metuo lucidus vulputate
-			ad
-			ullamcorper.</p>
-	</header>
+	<section class="subsection-content clearfix">
+		<div ng-include ng-controller="TimelineController" data-src="'partial/timeline/timeline.html'"></div>
+		<div ui-view="event"></div>
+	</section>
 </section>

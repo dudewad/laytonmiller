@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="1000px" height="1000px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-<polygon fill="#231F20" stroke="#231F20" stroke-width="0.4689" stroke-miterlimit="10" points="202.534,841.074 3.079,841.074 
-	112.97,500 3.079,158.926 202.534,158.926 312.425,500 "/>
-<polygon fill="#231F20" stroke="#231F20" stroke-width="0.4689" stroke-miterlimit="10" points="545.16,841.074 345.711,841.074 
-	455.607,500 345.711,158.926 545.16,158.926 655.062,500 "/>
-<polygon fill="#231F20" stroke="#231F20" stroke-width="0.4689" stroke-miterlimit="10" points="887.798,841.074 688.344,841.074 
-	798.233,500 688.344,158.926 887.798,158.926 997.688,500 "/>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Layer_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px"
+	 viewBox="-6 -6 512 512" xml:space="preserve">
+<polygon fill="#231F20" stroke="#231F20" stroke-width="0.2409" stroke-miterlimit="10" points="96.942,425.27 -5.553,425.27 
+	50.917,250 -5.553,74.73 96.942,74.73 153.413,250 "/>
+<polygon fill="#231F20" stroke="#231F20" stroke-width="0.2409" stroke-miterlimit="10" points="273.011,425.27 170.518,425.27 
+	226.991,250 170.518,74.73 273.011,74.73 329.486,250 "/>
+<polygon fill="#231F20" stroke="#231F20" stroke-width="0.2409" stroke-miterlimit="10" points="449.083,425.27 346.588,425.27 
+	403.058,250 346.588,74.73 449.083,74.73 505.553,250 "/>
 </svg>
