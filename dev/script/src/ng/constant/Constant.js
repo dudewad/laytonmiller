@@ -12,15 +12,18 @@ angular.module("LMApp").constant("CONSTANT", {
 		"WELCOME": "welcome.json",
 		"TIMELINE":{
 			"EXPERIENCE": {
-				"RAZORFISH": "/experience/razorfish.json"
-				/*"DESIGN_MILL": "/experience/design-mill.json",
-				"YACHT_VID": "/experience/yachtvid.json",
+				"RAZORFISH": "/experience/razorfish.json",
+				"GLOBANT": "/experience/globant.json",
 				"MUTUAL_AUTO_MEDIA": "/experience/mutual-auto-media.json",
-				"GLOBANT": "/experience/globant.json"*/
+				"YACHTVID": "/experience/yachtvid.json"
+				/*"DESIGN_MILL": "/experience/design-mill.json",*/
 			},
 			"PORTFOLIO":{
+				"INTEL_ANTHEM": "/portfolio/intel-anthem.json",
 				"INTEL": "/portfolio/intel.json",
-				"RYSE": "/portfolio/ryse.json"
+				"RYSE": "/portfolio/ryse.json",
+				"BAND": "/portfolio/microsoft-band.json",
+				"XBOX": "/portfolio/xbox.json"
 			}
 		}
 	},
@@ -103,7 +106,7 @@ angular.module("LMApp").constant("CONSTANT", {
 		},
 		"TECHNICAL_SUMMARY": {
 			"NAME": "technical-summary",
-			"URL": "/technicalSummary",
+			"URL": "/overview",
 			"TEMPLATE": "technical-summary/technical-summary.html"
 		},
 		"EXPERIENCE": {

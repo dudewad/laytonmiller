@@ -87,7 +87,6 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 			 * @param completePromise
 			 */
 			function _animateTransition(completePromise) {
-				console.log(_toState, _fromState);
 				var stateName = _toState.name && _toState.name.split(".")[0];
 				var fromStateName = _fromState && _fromState.split(".")[0];
 

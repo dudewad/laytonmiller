@@ -2,15 +2,23 @@
 	"label": "Razorfish",
 	"dateString": "2013-2016",
 	"subLabel": "Presentation Layer Architect",
-	"content": "<p>As a presentation layer architect, my duties at Razorfish were divided between project management, client management, and project work.</p><p>Project management entails work such as scoping projects, performing estimations, work for RFI’s and pitches, techncial assessments, monitoring resource needs, and generally paying attention to the health of any given account from a non-technical perspective.</p><p>Architects at Razorfish are expected to display good leadership skills and have an ability to manage teams effectively, while being able create sound architecture and write and manage code-bases, often many at once.</p>",
-	"thumbs": [
+	"content": "<p>Major clients: Intel, Microsoft, Xbox, Patron Tequila, Express, Honda/Accura, HP, and many more.</p><p>Some of my major contributions: Intel.com global rebrand, Microsoft Band Online Dashboard, Xbox.com's Xbox One launch.</p><p>As a presentation layer architect, my duties at Razorfish were divided between project management, client management, and project work.</p><p>The primary responsibility of the architect at Razorfish is to write code. However, architects at Razorfish are also expected to display good leadership skills and have an ability to manage teams effectively, while being able create sound architecture and write and manage code-bases, often many at once.</p><p>An architect's project management work entails items such as scoping projects, performing estimations, work for RFI’s and pitches, techncial assessments, monitoring resource needs, and generally paying attention to the health of any given account from a non-technical perspective.</p>",
+	"asset": [
 		{
-			"sref": "portfolio.event({\"event\":\"intel\"})",
-			"url": "./asset/image/portfolio/experience/razorfish/intel-1-thumb.jpg"
+			"fullUrl": "./asset/image/portfolio/experience/razorfish/intel-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/razorfish/intel-1-thumb.jpg",
+			"link": {
+				"sref": "portfolio.event({\"event\":\"intel\"})",
+				"copy": "Intel.com Global Rebrand"
+			}
 		},
 		{
-			"sref": "portfolio.event({\"event\":\"ryse\"})",
-			"url": "./asset/image/portfolio/experience/razorfish/ryse-1-thumb.jpg"
+			"fullUrl": "./asset/image/portfolio/experience/razorfish/ryse-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/razorfish/ryse-1-thumb.jpg",
+			"link": {
+				"sref": "portfolio.event({\"event\":\"ryse\"})",
+				"copy": "Ryse for Xbox"
+			}
 		}
 	]
 }

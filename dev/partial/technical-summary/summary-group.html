@@ -1,10 +1,10 @@
-<div class="summary-group" ng-repeat="group in summaryGroups">
-	<div data-lm-3d>
+<div class="summary-group" ng-repeat="group in summaryGroups" ng-style="{'z-index': summaryGroups.length - $index}">
+	<div class="wrapper">
 		<h2>{{group.title}}</h2>
 		<div class="summary-item"
 		     ng-repeat="skill in group.skills"
 		     data-lm-tooltip>
-			<h3>{{skill.name}} - <span class="rating">{{skill.rating}}/10</span></h3>
+			<h3>{{skill.name}} - <span class="rating">{{skill.rating}}/5</span></h3>
 			<div ng-include data-src="'partial/element/visualization-rating.html'" ng-init="rating = skill.rating"></div>
 			<div ng-include data-src="'partial/element/tooltip.html'" ng-init="tooltipContent = skill.tooltipContent; position = 'bottom'"></div>
 		</div>

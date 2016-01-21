@@ -7,14 +7,14 @@
 		"sref": "experience.event({\"event\":\"razorfish\"})"
 	},
 	"content": "<p>As a Presentation Layer Architect at Razorfish, I was given the chance to do the latest rework for Intel's entire global branding strategy. My work was to spearhead the global rebranding effort through responsive architecture and sound component design.</p><p>My team completed full transformations of existing components, as well as soup-to-nuts creation from creative and strategic conception to execution on new, interesting components.</p><p>Intel partners with Adobe using their AEM to manage all of their content- past experience served me well in providing not only good code, but also solutions that were flexible, localizable globally, and most importantly, authorable by the client.</p>",
-	"thumbs": [
+	"asset": [
 		{
-			"url": "./asset/image/portfolio/portfolio/intel/intel-1-thumb.jpg",
-			"sref": "experience.event({\"event\":\"razorfish\"})"
+			"fullUrl": "./asset/image/portfolio/portfolio/intel/intel-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/intel/intel-1-thumb.jpg"
 		},
 		{
-			"url": "./asset/image/portfolio/portfolio/intel/intel-2-thumb.jpg",
-			"sref": "experience.event({\"event\":\"razorfish\"})"
+			"fullUrl": "./asset/image/portfolio/portfolio/intel/intel-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/intel/intel-2-thumb.jpg"
 		}
 	]
 }

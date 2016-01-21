@@ -1,0 +1,20 @@
+{
+	"label": "Microsoft Band",
+	"dateString": "2014-2015",
+	"subLabel": "Microsoft Band Online Dashboard",
+	"client": {
+		"name": "Microsoft via Razorfish",
+		"sref": "experience.event({\"event\":\"razorfish\"})"
+	},
+	"content": "<p>I worked as the team lead for the front-end team developing the angular application that drives the Microsoft online version of their phone application for managing their fitness tracker, \"band\".</p><p>My team was responsible for creation of all middle tier and front-end code. We developed the application on-site in Redmond, teaming up with the combined Razorfish and Microsoft creative/UX departments, the Microsoft Health cloud team, and a team of multiple back-end developers on the Microsoft side.</p><p>Over the course of several months we worked to create and deliver v1.0 of the application, which got good praise from critics.</p>",
+	"asset": [
+		{
+			"fullUrl": "./asset/image/portfolio/portfolio/microsoft-band/band-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/microsoft-band/band-1-thumb.jpg"
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/portfolio/microsoft-band/band-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/microsoft-band/band-2-thumb.jpg"
+		}
+	]
+}

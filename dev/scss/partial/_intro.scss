@@ -33,10 +33,18 @@
 		margin-top: -4em;
 	}
 
+	.nav-toggle{
+		display:none;
+	}
+
 	.content-main {
 		width: 100%;
 		cursor: default;
 		text-align: center;
+
+		i {
+			font-size: 2.5em;
+		}
 	}
 
 	.copy{
@@ -64,6 +72,10 @@
 	@media screen and(min-width: $screen-sm-min) {
 		.content-main {
 			font-size: 1.25em;
+
+			i {
+				font-size: 2em;
+			}
 		}
 	}
 

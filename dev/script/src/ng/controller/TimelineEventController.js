@@ -19,7 +19,6 @@ angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$s
 			}
 		}).
 		error(function (data, status, headers, config) {
-		console.log(data);
 			$scope.$emit(CONSTANT.EVENT.COMPONENT_LOAD_COMPLETE);
 			//Revert to root state if there is an invalid file
 			LMRoute.go(_parseRootStateName());
@@ -36,6 +35,12 @@ angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$s
 	function _destroy(){
 		$rootScope.$broadcast(CONSTANT.EVENT.TIMELINE.EVENT_CLOSED);
 	}
+
+
+
+	$scope.thumbClickHandler = function(fullAssetURL){
+		$scope.state.assetViewer = fullAssetURL;
+	};
 
 	$scope.$on("$destroy", _destroy);
 }]);

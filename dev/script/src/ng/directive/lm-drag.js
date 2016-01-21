@@ -13,14 +13,7 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", "$timeout", 
 			var pointerListenerID;
 
 			/*Support handlers to each bound listener that is triggered when the user touches/mousedowns*/
-			function touchEndFn (e) {
-				GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
-				pointerListenerID = null;
-				handler(e);
-				resetPointer();
-			}
-
-			function mouseUpFn (e) {
+			function pointerUpFn (e) {
 				GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
 				pointerListenerID = null;
 				handler(e);
@@ -28,8 +21,15 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", "$timeout", 
 			}
 
 			/*Bind Mousedown/touchstart events*/
-			elm.on("touchstart", function (e) {
-				body.one("touchend", touchEndFn);
+			elm.on("touchstart mousedown", function (e) {
+				pointerListenerID && GlobalEventsService.unregisterPointerMoveHandler(pointerListenerID);
+				if(e.type === "touchstart") {
+					e.preventDefault();
+					body.one("touchend", pointerUpFn);
+				}
+				else if(e.type === "mousedown"){
+					body.one("mouseup", pointerUpFn);
+				}
 				handler(e);
 				//Needs timeout because Chrome fires mouse move and click despite there being no mousemove.
 				$timeout(function () {
@@ -37,19 +37,11 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", "$timeout", 
 				}, 0);
 			});
 
-			elm.on("mousedown", function (e) {
-				body.one("mouseup", mouseUpFn);
-				handler(e);
-				//Needs timeout because Chrome fires mouse move and click despite there being no mousemove.
-				$timeout(function(){
-					pointerListenerID = GlobalEventsService.registerPointerMoveHandler(handler);
-				},0);
-			});
-
 
 
 			function handler(e) {
 				if(e.type === "touchend"){
+					//console.log("last data: ", lastPointerData);
 					scope.lmDrag({"pointerData": lastPointerData, "$event": e});
 					return;
 				}
@@ -63,6 +55,12 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", "$timeout", 
 				var timeDif = lastTimestamp ? e.timeStamp - lastTimestamp : 0;
 				var xSpeed = lastX !== null ? xDif / timeDif : 0;
 				var ySpeed = lastY !== null ? yDif / timeDif : 0;
+				if(isNaN(xSpeed)){
+					xSpeed = 0;
+				}
+				if(isNaN(ySpeed)){
+					ySpeed = 0;
+				}
 				var pointerData = {
 					type: e.type,
 					xDif: xDif,

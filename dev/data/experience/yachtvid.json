@@ -1,2 +1,20 @@
 {
+	"label": "YachtVid",
+	"dateString": "2009-2010",
+	"subLabel": "CTO",
+	"content": "<p>YachtVid was my first step into the startup world. I attained the job because as a freelancer I had done so much of the brand and technology work for the company that they wanted me to come on full time.</p><p>YachtVid became the premier brokerage video production company in the country, and still today provides high quality video of yachts that are for sale. YachtVid is also expanding to other markets to provide services for crew members, etc.</p><p>As CTO at YachtVid, my primary role was managing the technology. I built and maintained a dedicated deployment of the public-facing site as well as a client-only management console that was built and managed by me as well. While we originally started out as a video hosting company, the changing landscape around how companies marketed themselves allowed us to pivot into a more versatile role.</p>",
+	"asset": [
+		{
+			"fullUrl": "./asset/image/portfolio/experience/yachtvid/yachtvid-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/yachtvid/yachtvid-1-thumb.jpg"
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/experience/yachtvid/yachtvid-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/yachtvid/yachtvid-2-thumb.jpg"
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/experience/yachtvid/yachtvid-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/yachtvid/yachtvid-2-thumb.jpg"
+		}
+	]
 }

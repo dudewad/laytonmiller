@@ -1,10 +1,38 @@
 body.technical-summary{
 	.content-main {
 		overflow: hidden;
+		padding-bottom: 5em;
 	}
 
 	header,
 	.subsection-content{
 		padding:0 3em 3em 3em;
+	}
+
+	.key{
+		padding:3em;
+		margin-bottom:3em;
+
+		h3{
+			font-weight: 500;
+			font-size: 1.5em;
+			margin-bottom: 1em;
+		}
+
+		li{
+			font-size:1.5em;
+			margin-bottom:.5em;
+			font-weight:300;
+
+			&:last-child{
+				margin-bottom:0;
+			}
+		}
+	}
+
+	@media screen and (min-width: $screen-sm-min) {
+		.content-main {
+			padding-bottom:0;
+		}
 	}
 }

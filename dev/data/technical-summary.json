@@ -1,15 +1,33 @@
 {
 	"summaryGroups": {
 		"LANGUAGES": {
-			"JAVASCRIPT": "10",
-			"HTML": "10",
-			"CSS": "10",
-			"PHP": "7"
+			"JAVASCRIPT": "5",
+			"HTML": "5",
+			"CSS": "5",
+			"PHP": "3"
 		},
 		"TECHNOLOGIES": {
-			"GRUNT": "10",
-			"HANDLEBARS": "10",
-			"ANGULARJS": "8"
+			"JQUERY": "5",
+			"GREENSOCK": "5",
+			"HANDLEBARS": "5",
+			"ANGULARJS": "4",
+			"WINJS": "3"
+		},
+		"PROCESS": {
+			"VCS": "4",
+			"AGILE": "4",
+			"SCRUM": "4"
+		},
+		"TOOLING": {
+			"CSS_PREPROCESSORS": "5",
+			"GRUNT": "4",
+			"CUSTOM_TOOLING": "3"
+		},
+		"SOFT_SKILLS": {
+			"CROSS_DISCIPLINE": "5",
+			"CLIENT_MANAGEMENT": "5",
+			"TEAM_MANAGEMENT": "4",
+			"PROJECT_SCOPING": "4"
 		}
 	}
 }

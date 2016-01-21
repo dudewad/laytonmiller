@@ -1,9 +1,10 @@
-angular.module("LMApp").controller("TechnicalSummaryController", ["$rootScope", "$scope", "$http", "CONSTANT", "STRINGS",
-	function($rootScope, $scope, $http, CONSTANT, STRINGS){
+angular.module("LMApp").controller("TechnicalSummaryController", ["$rootScope", "$scope", "$http", "$sce", "CONSTANT", "STRINGS",
+	function($rootScope, $scope, $http, $sce, CONSTANT, STRINGS){
 		$scope.STRINGS = STRINGS.TECHNICAL_SUMMARY;
 		$scope.sectionTitle = $scope.STRINGS.HEADER.TITLE;
-		$scope.sectionIntro = $scope.STRINGS.HEADER.DESCRIPTION;
+		$scope.sectionIntro = $sce.trustAsHtml($scope.STRINGS.HEADER.DESCRIPTION);
 		$scope.summaryGroups = null;
+		$scope.key = $scope.STRINGS.KEY;
 		var _loadedData;
 
 

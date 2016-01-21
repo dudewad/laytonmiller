@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsService", function (CONSTANT, GlobalEventsService) {
+angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalEventsService", function (CONSTANT, LMRoute, GlobalEventsService) {
 	return {
 		scope: "=",
 		restrict: "A",
@@ -25,12 +25,15 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 			var _currentTimelineTime = {
 				currentMonthCount: 23836
 			};
+			var _sref;
 
 			//Flags
 			var _mouseWheelTransition = false;
+			var _isFirstTouch;
 
 			//Animation
 			var _swipeTargetTween;
+			var _outTween;
 
 
 
@@ -40,6 +43,7 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 				_year = element.find(".year");
 				_resizeHandlerID = GlobalEventsService.registerResizeHandler(_resizeHandler);
 				scope.isSwiping = false;
+				angular.element("body").on("mousewheel", _handleMouseWheel);
 				_enter(_direction.next);
 			}
 
@@ -73,6 +77,38 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 				_updateDateDisplay();
 			}
+
+
+
+			function _exit(dir) {
+				if(!dir){
+					return;
+				}
+				_killSwipeTween();
+				var target = element.find(".timeline-event").eq(scope.timeline.currentEvent);
+				var topPos = dir !== _direction.next ? "100%" : "-" + target.outerHeight();
+				_outTween = new TimelineMax();
+				_outTween.to(target, _defaultTransitionTime, {top: topPos, ease: Power4.easeOut});
+			}
+
+
+
+			function _playTimelineHint(){
+				var t = new TimelineMax({
+					repeat: -1,
+					yoyo: true
+				});
+				var target = $("[data-anim-arrow]");
+
+				t.to(target, 0.65, {top:"+=.25em", ease: Power2.easeInOut});
+			}
+
+
+
+			scope.confirmTimelineHint = function(){
+				scope.flags.confirmedTimelineHint = true;
+				_init();
+			};
 
 
 
@@ -186,10 +222,27 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 
 
-			scope.$on("interactionSwipe", function (e, pointerData, originalEvent) {
-				if(!scope.isSwiping) {
-					scope.isSwiping = true;
+			scope.toEventSummary = function(index){
+				var dir;
+
+				if(index === scope.timeline.currentEvent){
+					return;
 				}
+				else if(index < scope.timeline.currentEvent){
+					dir = _direction.prev;
+				}
+				else{
+					dir = _direction.next;
+				}
+				_exit(dir);
+				scope.timeline.currentEvent = index;
+				_enter(dir);
+			};
+
+
+
+			scope.$on("interactionSwipe", function (e, pointerData, originalEvent) {
+				scope.isSwiping = true;
 				_positioning = {
 					top: _positioning.top + pointerData.yDif
 				};
@@ -201,11 +254,14 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 			scope.$on("interactionStart", function (e, pointerData, originalEvent) {
 				_killSwipeTween();
-				if(originalEvent.type === "touchstart"){
-					scope.eventTouchActive = scope.timeline.currentEvent;
-					_applyScope();
-				}
 				_swipeTarget = $(originalEvent.target).closest(".timeline-event");
+
+				if (originalEvent.type.toLowerCase().indexOf("touch") !== -1) {
+					_isFirstTouch = !_swipeTarget.is(".active");
+					scope.timeline.eventActivelyTouched = scope.timeline.currentEvent;
+				}
+				_sref = _swipeTarget.data("timeline-sref");
+
 				_positioning = {
 					top: parseInt(_swipeTarget.css("top"))
 				};
@@ -226,15 +282,14 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 					if(scope.isSwiping){
 						_abortSwipe();
 					}
+					else if (!_isFirstTouch || _swipeTarget.is(":hover")) {
+						LMRoute.go(_sref);
+					}
+				}
+				else if (!scope.isSwiping) {
+					return;
 				}
 				else {
-					if (originalEvent.type === "touchend") {
-						scope.eventTouchActive = null;
-						_applyScope();
-					}
-					if (!scope.isSwiping) {
-						return;
-					}
 					var t = new TimelineMax();
 					t.to(_swipeTarget, time, {top: "+=" + distance + "px"});
 					if (distance > 0) {
@@ -258,12 +313,13 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "GlobalEventsServic
 
 
 			scope.$on(CONSTANT.EVENT.PAGE.TRANSITION_OUT_COMPLETE, function(){
-				_init();
+				if(scope.flags.confirmedTimelineHint) {
+					_init();
+				}
+				else{
+					_playTimelineHint();
+				}
 			});
-
-
-
-			angular.element("body").on("mousewheel", _handleMouseWheel);
 		}
 	};
 }]);

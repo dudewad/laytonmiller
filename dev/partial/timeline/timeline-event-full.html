@@ -11,7 +11,7 @@
 			<div class="col-left">
 				<div class="column-title">
 					<h3 class="sublabel" ng-bind-html="data.subLabel"></h3>
-					<h4>
+					<h4 ng-if="data.client.name">
 						Client:
 						<a ng-if="data.client.sref"
 						   data-lm-sref="{{data.client.sref}}"
@@ -24,12 +24,14 @@
 				<div ng-bind-html="data.content"></div>
 			</div>
 			<div class="col-right">
-				<div ng-repeat="thumb in data.thumbs">
-					<a href="javascript:void(0);" ng-if="thumb.sref" data-lm-sref="{{thumb.sref}}">
-						<img src="{{thumb.url}}" class="thumb"/>
-					</a>
-
-					<img ng-if="!thumb.sref" src="{{thumb.url}}" class="thumb"/>
+				<div ng-repeat="asset in data.asset">
+					<div class="thumb-wrapper">
+						<img ng-src="{{asset.thumbUrl}}" ng-click="thumbClickHandler(asset.fullUrl)" class="thumb"/>
+						<span ng-if="asset.link">
+							Go to:
+							<a href="javascript:void(0);" data-lm-sref="{{asset.link.sref}}">{{asset.link.copy}}</a>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

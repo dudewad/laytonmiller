@@ -1,0 +1,24 @@
+.full-asset-viewer {
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background:rgba(0,0,0,.8);
+	@include prefixProp("transition", "opacity 250ms");
+
+	&.active {
+		opacity: 1;
+		z-index: 999;
+	}
+
+	img{
+		max-width:95%;
+		max-height:95%;
+	}
+}

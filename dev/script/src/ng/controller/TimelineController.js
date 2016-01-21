@@ -23,94 +23,10 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 			x: 0,
 			minX: 0
 		},
-		dimensions: {
-			width: 0,
-			marginLeft: 0
-		},
-		mask: {
-			width: 0
-		},
-		currentEvent: 0
+		currentEvent: 0,
+		eventActivelyTouched: null
 	};
 
-	$scope.eventTouchActive = null;
-
-
-	/**
-	 * Factory function to return an "Interval" object
-	 */
-	/*var Interval = function(labelMonth, labelYear, position){
-	 return {
-	 label: {
-	 month: labelMonth,
-	 year: labelYear || null
-	 },
-	 position: parseFloat(position) + "%"
-	 };
-	 };*/
-
-
-
-	/**
-	 * Loop through timeline data and calculate critical data points such as length, date range, etc.
-	 */
-	/*function calculateTimeline(){
-	 var extendedDate;
-
-	 //Find the "earliest" date
-	 for(var evt in $scope.timeline.events){
-	 var e = $scope.timeline.events[evt];
-	 if(e.start){
-	 var d = Date.parse(e.start);
-	 if(!$scope.timeline.endDate.asInt || d < $scope.timeline.endDate.asInt){
-	 $scope.timeline.endDate.asInt = d;
-	 }
-	 }
-	 }
-
-	 //We now have the date as the first timeline event start date on record. Extend that further back to the
-	 //beginning of that month for a prettier timeline display.
-	 extendedDate = new Date($scope.timeline.endDate.asInt);
-	 extendedDate.setDate(1);
-
-	 //Set critical data points
-	 $scope.timeline.startDate.date = new Date();
-	 $scope.timeline.startDate.asInt = Date.parse($scope.timeline.startDate.date);
-	 $scope.timeline.endDate.date = extendedDate;
-	 $scope.timeline.endDate.asInt = Date.parse(extendedDate);
-	 $scope.timeline.dateRange.asInt = $scope.timeline.startDate.asInt - $scope.timeline.endDate.asInt;
-	 }*/
-
-
-	/**
-	 * Build timeline intervals
-	 */
-	/*function buildTimelineIntervals(){
-	 var current = new Date($scope.timeline.startDate.date.getFullYear(), $scope.timeline.startDate.date.getMonth(), 1);
-	 var currentYear = current.getFullYear();
-	 var year = null;
-	 var month = null;
-
-	 $scope.timeline.intervals.push(new Interval(TIMELINE_STRS.TODAY, null, 0));
-
-	 while($scope.timeline.endDate.date < current){
-	 var d = Date.parse((current.getMonth() + 1) + "/1/" + current.getFullYear());
-	 var thisRange = d - $scope.timeline.endDate.asInt;
-	 month = TIMELINE_STRS.MONTHS[current.getMonth()].substr(0,3);
-	 year = null;
-
-	 if(current.getMonth() === 0){
-	 year = currentYear = current.getFullYear();
-	 }
-
-	 $scope.timeline.intervals.push(new Interval(month, year, (1 - thisRange / $scope.timeline.dateRange.asInt) * 100));
-	 current.setMonth(current.getMonth() - 1);
-	 }
-
-	 //Push final month for space
-	 month = TIMELINE_STRS.MONTHS[current.getMonth()].substr(0, 3);
-	 $scope.timeline.intervals.push(new Interval(TIMELINE_STRS.MONTHS[current.getMonth()], year, 100));
-	 }*/
 
 
 
@@ -195,6 +111,11 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 	}
 
 
+	function _destroy() {
+		angular.element("body").off("touchstart mousedown", _pointerDownHandler);
+	}
+
+
 
 	$scope.dragHandler = function (pointerData, event) {
 		switch (event.type) {
@@ -224,8 +145,6 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 
 		$scope.timeline.events = data.events;
 		$scope.timeline.eventStrings = eventStrings;
-		//calculateTimeline();
-		//buildTimelineIntervals();
 		_buildTimelineEvents();
 		$timeout(function () {
 			$scope.$broadcast(CONSTANT.EVENT.TIMELINE.BUILT);
@@ -243,4 +162,20 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 	$scope.$on(CONSTANT.EVENT.TIMELINE.EVENT_CLOSED, function(){
 		_unpause();
 	});
+
+	$scope.$on("$destroy", _destroy);
+
+
+
+	function _pointerDownHandler(e) {
+		if ($(e.target).is(".timeline-event") || $(e.target).closest(".timeline-event").length) {
+			return;
+		}
+		$scope.timeline.eventActivelyTouched = null;
+		_applyScope();
+	}
+
+
+
+	angular.element("body").on("touchstart mousedown", _pointerDownHandler);
 }]);

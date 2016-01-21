@@ -4,6 +4,21 @@
 			"stringId": "RAZORFISH",
 			"start": "6/10/2013",
 			"end": "current"
+		},
+		{
+			"stringId": "GLOBANT",
+			"start": "9/1/2012",
+			"end": "3/1/2013"
+		},
+		{
+			"stringId": "MUTUAL_AUTO_MEDIA",
+			"start": "1/1/2010",
+			"end": "3/1/2012"
+		},
+		{
+			"stringId": "YACHTVID",
+			"start": "9/1/2009",
+			"end": "9/1/2010"
 		}
 	]
 }

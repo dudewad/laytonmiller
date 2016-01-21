@@ -7,14 +7,14 @@
 		"sref": "experience.event({\"event\":\"razorfish\"})"
 	},
 	"content": "<p>As a team lead at Razorfish, I was afforded the opportunity to work as the lead developer for Xbox's .com platform. My team was responsible for ongoing maintenance as well as the creation and deployment of all major Xbox titles - such as launching all Xbox One materials during the Xbox One launch.</p><p>Ryse is an Xbox One game that showcases one of the many interactive campaign landing experiences that were created under my leadershipIt featured an interactive comic book experience, and a 3d visualizer of the main character's attack moves, among other things.</p>",
-	"thumbs": [
+	"asset": [
 		{
-			"url": "./asset/image/portfolio/portfolio/ryse/ryse-1-thumb.jpg",
-			"sref": "experience.event({\"event\":\"razorfish\"})"
+			"fullUrl": "./asset/image/portfolio/portfolio/ryse/ryse-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/ryse/ryse-1-thumb.jpg"
 		},
 		{
-			"url": "./asset/image/portfolio/portfolio/ryse/ryse-2-thumb.jpg",
-			"sref": "experience.event({\"event\":\"razorfish\"})"
+			"fullUrl": "./asset/image/portfolio/portfolio/ryse/ryse-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/ryse/ryse-2-thumb.jpg"
 		}
 	]
 }

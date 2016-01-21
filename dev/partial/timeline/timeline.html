@@ -1,17 +1,28 @@
-<div class="timeline" data-lm-timeline>
-	<div class="counter alternator">
+<div class="timeline" data-lm-timeline ng-class="{pause: currentState.pause}">
+	<div class="counter alternator" ng-class="{active: flags.confirmedTimelineHint}">
 		<div class="wrapper">
 			<span class="alternator-bg"></span>
 			<span class="month">{{eventMonth}}</span>_<span class="year">{{eventYear}}</span>
+
+			<ul class="clearfix">
+				<li ng-repeat="event in timeline.events">
+					<span
+							ng-class="{active: $index === timeline.currentEvent}"
+							ng-click="toEventSummary($index)"
+							class="dot-container">
+						<span class="dot"></span>
+					</span>
+				</li>
+			</ul>
 		</div>
 	</div>
 
-	<div class="timeline-wrapper" ng-class="{pause: currentState.pause}">
+	<div class="timeline-wrapper">
 		<div ng-repeat="event in timeline.events">
 			<div class="timeline-event alternator event-type-{{event.type}}"
 			     data-lm-drag="dragHandler(pointerData, $event)"
-				 ng-class="{active: eventTouchActive==$index, isSwiping: isSwiping }">
-				<a data-lm-sref='{{event.type.toLowerCase() + ".event"}}({"event":"{{event.stringId.toLowerCase()}}"})'></a>
+				 ng-class="{active: timeline.eventActivelyTouched==$index, isSwiping: isSwiping }"
+				 data-timeline-sref='{{event.type.toLowerCase() + ".event"}}({"event":"{{event.stringId.toLowerCase()}}"})'>
 				<div class="event-content">
 					<span class="alternator-bg"></span>
 
@@ -28,8 +39,17 @@
 			</div>
 		</div>
 
-		<div class="ui-helper">
-			<i class="lmIcon lmIcon-double-arrow-up-down"></i>
+		<div class="timeline-hint" ng-class="{active: !flags.confirmedTimelineHint}">
+			<h2>NAVIGATE TIMELINE</h2>
+			<div class="directions clearfix">
+				<i class="lmIcon lmIcon-double-arrow-up-down" data-anim-arrow></i>
+				<p>
+					Swipe<br>
+					Mouse Wheel<br>
+					Drag<br>
+				</p>
+			</div>
+			<button ng-click="confirmTimelineHint()">Got it</button>
 		</div>
 	</div>
 </div>

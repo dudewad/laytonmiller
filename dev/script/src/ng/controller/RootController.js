@@ -8,14 +8,20 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 			name: null
 		},
 		loading: false,
-		transitioning: false
+		transitioning: false,
+		assetViewer: null
 	};
 	$scope.load = {
 		component: false,
 		page: false
 	};
+	$scope.flags = {
+		playedTimelineHint: false
+	};
+
 	var _transitionHandlers = [];
 	var _pageLoadPromise = null;
+
 
 
 

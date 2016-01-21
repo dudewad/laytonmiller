@@ -64,8 +64,12 @@
 		}
 	}
 
+	.key{
+		background: rgba($light, .8);
+	}
+
 	.summary-group{
-		[data-lm-3d] {
+		.wrapper {
 			background: rgba($light, .8);
 		}
 	}
@@ -158,13 +162,6 @@
 
 	.timeline-event-full{
 		h4 {
-			a {
-				color: $medium;
-
-				&:hover{
-					color: lighten($medium, 10%);
-				}
-			}
 		}
 
 		.content {
@@ -175,10 +172,47 @@
 			background:$dark;
 			color:$light;
 		}
+
+		a {
+			color: $medium;
+
+			&:hover {
+				color: darken($medium, 10%);
+			}
+		}
+	}
+
+	.timeline-hint {
+		color: $light;
+		background:$dark;
+		border-color: $light;
+
+		button{
+			color:$dark;
+		}
+
+		.directions{
+			border-color:$light;
+		}
+	}
+
+	.timeline{
+		.counter{
+			ul{
+				border-color:$light;
+
+				.dot{
+					border-color:$light;
+					background-color: $dark;
+				}
+			}
+		}
 	}
 
 	.nav-toggle{
 		background-color:$dark;
+		color:$light;
+		border-color: $light;
 	}
 
 	@media screen and (min-width: $screen-sm-min){

@@ -14,7 +14,7 @@ nav {
 	border: 1px solid #000;
 	border-top: 0;
 	border-bottom: 0;
-	z-index:200;
+	z-index:1001;
 	@include prefixProp("transition", "left 250ms");
 
 	&.active{
@@ -49,17 +49,15 @@ nav {
 	position: fixed;
 	right: 2em;
 	bottom: 2em;
-	z-index: 201;
+	z-index: 1002;
 	display: block;
 	border-radius: 6px;
 	cursor: pointer;
 	padding:10px;
+	border: 3px solid;
 
 	span {
-		width:30px;
-		height:30px;
-		display: block;
-		background-image: url("../asset/image/misc/hamburger.png");
+		font-size: 2em;
 	}
 }
 

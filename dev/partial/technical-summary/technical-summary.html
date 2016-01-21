@@ -1,8 +1,14 @@
 <section class="technical-summary">
 	<header>
 		<h1>{{sectionTitle}}</h1>
+		<div ng-bind-html="sectionIntro"></div>
 
-		<p>{{sectionIntro}}</p>
+		<div class="key">
+			<h3>{{key.title}}</h3>
+			<ul>
+				<li ng-repeat="item in key.items">{{item}}</li>
+			</ul>
+		</div>
 	</header>
 
 	<section class="subsection-content clearfix">
