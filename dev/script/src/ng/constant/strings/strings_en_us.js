@@ -8,6 +8,7 @@ LMApp_conditionalLoadList.push({
 		fn: function () {
 			LMApp.constant("STRINGS", {
 				CORE: {
+					LANGUAGE: "en_us",
 					HEADER: {
 						TITLE: "LAYTON MILLER",
 						SUBTITLE: "Web Architect, Team Leader"
@@ -196,11 +197,6 @@ LMApp_conditionalLoadList.push({
 							SUBLABEL: "Development Team Lead"
 						}
 					}
-				},
-
-				TIMELINE: {
-					TODAY: "Today",
-					MONTHS: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 				}
 			});
 		}

@@ -8,6 +8,7 @@ LMApp_conditionalLoadList.push({
 		fn: function () {
 			LMApp.constant("STRINGS", {
 				CORE: {
+					LANGUAGE: "es_ar",
 					HEADER: {
 						TITLE: "LAYTON MILLER",
 						SUBTITLE: "Architecto web, Líder de equipos de desarrollo"

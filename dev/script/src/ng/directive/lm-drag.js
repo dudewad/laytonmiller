@@ -66,7 +66,9 @@ angular.module("LMApp").directive("lmDrag", ["GlobalEventsService", "$timeout", 
 					xDif: xDif,
 					yDif: yDif,
 					xSpeed: xSpeed,
-					ySpeed: ySpeed
+					ySpeed: ySpeed,
+					pageX: pageX,
+					pageY: pageY
 				};
 
 				scope.lmDrag({"pointerData": pointerData, "$event": e});

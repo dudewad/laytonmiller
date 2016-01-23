@@ -3,22 +3,38 @@
 		{
 			"stringId": "RAZORFISH",
 			"start": "6/10/2013",
-			"end": "current"
+			"end": "current",
+			"data": {
+				"root": "/data/experience/",
+				"file": "razorfish.json"
+			}
 		},
 		{
 			"stringId": "GLOBANT",
 			"start": "9/1/2012",
-			"end": "3/1/2013"
+			"end": "3/1/2013",
+			"data": {
+				"root": "/data/experience/",
+				"file": "globant.json"
+			}
 		},
 		{
 			"stringId": "MUTUAL_AUTO_MEDIA",
 			"start": "1/1/2010",
-			"end": "3/1/2012"
+			"end": "3/1/2012",
+			"data": {
+				"root": "/data/experience/",
+				"file": "mutual-auto-media.json"
+			}
 		},
 		{
 			"stringId": "YACHTVID",
 			"start": "9/1/2009",
-			"end": "9/1/2010"
+			"end": "9/1/2010",
+			"data": {
+				"root": "/data/experience/",
+				"file": "yachtvid.json"
+			}
 		}
 	]
 }

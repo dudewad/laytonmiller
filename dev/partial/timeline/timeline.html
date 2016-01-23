@@ -39,7 +39,9 @@
 			</div>
 		</div>
 
-		<div class="timeline-hint" ng-class="{active: !flags.confirmedTimelineHint}">
+		<div class="timeline-hint"
+		     ng-class="{active: !flags.confirmedTimelineHint}"
+		     data-lm-drag="dragHandler(pointerData, $event)">
 			<h2>NAVIGATE TIMELINE</h2>
 			<div class="directions clearfix">
 				<i class="lmIcon lmIcon-double-arrow-up-down" data-anim-arrow></i>
@@ -49,7 +51,6 @@
 					Drag<br>
 				</p>
 			</div>
-			<button ng-click="confirmTimelineHint()">Got it</button>
 		</div>
 	</div>
 </div>

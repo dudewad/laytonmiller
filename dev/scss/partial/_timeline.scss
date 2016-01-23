@@ -139,10 +139,8 @@
 	.timeline-hint {
 		position: absolute;
 		z-index: -1;
-		top: 50%;
 		width: 230px;
 		height: 230px;
-		margin-top: -230px;
 		margin-left: -115px;
 		opacity: 0;
 		@include prefixProp("transition", "margin-top 250ms, opacity 250ms");
@@ -153,13 +151,12 @@
 		&.active {
 			z-index: 1000;
 			opacity: 1;
-			margin-top: -115px;
 		}
 
 		h2{
 			width: 75%;
 			text-align: center;
-			margin: 1.5em auto .25em auto;
+			margin: 2.1em auto .25em auto;
 			font-size: 2em;
 			font-weight: 500;
 		}
@@ -181,15 +178,8 @@
 			position:relative;
 		}
 
-		button{
-			width: 50%;
-			margin: 1.25em auto 0 auto;
-			display: block;
-			font-size: 1.25em;
-		}
-
 		.directions{
-			width: 75%;
+			width: 65%;
 			border: 1px solid;
 			padding: 1em .25em;
 			margin: 1em auto;

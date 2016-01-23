@@ -1,8 +1,13 @@
 angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$scope", "$http", "$state", "$sce", "CONSTANT", "LMRoute", "STRINGS", function ($rootScope, $scope, $http, $state, $sce, CONSTANT, LMRoute, STRINGS) {
 	//Do a little magic parsing to find the correct data file
 	$scope.rootState = _parseRootStateName().toUpperCase();
-	var file = "./" + CONSTANT.PATH.DATA + CONSTANT.DATA_FILES.TIMELINE[$scope.rootState][$state.params.event.toUpperCase()];
 	$scope.data = {};
+	//Parse file name from known parameters
+	var file = "./" + CONSTANT.PATH.DATA.toLowerCase() + "/" + $scope.rootState.toLowerCase() + "/" + STRINGS.CORE.LANGUAGE.toLowerCase() + "/" + $state.params.event.toLowerCase() + ".json";
+	file = file.toLowerCase();
+	file = file.replace(/_/g, "-");
+	file = file.replace("//", "/");
+	console.log(file);
 
 	$scope.$emit(CONSTANT.EVENT.COMPONENT_LOAD_START);
 	$http.get(file).

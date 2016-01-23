@@ -1,0 +1,20 @@
+{
+	"label": "Xbox.com",
+	"dateString": "2014-2015",
+	"subLabel": "Development Team Lead",
+	"client": {
+		"name": "Xbox via Razorfish",
+		"sref": "experience.event({\"event\":\"razorfish\"})"
+	},
+	"content": "<p>My first job at Razorfish was to run the maintenance and authoring of Xbox's primary .com platform. Under my tenure as lead, we launched a number of campaign landing experiences, re-architectured how Xbox managed their online assets, and built and launched the entirety of the Xbox One's campaign and main landing pages for the November launch.</p><p>My contributions to this account won me the MVP award in the Razorfish Seattle office and I was credited with \"saving the account\" due to the difficulty of both the deadlines and the client.</p>",
+	"asset": [
+		{
+			"fullUrl": "./asset/image/portfolio/portfolio/xbox-one/xbox-one-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/xbox-one/xbox-one-1-thumb.jpg"
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/portfolio/xbox-one/xbox-one-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/portfolio/xbox-one/xbox-one-2-thumb.jpg"
+		}
+	]
+}

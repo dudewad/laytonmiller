@@ -1,6 +1,4 @@
 angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope", "$http", "$timeout", "CONSTANT", "STRINGS", function ($rootScope, $scope, $http, $timeout, CONSTANT, STRINGS) {
-	var TIMELINE_STRS = STRINGS.TIMELINE;
-
 	$scope.currentState = {
 		pause: false
 	};
@@ -54,7 +52,7 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 
 			e.label = eStrings[e.stringId].LABEL;
 			e.sublabel = eStrings[e.stringId].SUBLABEL;
-			e.dateString = startDateString + " - " + endDateString;
+			e.dateString = startDateString != endDateString ? startDateString + " - " + endDateString : startDateString;
 		}
 	}
 
