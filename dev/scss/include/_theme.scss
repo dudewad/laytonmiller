@@ -1,7 +1,5 @@
 @mixin themeBase($light, $medium, $dark) {
-	//color: $light;
 	color: $dark;
-	//background-color: $medium;
 
 	p{
 		a{
@@ -31,6 +29,14 @@
 
 	nav.main-nav{
 		background:rgba($dark,.9);
+
+		.language-selector{
+			&:hover{
+				.alternator-bg{
+					opacity:1;
+				}
+			}
+		}
 	}
 
 	.top-border {
@@ -54,6 +60,10 @@
 		}
 	}
 
+	.content-container{
+		background: rgba($light, .9);
+	}
+
 	.emblem{
 		background: rgba($light, .5);
 	}
@@ -61,16 +71,6 @@
 	.rating-visual{
 		.fill-bar{
 			background-color:$dark;
-		}
-	}
-
-	.key{
-		background: rgba($light, .9);
-	}
-
-	.summary-group{
-		.wrapper {
-			background: rgba($light, .9);
 		}
 	}
 
@@ -161,10 +161,6 @@
 	}
 
 	.timeline-event-full{
-		.content {
-			background: rgba($light, .9);
-		}
-
 		.title{
 			background:$dark;
 			color:$light;

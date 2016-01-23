@@ -6,13 +6,20 @@ body.technical-summary{
 
 	header,
 	.subsection-content{
-		padding:0 3em 3em 3em;
+		padding:0;
 	}
 
 	.key{
-		padding:3em;
-		margin-bottom:3em;
+		margin:3em 0;
+	}
 
+	.portrait{
+		float: left;
+		margin: 0 2em 1em 0;
+		max-width: 75px;
+	}
+
+	.key{
 		h3{
 			font-weight: 500;
 			font-size: 1.5em;
@@ -33,6 +40,10 @@ body.technical-summary{
 	@media screen and (min-width: $screen-sm-min) {
 		.content-main {
 			padding-bottom:0;
+		}
+
+		.portrait {
+			max-width: 100px;
 		}
 	}
 }

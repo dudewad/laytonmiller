@@ -43,6 +43,23 @@ nav {
 		position: relative;
 		margin: 1em 0 2em 0;
 	}
+
+	.language-selector {
+		position: absolute;
+		bottom: 3em;
+		width: 100%;
+
+		i{
+			font-size: 1.3em;
+			position: relative;
+			bottom: 0.075em;
+		}
+
+		.alternator{
+			margin: 0 3em;
+			position: relative;
+		}
+	}
 }
 
 .nav-toggle {

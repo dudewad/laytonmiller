@@ -18,6 +18,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	$scope.flags = {
 		playedTimelineHint: false
 	};
+	$scope.languages = CONSTANT.LANGUAGE;
 
 	var _transitionHandlers = [];
 	var _pageLoadPromise = null;

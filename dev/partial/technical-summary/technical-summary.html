@@ -1,9 +1,9 @@
 <section class="technical-summary">
 	<header>
 		<h1>{{sectionTitle}}</h1>
-		<div ng-bind-html="sectionIntro"></div>
+		<div class="section-intro content-container" ng-bind-html="sectionIntro"></div>
 
-		<div class="key">
+		<div class="key content-container">
 			<h3>{{key.title}}</h3>
 			<ul>
 				<li ng-repeat="item in key.items">{{item}}</li>

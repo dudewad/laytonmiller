@@ -25,6 +25,15 @@
 		<img src="{{state.assetViewer}}"/>
 	</div>
 
+	<div data-lm-lang-select>
+		<img src="" />
+		<form name="language-selector">
+			<select name="language">
+				<option ng-repeat="language in languages" value="{{language.key}}">{{language.value}}</option>
+			</select>
+		</form>
+	</div>
+
 	<div ng-include data-src="'partial/element/lm-loading.html'"></div>
 	<script src="script/vendor.js" type="text/javascript"></script>
 	<script src="script/app.js" type="text/javascript"></script>

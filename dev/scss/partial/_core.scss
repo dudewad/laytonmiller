@@ -70,6 +70,15 @@ button{
 	line-height:0;
 }
 
+header,
+.section-intro{
+	margin: 3em 0;
+}
+
+.content-container{
+	padding:3em;
+}
+
 .clearfix:after {
 	content: ".";
 	display: block;

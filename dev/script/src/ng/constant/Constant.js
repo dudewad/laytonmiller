@@ -1,4 +1,5 @@
 angular.module("LMApp").constant("CONSTANT", {
+
 	/**
 	 * Data files
 	 */
@@ -28,6 +29,9 @@ angular.module("LMApp").constant("CONSTANT", {
 		}
 	},
 
+	/**
+	 * Event-related constants
+	 */
 	"EVENT": {
 		"ANIMATION": {
 			"INTRO_COMPLETE": "INTRO_COMPLETE"
@@ -52,6 +56,20 @@ angular.module("LMApp").constant("CONSTANT", {
 		"COMPONENT_LOAD_START": "COMPONENT_LOAD_START",
 		"COMPONENT_LOAD_COMPLETE": "COMPONENT_LOAD_COMPLETE"
 	},
+
+	/**
+	 * Language-related
+	 */
+	"LANGUAGE": [
+		{
+			"key":"EN_US",
+			"value": "English"
+		},
+		{
+			"key": "ES_AR",
+			"value": "Español"
+		}
+	],
 
 	/**
 	 * Path/Directory constants

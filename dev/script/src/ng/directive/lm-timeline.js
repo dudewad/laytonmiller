@@ -248,11 +248,9 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 			/**
 			 * Handles a timeline event click
 			 *
-			 * @param pointerData
-			 *
 			 * @private
 			 */
-			function _timelineEventClickHandler(pointerData) {
+			function _timelineEventClickHandler() {
 				if (!_isFirstTouch || _swipeTarget.is(":hover")) {
 					LMRoute.go(_sref);
 				}
@@ -332,7 +330,9 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 					if(scope.isSwiping){
 						_abortSwipe();
 					}
-					_timelineEventClickHandler(pointerData);
+					else{
+						_timelineEventClickHandler();
+					}
 				}
 				//Otherwise, if we're not swiping, we don't need to perform any of the swipe logic below
 				else if (!scope.isSwiping) {

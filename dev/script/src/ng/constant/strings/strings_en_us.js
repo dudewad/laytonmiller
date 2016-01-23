@@ -24,7 +24,7 @@ LMApp_conditionalLoadList.push({
 				TECHNICAL_SUMMARY: {
 					HEADER: {
 						TITLE: "Overview",
-						DESCRIPTION: "<p>Hello, my name is Layton. I am a web application architect.</p><p>I build scalable, beautiful applications and websites that work on any device, OS, and browser that my clients want.</p><p>Below is a simple rating of some of my skills. Take note: I choose these ratings based off my observations comparing myself to my peers, and the general community to the extent of my knowledge. A five here indicates that I have a very solid understanding of the related topic, and would be comfortable, for example, giving a presentation or a workshop of some kind about the topic.</p><p>Click them to read more about them.</p>"
+						DESCRIPTION: "<img src='asset/image/misc/portrait.jpg' class='portrait'/><p>Hello, my name is Layton. I am a web application architect.</p><p>I build scalable, beautiful applications and websites that work on any device, OS, and browser that my clients want.</p><p>Below is a simple rating of some of my skills. Take note: I choose these ratings based off my observations comparing myself to my peers, and the general community. A five here indicates that I have enough knowledge about a topic that I would be comfortable teaching it.</p><p>Click them to read more about them.</p>"
 					},
 					KEY: {
 						title: "Key",
@@ -142,10 +142,6 @@ LMApp_conditionalLoadList.push({
 				},
 
 				EXPERIENCE: {
-					HEADER: {
-						TITLE: "EXPERIENCE",
-						DESCRIPTION: "Here is a timeline of my employment, from today back to when I started. Feel free to explore! Swipe, drag, or mouse-wheel to navigate across the timeline."
-					},
 					EVENTS: {
 						DESIGN_MILL: {
 							LABEL: "Design Mill",
@@ -171,10 +167,6 @@ LMApp_conditionalLoadList.push({
 				},
 
 				PORTFOLIO: {
-					HEADER: {
-						TITLE: "PORTFOLIO",
-						DESCRIPTION: "Here is a timeline of my employment, from today back to when I started. Feel free to explore! Swipe, drag, or mouse-wheel to navigate across the timeline."
-					},
 					EVENTS: {
 						INTEL_ANTHEM: {
 							LABEL: "Intel Anthem",
