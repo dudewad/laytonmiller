@@ -11,7 +11,7 @@ LMApp_conditionalLoadList.push({
 					LANGUAGE: "es_ar",
 					HEADER: {
 						TITLE: "LAYTON MILLER",
-						SUBTITLE: "Architecto web, Líder de equipos de desarrollo"
+						SUBTITLE: "Architecto web, Líder de equipos"
 					},
 					NAVIGATION: {
 						TECHNICAL_SUMMARY: "Resumen",
@@ -27,7 +27,7 @@ LMApp_conditionalLoadList.push({
 						DESCRIPTION: "<img src='asset/image/misc/portrait.jpg' class='portrait'/><p>Hola, me llamo Layton. Soy arquitecto de aplicaciones web.</p><p>Desarrollo aplicaciones y páginas web expandibles y bellas que funcionan en cualquier aparato, sistema operativo y browser que quieran mis clientes.</p><p>Abajo hay una lista simple de mis habilidades. Eligo estes números basado en mis observaciones comparandome a mis compañeros, y a la comunidad en general. Un cinco acá significa que yo estaría cómodo dando algúna clase sobre tal tema.</p><p>Haz clic en ellos para leer más.</p>"
 					},
 					KEY: {
-						title: "Key",
+						title: "Clave",
 						items: [
 							"5 - Nivel experto",
 							"4 - Nivel avanzado",
@@ -38,7 +38,7 @@ LMApp_conditionalLoadList.push({
 					},
 					SUMMARY_GROUPS: {
 						LANGUAGES: {
-							TITLE: "Languages",
+							TITLE: "Lenguajes",
 							ITEMS: {
 								JAVASCRIPT: {
 									NAME: "Javascript",
@@ -59,7 +59,7 @@ LMApp_conditionalLoadList.push({
 							}
 						},
 						TECHNOLOGIES: {
-							TITLE: "Technologies",
+							TITLE: "Technologías",
 							ITEMS: {
 								HANDLEBARS: {
 									NAME: "Handlebars",
@@ -84,7 +84,7 @@ LMApp_conditionalLoadList.push({
 							}
 						},
 						PROCESS: {
-							TITLE: "Process",
+							TITLE: "Proceso",
 							ITEMS: {
 								VCS: {
 									NAME: "Version Control",
@@ -101,7 +101,7 @@ LMApp_conditionalLoadList.push({
 							}
 						},
 						TOOLING: {
-							TITLE: "Tooling",
+							TITLE: "Herramientas",
 							ITEMS: {
 								GRUNT: {
 									NAME: "Build Tools",
@@ -118,7 +118,7 @@ LMApp_conditionalLoadList.push({
 							}
 						},
 						SOFT_SKILLS: {
-							TITLE: "Soft Skills",
+							TITLE: "Otras aptitudes",
 							ITEMS: {
 								CROSS_DISCIPLINE: {
 									NAME: "Cross Disciplined",
