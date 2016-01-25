@@ -1,4 +1,4 @@
-angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "$q", "CONSTANT", "STRINGS", function ($rootScope, $scope, $state, $q, CONSTANT, STRINGS) {
+angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$state", "$cookies", "$q", "CONSTANT", "STRINGS", function ($rootScope, $scope, $state, $cookies, $q, CONSTANT, STRINGS) {
 	$scope.STRINGS = STRINGS.CORE;
 	$scope.state = {
 		current: {
@@ -9,7 +9,8 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 		},
 		loading: false,
 		transitioning: false,
-		assetViewer: null
+		assetViewer: null,
+		language: $cookies.get("lang")
 	};
 	$scope.load = {
 		component: false,
@@ -22,7 +23,6 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 	var _transitionHandlers = [];
 	var _pageLoadPromise = null;
-
 
 
 
@@ -45,7 +45,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 			e.preventDefault();
 			return;
 		}
-		 if (!$scope.state.current.name) {
+		if (!$scope.state.current.name) {
 			$scope.state.current.name = toState.name;
 		}
 
@@ -58,7 +58,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 			promises.push(p.promise);
 		}
 		//If there's no from state, this is a manual call from the initial page load. Don't fire another load go call.
-		if(fromState) {
+		if (fromState) {
 			_pageLoadPromise = $state.go(data.name, data.params);
 			promises.push(_pageLoadPromise.promise);
 		}
@@ -109,7 +109,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	 * When a state load completes,
 	 */
 	$rootScope.$on("$stateChangeStart", function (e, toState, toParams, fromState, fromParams) {
-		if(!fromState.name) {
+		if (!fromState.name) {
 			_triggerTransitionOut(e, toState);
 		}
 	});
@@ -142,14 +142,14 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
-	$scope.parseRootStateName = function(state){
+	$scope.parseRootStateName = function (state) {
 		var s = state ? state : $scope.state.current.name;
 		return s ? s.split(".")[0] : s;
 	};
 
 
 
-	$scope.parseFullStateName = function(state){
+	$scope.parseFullStateName = function (state) {
 		var s = state ? state : $scope.state.current.name;
 		s = s ? s.split(".").join("-") : s;
 		return s;
@@ -157,7 +157,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
-	$scope.$watch(function(){
+	$scope.$watch(function () {
 		return $scope.load.page || $scope.load.component || $scope.state.transitioning;
 	}, _setLoadState);
 
@@ -171,7 +171,7 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
-	function _setLoadState(isLoading){
+	function _setLoadState(isLoading) {
 		$scope.state.loading = isLoading;
 	}
 

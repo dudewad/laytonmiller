@@ -30,12 +30,21 @@
 	nav.main-nav{
 		background:rgba($dark,.9);
 
-		.language-selector{
+		.language-selector-trigger{
 			&:hover{
 				.alternator-bg{
 					opacity:1;
 				}
 			}
+		}
+	}
+
+	.language-selector{
+		background:rgba($dark, .5);
+		color:$light;
+
+		form{
+			color:$dark;
 		}
 	}
 
@@ -175,11 +184,13 @@
 		}
 	}
 
-	.timeline-hint {
+	.circle-wrapper{
 		color: $light;
-		background:$dark;
+		background: $dark;
 		border-color: $light;
+	}
 
+	.timeline-hint {
 		.directions{
 			border-color:$light;
 		}

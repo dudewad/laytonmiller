@@ -79,6 +79,14 @@ header,
 	padding:3em;
 }
 
+.circle-wrapper{
+	width: 250px;
+	height: 250px;
+	margin-left: -125px;
+	border: .5em solid;
+	border-radius: 50%;
+}
+
 .clearfix:after {
 	content: ".";
 	display: block;

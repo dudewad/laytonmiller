@@ -139,18 +139,13 @@
 	.timeline-hint {
 		position: absolute;
 		z-index: -1;
-		width: 230px;
-		height: 230px;
-		margin-left: -115px;
 		opacity: 0;
 		@include prefixProp("transition", "margin-top 250ms, opacity 250ms");
 		@include prefixProp("transition-timing-function", "cubic-bezier(0.75, 0.2, 0.1, 0.9)");
-		border: .5em solid;
-		border-radius: 50%;
 
 		&.active {
-			z-index: 1000;
 			opacity: 1;
+			z-index:1;
 		}
 
 		h2{

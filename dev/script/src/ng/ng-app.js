@@ -1,7 +1,10 @@
 function LMApp_conditionalLoad($cookies) {
 	var list = LMApp_conditionalLoadList;
-	var lang = $cookies.get("lang") || "en_us";
-	lang = lang.toLowerCase();
+	var lang = $cookies.get("lang");
+	if(!lang) {
+		lang = "EN_US";
+		$cookies.put("lang", lang);
+	}
 
 	if(list && Array.isArray(list)){
 		//Sort all lazy load items by conditional load type
@@ -10,7 +13,7 @@ function LMApp_conditionalLoad($cookies) {
 			try {
 				switch (item.condition.toLowerCase()) {
 					case "cookie":
-						if(item.cookie.toLowerCase() === "lang" && item.value.toLowerCase() === lang){
+						if(item.cookie.toLowerCase() === "lang" && item.value.toLowerCase() === lang.toLowerCase()){
 							(item.fn)();
 						}
 						break;

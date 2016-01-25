@@ -1,0 +1,73 @@
+[data-lm-language-selector] {
+	.language-selector-trigger {
+		position: absolute;
+		bottom: 3em;
+		width: 100%;
+
+		i {
+			font-size: 1.3em;
+			position: relative;
+			bottom: 0.075em;
+		}
+
+		.alternator {
+			margin: 0 3em;
+			position: relative;
+		}
+	}
+
+	.language-selector {
+		position: fixed;
+		visibility: hidden;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: 100%;
+		opacity: 0;
+		@include prefixProp("transition", "opacity 250ms, visibility:250ms");
+
+		&.active {
+			opacity: 1;
+			z-index: 1;
+			visibility: visible;
+
+			.circle-wrapper {
+				margin-top: -125px;
+			}
+		}
+
+		h3 {
+			font-weight: 200;
+			font-size: 2em;
+			margin: .5em 0 .75em 0;
+		}
+
+		i {
+			font-size: 3.5em;
+			display: block;
+		}
+
+		form {
+			select {
+				min-width: 50%;
+				padding: .5em;
+			}
+		}
+
+		.circle-wrapper {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -175px;
+			display: table;
+			@include prefixProp("transition", "margin-top 250ms");
+
+			.vcenter {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+		}
+	}
+}
