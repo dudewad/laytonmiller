@@ -24,16 +24,16 @@ LMApp_conditionalLoadList.push({
 				TECHNICAL_SUMMARY: {
 					HEADER: {
 						TITLE: "Resumen",
-						DESCRIPTION: "<img src='asset/image/misc/portrait.jpg' class='portrait'/><p>Hello, my name is Layton. I am a web application architect.</p><p>I build scalable, beautiful applications and websites that work on any device, OS, and browser that my clients want.</p><p>Below is a simple rating of some of my skills. Take note: I choose these ratings based off my observations comparing myself to my peers, and the general community. A five here indicates that I have enough knowledge about a topic that I would be comfortable teaching it.</p><p>Click them to read more about them.</p>"
+						DESCRIPTION: "<img src='asset/image/misc/portrait.jpg' class='portrait'/><p>Hola, me llamo Layton. Soy arquitecto de aplicaciones web.</p><p>Desarrollo aplicaciones y páginas web expandibles y bellas que funcionan en cualquier aparato, sistema operativo y browser que quieran mis clientes.</p><p>Abajo hay una lista simple de mis habilidades. Eligo estes números basado en mis observaciones comparandome a mis compañeros, y a la comunidad en general. Un cinco acá significa que yo estaría cómodo dando algúna clase sobre tal tema.</p><p>Haz clic en ellos para leer más.</p>"
 					},
 					KEY: {
 						title: "Key",
 						items: [
-							"5 - Highly Proficient",
-							"4 - Proficient",
-							"3 - Solid Experience",
-							"2 - Some Experience",
-							"1 - Little-to-no Experience"
+							"5 - Nivel experto",
+							"4 - Nivel avanzado",
+							"3 - Experiencia",
+							"2 - Alguna experiencia",
+							"1 - Poca experiencia"
 						]
 					},
 					SUMMARY_GROUPS: {
@@ -42,11 +42,11 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								JAVASCRIPT: {
 									NAME: "Javascript",
-									TOOLTIP: "Javascript is my bread and butter. I have very solid skills in application building both from scratch as well as from frameworks such as AngularJS."
+									TOOLTIP: "Javascript es mi herramienta preferida. Tengo mucha experiencia armando aplicaciones avanzados con Javascript nativo, y con frameworks como AngularJS."
 								},
 								HTML: {
 									NAME: "HTML",
-									TOOLTIP: "While HTML is typically easy for developers to grasp as a concept, writing good, semantic markup that performs for SEO and simultaneously enhances ease of developments across devices is not. As an architect, I pride myself in my skill to see a design's markup pitfalls before I build it."
+									TOOLTIP: "Aunque escribir HTML es un concepto bastante básico para la mayoria de desarrolladores, escribir código limpio que sirve para SEO y simultaneamente mejora el proceso de desarollo entre apartos distinto no lo es. Como arquitecto, estoy orgulloso de mi habilidad de ver los problemas potenciales de un diseño antes de armarlo."
 								},
 								CSS: {
 									NAME: "CSS",
