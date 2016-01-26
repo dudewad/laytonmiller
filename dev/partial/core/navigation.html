@@ -20,43 +20,6 @@
 			</a>
 		</li>
 	</ul>
-	<div data-lm-language-selector>
-		<div class="language-selector-trigger">
-			<div class="alternator" ng-click="showLanguageSelector()">
-				<span class="alternator-bg"></span>
-				<div class="alternator-content">
-				<span class="highlight">
-					<i class="lmIcon lmIcon-flag"></i>
-					Select Language
-				</span>
-				<span class="content">
-					<i class="lmIcon lmIcon-flag"></i>
-					Select Language
-				</span>
-				</div>
-			</div>
-
-			<div class="language-selector"
-			     ng-class="{active: languageSelectorState.active}"
-			     ng-click="hideLanguageSelector($event)"
-			     data-hide-lm-language-selector>
-				<div class="circle-wrapper">
-					<div class="vcenter">
-						<i class="lmIcon lmIcon-flag"></i>
-						<h3>Select Language</h3>
-						<form name="language-selector">
-							<label>
-								<select name="language" ng-model="state.language" ng-change="languageChangeHandler(state.language)">
-									<option ng-repeat="language in languages" value="{{language.key}}" ng-selected="language.key === state.language">
-										{{language.value}}
-									</option>
-								</select>
-							</label>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div ng-include data-src="'partial/element/language-selector.html'"></div>
 </nav>
 <div class="nav-toggle"><span class="lmIcon lmIcon-hamburger"></span></div>

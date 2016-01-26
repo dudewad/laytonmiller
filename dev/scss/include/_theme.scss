@@ -27,6 +27,11 @@
 		}
 	}
 
+	::selection{
+		background:$dark;
+		color:$light;
+	}
+
 	nav.main-nav{
 		background:rgba($dark,.9);
 

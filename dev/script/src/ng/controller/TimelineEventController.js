@@ -7,7 +7,6 @@ angular.module("LMApp").controller("TimelineEventController", ["$rootScope", "$s
 	file = file.toLowerCase();
 	file = file.replace(/_/g, "-");
 	file = file.replace("//", "/");
-	console.log(file);
 
 	$scope.$emit(CONSTANT.EVENT.COMPONENT_LOAD_START);
 	$http.get(file).

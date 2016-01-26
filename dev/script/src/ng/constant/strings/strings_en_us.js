@@ -18,6 +18,17 @@ LMApp_conditionalLoadList.push({
 						EXPERIENCE: "Experience",
 						PORTFOLIO: "Portfolio",
 						CONTACT: "Contact"
+					},
+					LANGUAGE_SELECTOR:{
+						TOGGLE: "Language",
+						TITLE: "Select Language"
+					}
+				},
+
+				TIMELINE:{
+					HINT: {
+						TITLE: "NAVIGATE TIMELINE",
+						INSTRUCTION: "Swipe<br>Mouse Wheel<br>Drag"
 					}
 				},
 
@@ -52,9 +63,21 @@ LMApp_conditionalLoadList.push({
 									NAME: "CSS",
 									TOOLTIP: "CSS architecture is as important as HTML architecture because it has effects on efficiency, maintainability, and functionality in legacy browsers. I have spent my career becoming intimately acquainted with CSS and pride myself in elegant solutions that are cross-browser compatible."
 								},
+								NODEJS: {
+									NAME: "NodeJS",
+									TOOLTIP: "As a Javascript developer, NodeJS came easily to me. I am actively experimenting with it and learning more about it, and am happy with the number of useful frameworks that have popped up to accelerate that process, such as Express and Meteor (my new favorite)."
+								},
 								PHP: {
 									NAME: "PHP",
 									TOOLTIP: "As a full-stack developer I have led the tech effort for multiple successful startups. I have used PHP as a back-end solution on many successful projects."
+								},
+								JAVA: {
+									NAME: "Java",
+									TOOLTIP: "I have used Java to write both Android and web applications. While I don't consider myself highly tested in Java, I do have a desire to learn Java, should I be given the opportunity."
+								},
+								C_SHARP: {
+									NAME: "C#",
+									TOOLTIP: "I have worked in C# various times on both middle-tier and front-end applications."
 								}
 							}
 						},
@@ -71,11 +94,15 @@ LMApp_conditionalLoadList.push({
 								},
 								JQUERY: {
 									NAME: "jQuery",
-									TOOLTIP: "No explanation required. The word 'ninja' comes to mind, but that would be too cliché to utter here. Perhaps a 'no duh' will suffice."
+									TOOLTIP: "No explanation required. jQuery: the screwdriver of the Javascript world!"
 								},
 								ANGULARJS: {
 									NAME: "AngularJS",
-									TOOLTIP: "Production projects using AngularJS are both extensible and maintainable. The Microsoft Band online dashboard is a good example of a project where I took a lead architectural role in both its design and development."
+									TOOLTIP: "Production projects using AngularJS are both portable and extensible. The Microsoft Band online dashboard is a good example of a project where I took a lead architectural role in both its design and development."
+								},
+								DATABASES: {
+									NAME: "Databases",
+									TOOLTIP: "I have constructed and performed DBA work on various MySQL relational databases, and I am familiar with MongoDB and use it actively in current projects."
 								},
 								WINJS: {
 									NAME: "WinJS",
@@ -86,6 +113,10 @@ LMApp_conditionalLoadList.push({
 						PROCESS: {
 							TITLE: "Process",
 							ITEMS: {
+								LOCALIZATION: {
+									NAME: "Localization",
+									TOOLTIP: "Nearly every single web application I have written in the last several years has been localized to anywhere between 30 and 130 countries. I know how to think, design, and build for localization."
+								},
 								VCS: {
 									NAME: "Version Control",
 									TOOLTIP: "Git, SVN, TFS. I'm well versed in various flavors of version control, and it forms the backbone of my work. I utilize advanced work flows such as commit hooks to send data to third parties such as Slack or Jira to reduce development effort automatically."
@@ -96,7 +127,7 @@ LMApp_conditionalLoadList.push({
 								},
 								SCRUM: {
 									NAME: "Scrum",
-									TOOLTIP: "Experience with Jira, YouTrack, and Bugzilla. I regularly lead scrum triages with my teams and am fluent in managing backlogs, sprints, etc. I understand how to manage incoming work that is not part of a sprint and the effect it has on the current workload. It is my aim to become a CSM in the near future."
+									TOOLTIP: "Experience with Jira, YouTrack, and Bugzilla. I regularly lead scrum triages with my teams and am fluent in managing backlogs, sprints, etc. It is my aim to become a CSM in the near future."
 								}
 							}
 						},
@@ -122,7 +153,7 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								CROSS_DISCIPLINE: {
 									NAME: "Cross Disciplined",
-									TOOLTIP: "Bridging the gap between creative, UX, BD, DM, dev, QA, and dev-ops takes more than a little knowledge of each silo. My experience across agencies, startups, and sole-proprietorships has given me that knowledge, and it benefits me every day."
+									TOOLTIP: "Bridging the gap between creative, UX, BA, BD, DM, dev, QA, and dev-ops takes more than a little knowledge of each silo. My experience across agencies, startups, and sole-proprietorships has given me that knowledge, and it benefits me every day."
 								},
 								CLIENT_MANAGEMENT: {
 									NAME: "Client Management",
@@ -134,7 +165,53 @@ LMApp_conditionalLoadList.push({
 								},
 								PROJECT_SCOPING: {
 									NAME: "Project Scoping",
-									TOOLTIP: "Knowing how long a project can take before it starts takes big-picture thinking based on real-world experience. Realistic scoping is a skill one can only learn by trial and error. I have done my fair share."
+									TOOLTIP: "Knowing how long a project can take before it starts takes big-picture thinking based on real-world experience. I have said experience."
+								}
+							}
+						},
+						SPOKEN_LANGUAGES: {
+							TITLE: "Spoken Languages",
+							ITEMS: {
+								ENGLISH: {
+									NAME: "English",
+									TOOLTIP: "I was born in Pennsylvania. I've lived in New York, Washington, and Colorado. I've been to more states than I can count and driven across the entirety of the country five times. I like to think my English is at least 'okay'."
+								},
+								SPANISH: {
+									NAME: "Spanish",
+									TOOLTIP: "Did you notice you can switch this site into Spanish via the language selector? My degree is a B.A. of Spanish Language and Literature from Western Washington University. I have lived approximately two years of my life in Argentina. My girlfriend is from Argentina. I'm completely fluent in Spanish."
+								},
+								PORTUGUESE: {
+									NAME: "Portuguese",
+									TOOLTIP: "When I lived in Argentina, I went to visit Brasil. In preparation I studied through the highest level of Portuguese available at my university in Rosario, Argentina."
+								}
+							}
+						},
+						INTERESTS: {
+							TITLE: "Interests",
+							ITEMS: {
+								SCUBA: {
+									NAME: "Scuba",
+									TOOLTIP: "I'm a certified rescue scuba diver, and I'm in active training to attain the mantle of Divemaster."
+								},
+								ART: {
+									NAME: "Art",
+									TOOLTIP: "I studied fine art and design at Western Washington University, and have always been artistic. I enjoy painting with watercolor or digitally with a tablet, and drawing with graphite or charcoal."
+								},
+								MUSIC: {
+									NAME: "Music",
+									TOOLTIP: "I studied percussion at Western Washington University. I have played piano nearly my entire life both solo and in groups. I've also played drums and percussion in jazz ensembles, orchestras, bands, and other groups."
+								},
+								CARPENTRY: {
+									NAME: "Carpentry",
+									TOOLTIP: "My father is a master carpenter, and as a kid I was able to work and learn with him. I now enjoy building all of my own furniture with my girlfriend, from scratch."
+								},
+								BEER: {
+									NAME: "Brewing",
+									TOOLTIP: "I deeply enjoy making things, and food and beverages are a part of that. I brew my own beer, and organize a brewing group called Manly Bräu. It's cooler than it sounds."
+								},
+								ATHLETICS: {
+									NAME: "Athletics",
+									TOOLTIP: "I am athletic, and I enjoy running, going to the gym, and frequenting my local Krav Maga training gym where I constantly get my @$$ kicked by my instructor, Adam. I enjoy events like 5ks, half marathons, and Tough Mudder-style events."
 								}
 							}
 						}

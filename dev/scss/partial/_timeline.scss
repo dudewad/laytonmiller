@@ -151,7 +151,7 @@
 		h2{
 			width: 75%;
 			text-align: center;
-			margin: 2.1em auto .25em auto;
+			margin: 0 auto .25em auto;
 			font-size: 2em;
 			font-weight: 500;
 		}
@@ -177,7 +177,11 @@
 			width: 65%;
 			border: 1px solid;
 			padding: 1em .25em;
-			margin: 1em auto;
+			margin: 1em auto 0 auto;
+
+			p{
+				text-align:left;
+			}
 		}
 	}
 
@@ -197,11 +201,14 @@
 		}
 
 		ul {
+			width: 0;
+			position: absolute;
+			right: 0;
+			z-index: -1;
 			padding: 0;
 			margin: -.25em 2em 0 0;
 			list-style-type: none;
 			border-right: 3px solid;
-			z-index: -1;
 
 			li {
 				display: block;

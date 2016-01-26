@@ -21,8 +21,8 @@
 		<div ng-repeat="event in timeline.events">
 			<div class="timeline-event alternator event-type-{{event.type}}"
 			     data-lm-drag="dragHandler(pointerData, $event)"
-				 ng-class="{active: timeline.eventActivelyTouched==$index, isSwiping: isSwiping }"
-				 data-timeline-sref='{{event.type.toLowerCase() + ".event"}}({"event":"{{event.stringId.toLowerCase()}}"})'>
+			     ng-class="{active: timeline.eventActivelyTouched==$index, isSwiping: isSwiping }"
+			     data-timeline-sref='{{event.type.toLowerCase() + ".event"}}({"event":"{{event.stringId.toLowerCase()}}"})'>
 				<div class="event-content">
 					<span class="alternator-bg"></span>
 
@@ -42,14 +42,12 @@
 		<div class="timeline-hint circle-wrapper"
 		     ng-class="{active: !flags.confirmedTimelineHint}"
 		     data-lm-drag="dragHandler(pointerData, $event)">
-			<h2>NAVIGATE TIMELINE</h2>
-			<div class="directions clearfix">
-				<i class="lmIcon lmIcon-double-arrow-up-down" data-anim-arrow></i>
-				<p>
-					Swipe<br>
-					Mouse Wheel<br>
-					Drag<br>
-				</p>
+			<div class="vcenter">
+				<h2>{{TIMELINE_STRINGS.HINT.TITLE}}</h2>
+				<div class="directions clearfix">
+					<i class="lmIcon lmIcon-double-arrow-up-down" data-anim-arrow></i>
+					<p ng-bind-html="TIMELINE_STRINGS.HINT.INSTRUCTION"></p>
+				</div>
 			</div>
 		</div>
 	</div>

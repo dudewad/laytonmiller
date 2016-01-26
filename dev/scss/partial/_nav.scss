@@ -16,6 +16,7 @@ nav {
 	border-bottom: 0;
 	z-index:1001;
 	@include prefixProp("transition", "left 250ms");
+	overflow:auto;
 
 	&.active{
 		left:0;
@@ -36,7 +37,7 @@ nav {
 	}
 
 	ul {
-		padding: 2em 3em;
+		padding: 2em 3em 0 3em;
 	}
 
 	li {
@@ -63,32 +64,17 @@ nav {
 @media screen and(min-width: $screen-sm-min) {
 	nav {
 		left:0;
-		padding: 2em 0;
+		padding: 10em 0 2em 0;
 		font-size: 1.25em;
-		height: 100%;
 		width: 20%;
 		margin-left: 1%;
-		border: 1px solid #000;
-		border-top: 0;
-		border-bottom: 0;
-		padding-top: 10em;
 
 		.emblem-wrapper {
 			padding: 3em;
-			border-bottom: 1px solid #000;
-		}
-
-		.emblem {
-			padding:.5em;
 		}
 
 		ul {
 			padding: 2em 3em;
-		}
-
-		li {
-			position: relative;
-			margin: 1em 0 2em 0;
 		}
 	}
 

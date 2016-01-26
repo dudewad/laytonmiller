@@ -27,6 +27,7 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 			};
 			var _sref;
 			var _mouseDownEvent;
+			var _hint = element.find(".timeline-hint");
 
 			//Flags
 			var _mouseWheelTransition = false;
@@ -42,7 +43,6 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 				_cta = element.find(".cta");
 				_month = element.find(".month");
 				_year = element.find(".year");
-				_resizeHandlerID = GlobalEventsService.registerResizeHandler(_resizeHandler);
 				scope.isSwiping = false;
 				_enter(_direction.next);
 			}
@@ -75,6 +75,7 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 									.add(dateTween)
 									.to(target, _defaultTransitionTime, {top: center, ease: Power4.easeOut}, "start");
 
+				_swipeTarget = target;
 				_updateDateDisplay();
 			}
 
@@ -95,9 +96,8 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 
 			function _playTimelineHint(){
 				//Center it vertically
-				var hint = element.find(".timeline-hint");
-				var top = angular.element(window).outerHeight() / 2 - hint.outerHeight() / 2;
-				hint.css("top", top + "px");
+				var top = angular.element(window).outerHeight() / 2 - _hint.outerHeight() / 2;
+				_hint.css("top", top + "px");
 
 				var t = new TimelineMax({
 					repeat: -1,
@@ -119,6 +119,9 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 
 			function _abortSwipe(){
 				_killSwipeTween();
+				if(!_swipeTarget){
+					_swipeTarget = _hint;
+				}
 
 				var center = angular.element(window).outerHeight() / 2 - _swipeTarget.outerHeight() / 2;
 
@@ -298,10 +301,6 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 				_swipeTarget = $(originalEvent.target).closest(".timeline-event, .timeline-hint");
 				_mouseDownEvent = pointerData;
 
-				if (originalEvent.type.toLowerCase().indexOf("touch") !== -1) {
-					_isFirstTouch = !_swipeTarget.is(".active");
-					scope.timeline.eventActivelyTouched = scope.timeline.currentEvent;
-				}
 				_sref = _swipeTarget.data("timeline-sref");
 
 				_positioning = {
@@ -331,6 +330,10 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 						_abortSwipe();
 					}
 					else{
+						if (originalEvent.type.toLowerCase().indexOf("touch") !== -1) {
+							_isFirstTouch = !_swipeTarget.is(".active");
+							scope.timeline.eventActivelyTouched = scope.timeline.currentEvent;
+						}
 						_timelineEventClickHandler();
 					}
 				}
@@ -342,6 +345,7 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 				else {
 					var t = new TimelineMax();
 					t.to(_swipeTarget, time, {top: "+=" + distance + "px"});
+					scope.timeline.eventActivelyTouched = null;
 
 					//The "timeline hint" can be a swipe-able object. If that's the case, we need to confirm that
 					//the timeline hint has been seen for the user, and skip bringing in the next event since the
@@ -383,6 +387,10 @@ angular.module("LMApp").directive("lmTimeline", ["CONSTANT", "LMRoute", "GlobalE
 					_playTimelineHint();
 				}
 			});
+
+			//Need to register resize handler before init() so as to handle the hint placement, because accepting the
+			//hint is the init() trigger.
+			_resizeHandlerID = GlobalEventsService.registerResizeHandler(_resizeHandler);
 		}
 	};
 }]);

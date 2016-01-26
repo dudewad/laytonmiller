@@ -4,16 +4,21 @@
 			"JAVASCRIPT": "5",
 			"HTML": "5",
 			"CSS": "5",
-			"PHP": "3"
+			"NODEJS": "3",
+			"PHP": "3",
+			"JAVA": "2",
+			"C_SHARP": "2"
 		},
 		"TECHNOLOGIES": {
 			"JQUERY": "5",
 			"GREENSOCK": "5",
 			"HANDLEBARS": "5",
 			"ANGULARJS": "4",
+			"DATABASES": "3",
 			"WINJS": "3"
 		},
 		"PROCESS": {
+			"LOCALIZATION": "5",
 			"VCS": "4",
 			"AGILE": "4",
 			"SCRUM": "4"
@@ -28,6 +33,19 @@
 			"CLIENT_MANAGEMENT": "5",
 			"TEAM_MANAGEMENT": "4",
 			"PROJECT_SCOPING": "4"
+		},
+		"SPOKEN_LANGUAGES": {
+			"ENGLISH": "5",
+			"SPANISH": "5",
+			"PORTUGUESE": "3"
+		},
+		"INTERESTS": {
+			"SCUBA": "4",
+			"MUSIC": "4",
+			"ART": "4",
+			"ATHLETICS": "4",
+			"CARPENTRY": "3",
+			"BEER": "3"
 		}
 	}
 }

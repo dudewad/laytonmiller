@@ -18,6 +18,17 @@ LMApp_conditionalLoadList.push({
 						EXPERIENCE: "Experiencia",
 						PORTFOLIO: "Portfólio",
 						CONTACT: "Contacto"
+					},
+					LANGUAGE_SELECTOR: {
+						TOGGLE: "Idioma",
+						TITLE: "Eligir Idioma"
+					}
+				},
+
+				TIMELINE: {
+					HINT: {
+						TITLE: "NAVEGAR",
+						INSTRUCTION: "Desplazarse<br>Rueda (mouse)<br>Arrastrar"
 					}
 				},
 
@@ -50,11 +61,23 @@ LMApp_conditionalLoadList.push({
 								},
 								CSS: {
 									NAME: "CSS",
-									TOOLTIP: "CSS architecture is as important as HTML architecture because it has effects on efficiency, maintainability, and functionality in legacy browsers. I have spent my career becoming intimately acquainted with CSS and pride myself in elegant solutions that are cross-browser compatible."
+									TOOLTIP: "La arquitectura de CSS es tan importante como la de HTML, porque tiene efectos en eficiencia, mantenebilidad, y funcionalidad en los browsers viejos. He pasado toda mi carrera desarrollando un alto conocimiento de CSS y creo soluciones que son elegantes y compatibles entre los varios browsers y aparatos."
+								},
+								NODEJS: {
+									NAME: "NodeJS",
+									TOOLTIP: "Como engeniero de Javascript, NodeJS me vino fácil. Voy experimentando y aprendiendo activamente, y estoy muy contento con la cantidad de frameworks útiles que hay para acelerar ese proceso, como Express y Meteor (mi nuevo favorito)."
 								},
 								PHP: {
 									NAME: "PHP",
-									TOOLTIP: "As a full-stack developer I have led the tech effort for multiple successful startups. I have used PHP as a back-end solution on many successful projects."
+									TOOLTIP: "Como engeniero 'full-stack', he dirigido las esfuerzas de los equipos de tecnología en varios startups y empresas. PHP fue la solución eligida en varios proyectos exitosos."
+								},
+								JAVA: {
+									NAME: "Java",
+									TOOLTIP: "Usé Java para hacer varios aplicaciónes de web y de Android. Aunque no me considero ningún experto con Java, tengo muchas ganas de aprender más, si se me presenta la oportunidad."
+								},
+								C_SHARP: {
+									NAME: "C#",
+									TOOLTIP: "Trabajé con C# en una multitud de aplicaciónes, para middle-tier y también front-end."
 								}
 							}
 						},
@@ -63,40 +86,48 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								HANDLEBARS: {
 									NAME: "Handlebars",
-									TOOLTIP: "Handlebars has helped me deliver both statically generated as well as Javascript driven solutions for major clients such as Intel and Microsoft. In fact, at the time of this writing, all global components for the Intel.com global initiative were generated out of a library that I architected!"
+									TOOLTIP: "Handlebars me ayudó a armar páginas estaticas y dinámicas para grandes clients como Intel y Microsoft. De hecho, al momento de escribir estas palabras, todas los componentes de Intel.com son generados por una librería de la cual yo soy arquitecto!"
 								},
 								GREENSOCK: {
 									NAME: "Greensock API",
-									TOOLTIP: "Why, this very site uses some Greensock to handle animation! It is one of my favorite APIs and I am extremely comfortable using it."
+									TOOLTIP: "Esta página misma tiene Greensock incorporado para hacer ciertas animaciónes! Es uno de mis APIs preferido y estoy muy como usandolo."
 								},
 								JQUERY: {
 									NAME: "jQuery",
-									TOOLTIP: "No explanation required. The word 'ninja' comes to mind, but that would be too cliché to utter here. Perhaps a 'no duh' will suffice."
+									TOOLTIP: "Claro."
 								},
 								ANGULARJS: {
 									NAME: "AngularJS",
-									TOOLTIP: "Production projects using AngularJS are both extensible and maintainable. The Microsoft Band online dashboard is a good example of a project where I took a lead architectural role in both its design and development."
+									TOOLTIP: "Proyectos armados con AngularJS son portátiles y expandibles. El Dashboard de Web del Microsoft Band es un buen ejemplo de un proyecto en lo cual yo tome el rol de arquitecto en su diseño y desarrollo."
+								},
+								DATABASES: {
+									NAME: "Bases de Datos",
+									TOOLTIP: "Construí y trabaje como DBA en una variedad de bases de datos de MySQL, y tengo conocimiento de MongoDB, lo cual uso en proyectos actuales."
 								},
 								WINJS: {
 									NAME: "WinJS",
-									TOOLTIP: "When Microsoft launched Windows 8, they launched a whole new platform for authoring apps as well. I worked on multiple Windows applications that were delivered to over 60 countries worldwide, interacting with millions of people."
+									TOOLTIP: "Con el lanzamiento de Windows 8, Microsoft también lanzó una plataforma nueva para crear aplicaciónes. Yo trabaje en varias aplicaciónes de Windows para Microsoft que se producieron en mas de 60 paises atravez del mundo, interactuando con millones de personas."
 								}
 							}
 						},
 						PROCESS: {
 							TITLE: "Proceso",
 							ITEMS: {
+								LOCALIZATION: {
+									NAME: "Localización",
+									TOOLTIP: "Casi cada aplicación que escribo en los últimos años fue localizado a entre 30 y 130 paises. Se pensar, diseñar, y construir para la localización."
+								},
 								VCS: {
 									NAME: "Version Control",
-									TOOLTIP: "Git, SVN, TFS. I'm well versed in various flavors of version control, and it forms the backbone of my work. I utilize advanced work flows such as commit hooks to send data to third parties such as Slack or Jira to reduce development effort automatically."
+									TOOLTIP: "Git, SVN, TFS. Soy experimentado en varios tipos de version control, y forma una parte muy importante de mi trabajo. Utilizo técnicas avanzadas como commit hooks para enviar datos a otras aplicaciónes como Slack o Jira para reducir la esfuerza de desarollo automaticamente."
 								},
 								AGILE: {
 									NAME: "Agile",
-									TOOLTIP: "I am comfortable working in sprints and using scrum best practices to enhance the development process. I have led or been on Agile/scrum teams for major projects like the Intel global rebrand, Microsoft Band Online Dashboard and Xbox.com's launch of the Xbox One properties."
+									TOOLTIP: "Estoy muy cómodo trabajadon en sprints y usando los sistemas de scrum para mejorar el proceso de desarrollo. He sido lider o part de equipos de Agile/scrum en grandes proyectos como el rebrand global de Intel, el Dashboard de Web del Microsoft Band, y el lanzamiento de los propiedades de Xbox One para Xbox.com."
 								},
 								SCRUM: {
 									NAME: "Scrum",
-									TOOLTIP: "Experience with Jira, YouTrack, and Bugzilla. I regularly lead scrum triages with my teams and am fluent in managing backlogs, sprints, etc. I understand how to manage incoming work that is not part of a sprint and the effect it has on the current workload. It is my aim to become a CSM in the near future."
+									TOOLTIP: "Tengo experiencia con Jira, YouTrack y Bugzilla. Parte de mi día-a-día es manejar o participar en los scrum triages con mis equipos y tengo fluidez en trabajar con backlogs, sprints, etc. Me gustaría certificarme como CSM en el futuro."
 								}
 							}
 						},
@@ -105,15 +136,15 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								GRUNT: {
 									NAME: "Build Tools",
-									TOOLTIP: "Front-end build tools have become a de-facto standard for development. I have embraced them fully and have even provided the national Razorfish team with a new standard recommendation on Grunt usage process."
+									TOOLTIP: "Los 'front-end build tools' llegaron a ser un estandard en la industria. Tomo ventaja de ellos todos los días, hasta dar una recomendación al equipo nacional de Razorfish en el proceso de usar al Grunt."
 								},
 								CSS_PREPROCESSORS: {
-									NAME: "CSS Pre-processors",
-									TOOLTIP: "SASS and LESS are now considered a standard, and I am fluent with both. Beyond that, I have what I like to consider a sophisticated opinion about what makes good CSS pre-processing architecture."
+									NAME: "Pre-procesadores de CSS",
+									TOOLTIP: "SASS y LESS ya son estandardes, y me hice experto con las dos. Ademas de eso, tengo lo que a mi me gusta considerar una opinion avanzado de que es la buena arquitectura de los lenguajes de los pre-procesadores de CSS."
 								},
 								CUSTOM_TOOLING: {
 									NAME: "Custom/Open Source",
-									TOOLTIP: "Absent a tool that I need, I've been known to write one, or to contribute to open source projects to enhance an existing tool that would benefit from an upgrade."
+									TOOLTIP: "Si me falta alguna herramienta, tengo la habilidad de armar una, o contribuir a algún proyecto open source para mejorar una herramienta que se beneficiaría de una aumentación."
 								}
 							}
 						},
@@ -122,19 +153,65 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								CROSS_DISCIPLINE: {
 									NAME: "Cross Disciplined",
-									TOOLTIP: "Bridging the gap between creative, UX, BD, DM, dev, QA, and dev-ops takes more than a little knowledge of each silo. My experience across agencies, startups, and sole-proprietorships has given me that knowledge, and it benefits me every day."
+									TOOLTIP: "Conectar los grupos de diseño, UX, BD, DM, desarrollo, QA, y dev-ops requiere mas que un poquito de experiencia con cada categoría. Mi experiencia entre las agencias, startups, y empresas me dió mucho conocimiento que me ayuda todos los días."
 								},
 								CLIENT_MANAGEMENT: {
 									NAME: "Client Management",
-									TOOLTIP: "A good developer is one thing. A developer who can talk to non-technical parties is another."
+									TOOLTIP: "Un buen engeniero es una cosa. Un engeniero que sabe hablar con gente que no conoce lo técnico es otra."
 								},
 								TEAM_MANAGEMENT: {
 									NAME: "Team Management",
-									TOOLTIP: "Leading a team requires loyalty from those around you. I believe that loyalty can only be garnered through respect. I respect my co-workers, no matter where they sit in the organization."
+									TOOLTIP: "Hacerse el lider de un equipo requiere lealtad de los que te rodean. Yo creo que lealtad solamente se genera atravez del respeto. Yo respeto a mis compañeros de trabajo, no importa la posición que tiene en la organización."
 								},
 								PROJECT_SCOPING: {
 									NAME: "Project Scoping",
-									TOOLTIP: "Knowing how long a project can take before it starts takes big-picture thinking based on real-world experience. Realistic scoping is a skill one can only learn by trial and error. I have done my fair share."
+									TOOLTIP: "Saber cuanto tiempo va a durar un proyecto antes que empieza requiere pensamiento en las detalles grandes basado en experiencia del mundo real. Tengo dicho experiencia."
+								}
+							}
+						},
+						SPOKEN_LANGUAGES: {
+							TITLE: "Idiomas",
+							ITEMS: {
+								ENGLISH: {
+									NAME: "Inglés",
+									TOOLTIP: "Yo nací en Pennsylvania, EE.UU. y vivi mi vida en varios estados como Nueva York, Washington, y Colorado. Hablo lo suficiente de inglés para manejarme en el trabajo y pedir comida. ;)"
+								},
+								SPANISH: {
+									NAME: "Español",
+									TOOLTIP: "Mi título es un B.A. de lenguage y literatura española de Western Washington University. Viví dos años de mi vida en Argentina, y viajé por muchos países hispanohablantes. Mi novia es Argentina, y me sigue corrigiendo todos los días."
+								},
+								PORTUGUESE: {
+									NAME: "Portugués",
+									TOOLTIP: "Cuando vivía en Argentina, fui a visitar a Brasil. Estudie hasta el nivel mas alto que ofrecía la universidad en Rosario, Argentina."
+								}
+							}
+						},
+						INTERESTS: {
+							TITLE: "Intereses",
+							ITEMS: {
+								SCUBA: {
+									NAME: "Buceo",
+									TOOLTIP: "Tengo certificado en rescate de buceo, y estoy anotado en un programa para obtener el certificado de Divemaster."
+								},
+								ART: {
+									NAME: "Arte",
+									TOOLTIP: "Estudié arte y diseño en Western Washington University, y siempre me consideraba artístico. Me gusta pintar con acuarelas o digitalmente con un tablet, y dibujar con lápiz o carbón."
+								},
+								MUSIC: {
+									NAME: "Música",
+									TOOLTIP: "Estudié percusión en Western Washington University. Toco piano casi toda mi vida solo y con grupos. También toqué la batería y percusión en grupos de jazz, orquestras, bandas de rock, y otros grupos."
+								},
+								CARPENTRY: {
+									NAME: "Carpintería",
+									TOOLTIP: "Mi padre es un carpintero maestro, y cuando era niño tuve la oportunidad de trabajar y aprender con él. Ahora me gusta construir todos mis propios muebles con mi novia."
+								},
+								BEER: {
+									NAME: "Hacer Cerveza",
+									TOOLTIP: "Como me gusta hacer cosas, naturalmente me da mucho gusto crear la comida y las bebidas también. Hago mi propia cerveza, y organizo un grupo de hombres feroces que se llama 'Manly Bräu'."
+								},
+								ATHLETICS: {
+									NAME: "Atletismo",
+									TOOLTIP: "Me gusta correr, ir al gimnasio, y ir al gimnasio de Krav Maga donde siempre me caga a patadas mi instructor, Adam. Me gustan los eventos como los 5k, media maraton, y eventos estilo Tough Mudder."
 								}
 							}
 						}
@@ -145,7 +222,7 @@ LMApp_conditionalLoadList.push({
 					EVENTS: {
 						DESIGN_MILL: {
 							LABEL: "Design Mill",
-							SUBLABEL: "Founder - CEO"
+							SUBLABEL: "Fundador - CEO"
 						},
 						YACHTVID: {
 							LABEL: "Yacht Vid",
@@ -157,11 +234,11 @@ LMApp_conditionalLoadList.push({
 						},
 						GLOBANT: {
 							LABEL: "Globant",
-							SUBLABEL: "Senior Front-End Developer"
+							SUBLABEL: "Engeniero Front-end, Senior"
 						},
 						RAZORFISH: {
 							LABEL: "Razorfish",
-							SUBLABEL: "Presentation Layer Architect"
+							SUBLABEL: "Arquitecto Web"
 						}
 					}
 				},
@@ -170,23 +247,23 @@ LMApp_conditionalLoadList.push({
 					EVENTS: {
 						INTEL_ANTHEM: {
 							LABEL: "Intel Anthem",
-							SUBLABEL: "Presentation Layer Architect"
+							SUBLABEL: "Arquitecto Web"
 						},
 						INTEL: {
 							LABEL: "Intel.com",
-							SUBLABEL: "Presentation Layer Architect"
+							SUBLABEL: "Arquitecto Web"
 						},
 						RYSE: {
 							LABEL: "Xbox One - Ryse",
-							SUBLABEL: "Development Lead"
+							SUBLABEL: "Lead de Desarrollo"
 						},
 						BAND: {
 							LABEL: "Microsoft Band",
-							SUBLABEL: "Presentation Layer Architect"
+							SUBLABEL: "Arquitecto Web"
 						},
 						XBOX: {
 							LABEL: "Xbox.com",
-							SUBLABEL: "Development Team Lead"
+							SUBLABEL: "Lead de Desarrollo"
 						}
 					}
 				}

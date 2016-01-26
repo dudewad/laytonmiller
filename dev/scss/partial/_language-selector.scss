@@ -1,8 +1,7 @@
 [data-lm-language-selector] {
 	.language-selector-trigger {
-		position: absolute;
-		bottom: 3em;
 		width: 100%;
+		margin-bottom:2em;
 
 		i {
 			font-size: 1.3em;
@@ -39,8 +38,8 @@
 
 		h3 {
 			font-weight: 200;
-			font-size: 2em;
-			margin: .5em 0 .75em 0;
+			font-size: 1.75em;
+			margin:0 0 .75em 0;
 		}
 
 		i {
@@ -60,14 +59,15 @@
 			top: 50%;
 			left: 50%;
 			margin-top: -175px;
-			display: table;
 			@include prefixProp("transition", "margin-top 250ms");
+		}
+	}
 
-			.vcenter {
-				display: table-cell;
-				vertical-align: middle;
-				text-align: center;
-			}
+	@media screen and(min-width: $screen-sm-min){
+		.language-selector-trigger{
+			position: absolute;
+			bottom: 3em;
+			margin-bottom: 0;
 		}
 	}
 }

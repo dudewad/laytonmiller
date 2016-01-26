@@ -174,10 +174,4 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	function _setLoadState(isLoading) {
 		$scope.state.loading = isLoading;
 	}
-
-
-
-	angular.element("body").on("selectstart", function () {
-		return false;
-	});
 }]);

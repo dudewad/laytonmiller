@@ -1,4 +1,12 @@
-angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope", "$http", "$timeout", "CONSTANT", "STRINGS", function ($rootScope, $scope, $http, $timeout, CONSTANT, STRINGS) {
+angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope", "$http", "$timeout", "$sce", "CONSTANT", "STRINGS", function ($rootScope, $scope, $http, $timeout, $sce, CONSTANT, STRINGS) {
+	//Allow HTML for timeline hint
+	for (var obj in STRINGS.TIMELINE.HINT) {
+		if(typeof STRINGS.TIMELINE.HINT[obj] === "string") {
+			STRINGS.TIMELINE.HINT[obj] = $sce.trustAsHtml(STRINGS.TIMELINE.HINT[obj]);
+		}
+	}
+	$scope.TIMELINE_STRINGS = STRINGS.TIMELINE;
+
 	$scope.currentState = {
 		pause: false
 	};
@@ -24,6 +32,11 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 		currentEvent: 0,
 		eventActivelyTouched: null
 	};
+
+	//for (var str in $scope.TIMELINE_STRINGS) {
+		//if($scope.TIMELINE_STRINGS.hasOwnProperty[str] && typeof $scope.TIMELINE_STRINGS === "string") {
+		//}
+	//}
 
 
 

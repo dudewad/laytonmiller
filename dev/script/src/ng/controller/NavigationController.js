@@ -1,5 +1,6 @@
 angular.module("LMApp").controller("NavigationController", ["$scope", "CONSTANT", "GlobalEventsService", "STRINGS", function ($scope, CONSTANT, GlobalEventsService, STRINGS) {
-	$scope.STRINGS = STRINGS.CORE.NAVIGATION;
+	$scope.NAV_STRINGS = STRINGS.CORE.NAVIGATION;
+	$scope.LANGUAGE_STRINGS = STRINGS.CORE.LANGUAGE_SELECTOR;
 	$scope.currentState = {
 		active: false
 	};
@@ -8,25 +9,25 @@ angular.module("LMApp").controller("NavigationController", ["$scope", "CONSTANT"
 		{
 			"className": "technical-summary",
 			"sref": CONSTANT.STATE.TECHNICAL_SUMMARY.NAME,
-			"text": $scope.STRINGS.TECHNICAL_SUMMARY,
+			"text": $scope.NAV_STRINGS.TECHNICAL_SUMMARY,
 			"isHovered": false
 		},
 		{
 			"className": "experience",
 			"sref": CONSTANT.STATE.EXPERIENCE.NAME,
-			"text": $scope.STRINGS.EXPERIENCE,
+			"text": $scope.NAV_STRINGS.EXPERIENCE,
 			"isHovered": false
 		},
 		{
 			"className": "portfolio",
 			"sref": CONSTANT.STATE.PORTFOLIO.NAME,
-			"text": $scope.STRINGS.PORTFOLIO,
+			"text": $scope.NAV_STRINGS.PORTFOLIO,
 			"isHovered": false
 		},
 		{
 			"className": "contact",
 			"sref": CONSTANT.STATE.CONTACT.NAME,
-			"text": $scope.STRINGS.CONTACT,
+			"text": $scope.NAV_STRINGS.CONTACT,
 			"isHovered": false
 		}
 	];

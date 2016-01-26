@@ -23,7 +23,7 @@ body{
 		top:0;
 		left:0;
 		width:100%;
-		z-index:1;
+		z-index:999;
 	}
 
 	.site-content {
@@ -85,6 +85,14 @@ header,
 	margin-left: -125px;
 	border: .5em solid;
 	border-radius: 50%;
+	display:table;
+
+	.vcenter {
+		width:100%;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+	}
 }
 
 .clearfix:after {
