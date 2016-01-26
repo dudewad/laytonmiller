@@ -20,7 +20,10 @@ module.exports = {
                 src: ["<%=pkg.directories.asset %>**/*",
 	                "<%=pkg.directories.data %>**/*",
 	                "<%=pkg.directories.partial %>**/*",
-	                "<%=pkg.directories.style %>**/*.css"],
+	                "<%=pkg.directories.style %>**/*.css",
+	                "!<%=pkg.directories.style %>**/*.css.map",
+                    "!<%=pkg.directories.font %>/lmIcon/src/**/*"
+                ],
                 dest: "<%=pkg.directories.prod_root %>"
             }
         ]

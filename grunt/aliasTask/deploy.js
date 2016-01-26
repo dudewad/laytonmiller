@@ -5,9 +5,7 @@
  */
 module.exports = function (grunt) {
     grunt.registerTask("deploy:prod", [
-        //Run dev and dist every time. When packaging for prod we
-        //want all environments to be in sync.
-        "dev",
+	    //dist runs dev, so environments will be in sync
         "dist",
         "ftp-deploy:prod"
     ]);

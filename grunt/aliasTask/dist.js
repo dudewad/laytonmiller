@@ -7,8 +7,8 @@ module.exports = function (grunt) {
     grunt.registerTask("dist", [
         //Run dev every time. When packaging for prod we
         //want both environments to be in sync.
+	    "clean",
         "dev",
-        "sass:dist",
         "concat:dist",
         "copy:dist",
 	    "uglify:dist"
