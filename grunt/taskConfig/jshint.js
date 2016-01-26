@@ -9,6 +9,7 @@ module.exports = {
         },
         src: [
 	        "<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>**/*.js",
+	        "!<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>/vendor/**/*.js",
 	        "!<%=pkg.directories.dev_root %><%=pkg.directories.scriptSrc %>polyfills.js"
         ]
     }

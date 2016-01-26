@@ -33,11 +33,6 @@ angular.module("LMApp").controller("TimelineController", ["$rootScope", "$scope"
 		eventActivelyTouched: null
 	};
 
-	//for (var str in $scope.TIMELINE_STRINGS) {
-		//if($scope.TIMELINE_STRINGS.hasOwnProperty[str] && typeof $scope.TIMELINE_STRINGS === "string") {
-		//}
-	//}
-
 
 
 
