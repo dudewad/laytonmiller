@@ -1,12 +1,12 @@
 {
 	"label": "Ryse",
 	"dateString": "2013",
-	"subLabel": "Xbox.com Lead Developer",
+	"subLabel": "Xbox.com Lead de desarrollo",
 	"client": {
-		"name": "Xbox.com via Razorfish",
+		"name": "Xbox.com a través de Razorfish",
 		"sref": "experience.event({\"event\":\"razorfish\"})"
 	},
-	"content": "<p>As a team lead at Razorfish, I was afforded the opportunity to work as the lead developer for Xbox's .com platform. My team was responsible for ongoing maintenance as well as the creation and deployment of all major Xbox titles - such as launching all Xbox One materials during the Xbox One launch.</p><p>Ryse is an Xbox One game that showcases one of the many interactive campaign landing experiences that were created under my leadershipIt featured an interactive comic book experience, and a 3d visualizer of the main character's attack moves, among other things.</p>",
+	"content": "<p>Visitar: <a href=\"http://www.xbox.com/en-US/xbox-one/games/ryse\" target=\"_blank\">http://www.xbox.com/en-US/xbox-one/games/ryse</a></p><p>La página de Ryse es un video juego del Xbox One que muestra una de las varias experiencias que armó este equipo durante mi tenencia como Lead de Xbox.com en Razorfish. Tiene un libro interactivo digital estilo 'comic', y un visualizador 3d de los ataques del protagonista del juego, entre otras cosas.</p>",
 	"asset": [
 		{
 			"fullUrl": "./asset/image/portfolio/portfolio/ryse/ryse-1.jpg",

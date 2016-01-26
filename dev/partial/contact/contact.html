@@ -1,10 +1,9 @@
-<section class="contact">
+<section class="contact" controller="">
 	<header>
-		<h1>CONTACT</h1>
+		<h1 ng-cloak>{{STRINGS.TITLE}}</h1>
 	</header>
 
 	<div class="content-container">
-		<p>It's easy to get ahold of me, and I'm quick to respond. Please reach out with any ideas or opportunities that you think I may be interested in.</p>
-		<p><a href="mailto:me@laytonmiller.com">me@laytonmiller.com</a></p>
+		<p ng-repeat="str in STRINGS.BODY" ng-bind-html="str"></p>
 	</div>
 </section>

@@ -1,12 +1,12 @@
 {
 	"label": "Intel",
 	"dateString": "2015-2016",
-	"subLabel": "Intel.com Global Site Rebuild",
+	"subLabel": "Reconstrucción Global de Intel.com",
 	"client": {
-		"name": "Intel via Razorfish",
+		"name": "Intel a través de Razorfish",
 		"sref": "experience.event({\"event\":\"razorfish\"})"
 	},
-	"content": "<p>As a Presentation Layer Architect at Razorfish, I was given the chance to do the latest rework for Intel's entire global branding strategy. My work was to spearhead the global rebranding effort through responsive architecture and sound component design.</p><p>My team completed full transformations of existing components, as well as soup-to-nuts creation from creative and strategic conception to execution on new, interesting components.</p><p>Intel partners with Adobe using their AEM to manage all of their content- past experience served me well in providing not only good code, but also solutions that were flexible, localizable globally, and most importantly, authorable by the client.</p>",
+	"content": "<p>Como Arquitecto Front-end en Razorfish, tuve la oportunidad de hacer la reconstrucción más reciente por la estrategia nueva de la marca de Intel. El equipo tenia la responsabilidad de liderar los esfuerzos globales de cambiar a los nuevos estandardes de la marca Intel, por medios de arquitectura responsiva y buen diseño de componentes.</p><p>Mi equipo completó transformaciónes totales de componentes ya creados, y también la creación nueva de una multitud de nuevos componentes desde concepción creativa hasta implementación técnica.</p><p>Intel, en cooperación con Adobe, usa el sistema de Adobe Experience Manager para todo su contenido. Mi experiencia con plataformas similares nos sirvio bien para entregar buen código, y también soluciones flexibles, localizables, y más importante, \"autorables\" por el cliente.</p>",
 	"asset": [
 		{
 			"fullUrl": "./asset/image/portfolio/portfolio/intel/intel-1.jpg",

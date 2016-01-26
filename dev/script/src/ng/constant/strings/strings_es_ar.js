@@ -98,7 +98,7 @@ LMApp_conditionalLoadList.push({
 								},
 								ANGULARJS: {
 									NAME: "AngularJS",
-									TOOLTIP: "Proyectos armados con AngularJS son portátiles y expandibles. El Dashboard de Web del Microsoft Band es un buen ejemplo de un proyecto en lo cual yo tome el rol de arquitecto en su diseño y desarrollo."
+									TOOLTIP: "Proyectos armados con AngularJS son portátiles y expandibles. El Dashboard de Web del Microsoft Band es un buen ejemplo de un proyecto en lo cual yo tome el rol de arquitecto en su diseño y desarrollo. Y también, esta página misma!"
 								},
 								DATABASES: {
 									NAME: "Bases de Datos",
@@ -266,6 +266,14 @@ LMApp_conditionalLoadList.push({
 							SUBLABEL: "Lead de Desarrollo"
 						}
 					}
+				},
+
+				CONTACT: {
+					TITLE: "Contactamosnos",
+					BODY: [
+						"Es facil conectarse conmigo, y respondo lo más rápido posible. Por favor, pongase en contacto conmigo con cualquiera oportunidad o propuesta en la que yo pudiera ser de ayuda.",
+						"<a href='mailto:me@laytonmiller.com'>me@laytonmiller.com</a>"
+					]
 				}
 			});
 		}

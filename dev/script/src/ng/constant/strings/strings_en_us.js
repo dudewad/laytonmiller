@@ -98,7 +98,7 @@ LMApp_conditionalLoadList.push({
 								},
 								ANGULARJS: {
 									NAME: "AngularJS",
-									TOOLTIP: "Production projects using AngularJS are both portable and extensible. The Microsoft Band online dashboard is a good example of a project where I took a lead architectural role in both its design and development."
+									TOOLTIP: "Production projects using AngularJS are both portable and extensible. The Microsoft Band online dashboard is a good example of a project where I took a lead architectural role in both its design and development. Oh yeah, so is this very site!"
 								},
 								DATABASES: {
 									NAME: "Databases",
@@ -266,6 +266,14 @@ LMApp_conditionalLoadList.push({
 							SUBLABEL: "Development Team Lead"
 						}
 					}
+				},
+
+				CONTACT: {
+					TITLE: "Get in touch",
+					BODY: [
+						"It's easy to get ahold of me, and I'm quick to respond. Please reach out with any ideas or opportunities that you think I may be interested in.",
+						"<a href='mailto:me@laytonmiller.com'>me@laytonmiller.com</a>"
+					]
 				}
 			});
 		}

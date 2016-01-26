@@ -1,12 +1,12 @@
 {
 	"label": "Microsoft Band",
 	"dateString": "2014-2015",
-	"subLabel": "Microsoft Band Online Dashboard",
+	"subLabel": "Microsoft Band Dashboard de Web",
 	"client": {
-		"name": "Microsoft via Razorfish",
+		"name": "Microsoft a través de Razorfish",
 		"sref": "experience.event({\"event\":\"razorfish\"})"
 	},
-	"content": "<p>I worked as the team lead for the front-end team developing the angular application that drives the Microsoft online version of their phone application for managing their fitness tracker, \"band\".</p><p>My team was responsible for creation of all middle tier and front-end code. We developed the application on-site in Redmond, teaming up with the combined Razorfish and Microsoft creative/UX departments, the Microsoft Health cloud team, and a team of multiple back-end developers on the Microsoft side.</p><p>Over the course of several months we worked to create and deliver v1.0 of the application, which got good praise from critics.</p>",
+	"content": "<p>Trabajé como el lead del equipo front-end durante el desarrollo de la aplicación web del nuevo \"fitness watch\" de Microsoft, el Microsoft Band.</p><p>Mi equipo fue responsable por la creación de todo el código de middle-tier y front-end. Desarrollamos la aplicación con el equipo de Microsoft en Redmond, WA, juntando con los departamentos creativos/UX combinados de Razorfish y Microsoft, el equipo del cloud de Microsoft Health, y un grupo de engenieros back-end de Microsoft.</p><p>Durante varios meses, trabajamos para crear y lanzar la version 1.0 de la aplicación, que recibio buena crítica.</p>",
 	"asset": [
 		{
 			"fullUrl": "./asset/image/portfolio/portfolio/microsoft-band/band-1.jpg",
