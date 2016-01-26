@@ -24,7 +24,7 @@
 		width: 100%;
 		min-height: 100%;
 		opacity: 0;
-		@include prefixProp("transition", "opacity 250ms, visibility:250ms");
+		@include prefixProp("transition", "opacity 250ms, visibility 250ms, background-color 1000ms");
 
 		&.active {
 			opacity: 1;

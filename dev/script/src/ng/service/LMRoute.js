@@ -1,7 +1,8 @@
-angular.module("LMApp").factory("LMRoute", ["$rootScope", "CONSTANT", function ($rootScope, CONSTANT) {
+angular.module("LMApp").factory("LMRoute", ["$state", function ($state) {
 
 	function go(sref) {
-		$rootScope.$broadcast(CONSTANT.EVENT.LMSREF.SREF_CHANGE, parseParams(sref));
+		var data = parseParams(sref);
+		$state.go(data.name, data.params);
 	}
 
 

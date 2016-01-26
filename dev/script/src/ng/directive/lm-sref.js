@@ -1,4 +1,4 @@
-angular.module("LMApp").directive("lmSref", ["$rootScope", "$state", "LMRoute", "CONSTANT", function ($rootScope, $state, LMRoute, CONSTANT) {
+angular.module("LMApp").directive("lmSref", ["LMRoute", function (LMRoute) {
 	return {
 		scope: true,
 		restrict: "A",
@@ -24,7 +24,7 @@ angular.module("LMApp").directive("lmSref", ["$rootScope", "$state", "LMRoute", 
 				if (attrs.disabled) {
 					return;
 				}
-				$rootScope.$broadcast(CONSTANT.EVENT.LMSREF.SREF_CHANGE, LMRoute.parseParams(attrs.lmSref));
+				LMRoute.go(attrs.lmSref);
 			}
 
 

@@ -44,9 +44,6 @@ angular.module("LMApp").constant("CONSTANT", {
 			"VIEWPORT_STATE_UPDATED": "VIEWPORT_STATE_UPDATED",
 			"MOUSE_MOVE": "MOUSE_MOVE"
 		},
-		"LMSREF": {
-			"SREF_CHANGE": "SREF_CHANGE"
-		},
 		"TIMELINE": {
 			"BUILT": "BUILT",
 			"DATA_RECEIVED": "DATA_RECEIVED",

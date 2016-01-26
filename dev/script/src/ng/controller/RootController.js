@@ -22,7 +22,6 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	$scope.languages = CONSTANT.LANGUAGE;
 
 	var _transitionHandlers = [];
-	var _pageLoadPromise = null;
 
 
 
@@ -57,11 +56,6 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 			typeof h === "function" && (h)(p, toState, fromState);
 			promises.push(p.promise);
 		}
-		//If there's no from state, this is a manual call from the initial page load. Don't fire another load go call.
-		if (fromState) {
-			_pageLoadPromise = $state.go(data.name, data.params);
-			promises.push(_pageLoadPromise.promise);
-		}
 
 		all = $q.all(promises);
 		$scope.load.page = true;
@@ -79,10 +73,8 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 	 * the state.go call in the entire application.
 	 *
 	 * @param toState
-	 *
-	 * @param fromState
 	 */
-	function _transitionOutCompleteHandler(toState, fromState) {
+	function _transitionOutCompleteHandler(toState) {
 		$scope.state.current.name = toState.name;
 		$scope.state.transitioning = false;
 		$scope.state.next.name = null;
@@ -93,25 +85,11 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
-	$rootScope.$on(CONSTANT.EVENT.LMSREF.SREF_CHANGE, _triggerTransitionOut);
-
-
-
 	/**
-	 * When a state load starts,
+	 * When a state load starts
 	 */
-	$rootScope.$on("$stateChangeSuccess", function (e, toState, toParams, fromState, fromParams) {
-	});
-
-
-
-	/**
-	 * When a state load completes,
-	 */
-	$rootScope.$on("$stateChangeStart", function (e, toState, toParams, fromState, fromParams) {
-		if (!fromState.name) {
-			_triggerTransitionOut(e, toState);
-		}
+	$rootScope.$on("$stateChangeStart", function (e, toState) {
+		_triggerTransitionOut(e, toState);
 	});
 
 
@@ -136,12 +114,24 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
+	/**
+	 * Allows external components to register transition functions.
+	 *
+	 * @param handler
+	 */
 	$scope.registerTransitionHandler = function (handler) {
 		_transitionHandlers.push(handler);
 	};
 
 
 
+	/**
+	 * Returns only the root state name, excluding any nested states after the "."
+	 *
+	 * @param state
+	 *
+	 * @returns {null}
+	 */
 	$scope.parseRootStateName = function (state) {
 		var s = state ? state : $scope.state.current.name;
 		return s ? s.split(".")[0] : s;
@@ -149,6 +139,9 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
+	/**
+	 * Returns the full state name, including nested state
+	 */
 	$scope.parseFullStateName = function (state) {
 		var s = state ? state : $scope.state.current.name;
 		s = s ? s.split(".").join("-") : s;
@@ -157,21 +150,36 @@ angular.module("LMApp").controller("RootController", ["$rootScope", "$scope", "$
 
 
 
+	/**
+	 * Watch for when to toggle the loader
+	 */
 	$scope.$watch(function () {
 		return $scope.load.page || $scope.load.component || $scope.state.transitioning;
 	}, _setLoadState);
 
 
 
-	function _applyScope() {
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
+	/**
+	 * Toggle the load state.
+	 *
+	 * @param isLoading {boolean}   Whether or not the load state should be active (true) or inactive (false)
+	 *
+	 * @private
+	 */
+	function _setLoadState(isLoading) {
+		$scope.state.loading = isLoading;
 	}
 
 
 
-	function _setLoadState(isLoading) {
-		$scope.state.loading = isLoading;
+	/**
+	 * One of the reasons I don't like angular...
+	 *
+	 * @private
+	 */
+	function _applyScope() {
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
 	}
 }]);

@@ -7,6 +7,7 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 			var _fromState;
 			var _window = angular.element(window);
 			var _document = angular.element(document);
+			var _completePromise;
 			var viewportHeight;
 			var scrollableHeight;
 
@@ -26,6 +27,7 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 				var path = CONSTANT.PATH.BACKGROUND_IMAGE + stateName + "/" + bp + ".jpg";
 				var windowW = _window.width();
 				element.show();
+				_completePromise = promise;
 
 				_toState = toState;
 				_fromState = fromState;
@@ -74,19 +76,16 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 				}
 
 				img.on("load", function(){
-					_animateTransition(promise);
+					_animateTransition();
 				});
 				img.attr("src", path);
 			}
 
 
 			/**
-			 * Animate the page transition. Since the root controller needs to know when this is completed, we need to
-			 * resolve the promise that was provided when the transition began.
-			 *
-			 * @param completePromise
+			 * Animate the page transition.
 			 */
-			function _animateTransition(completePromise) {
+			function _animateTransition() {
 				var stateName = _toState.name && _toState.name.split(".")[0];
 				var fromStateName = _fromState && _fromState.split(".")[0];
 
@@ -94,14 +93,14 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 
 				//If from/to state are nested states, jump straight to the completion handler.
 				if (stateName == fromStateName) {
-					_transitionCompleteHandler(completePromise);
+					_transitionCompleteHandler();
 				}
 
 				//Otherwise, continue with the transition
 				var t = new TimelineMax({
 					paused: true,
 					onComplete: function(){
-						_transitionCompleteHandler(completePromise);
+						_transitionCompleteHandler();
 					}
 				});
 
@@ -112,12 +111,16 @@ angular.module("LMApp").directive("lmPageBackground", ["CONSTANT", "GlobalEvents
 
 
 
-			function _transitionCompleteHandler(completePromise){
+			/**
+			 * Since the root controller needs to know when this is completed, we need to
+			 * resolve the promise that was provided when the transition began.
+			 */
+			function _transitionCompleteHandler(){
 				_setSection(_toState.name);
 				element.html("");
 				_setTransitionState();
-				//All done, resolve the promise back to root
-				completePromise.resolve();
+				//All done, resolve the promise back to root controller
+				_completePromise.resolve();
 			}
 
 
