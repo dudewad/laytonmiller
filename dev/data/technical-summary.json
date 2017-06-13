@@ -4,16 +4,17 @@
 			"JAVASCRIPT": "5",
 			"HTML": "5",
 			"CSS": "5",
-			"NODEJS": "3",
+			"NODEJS": "4",
 			"PHP": "3",
 			"JAVA": "2",
 			"C_SHARP": "2"
 		},
 		"TECHNOLOGIES": {
+			"ANGULAR2": "5",
 			"JQUERY": "5",
 			"GREENSOCK": "5",
 			"HANDLEBARS": "5",
-			"ANGULARJS": "4",
+			"AWS": "3",
 			"DATABASES": "3",
 			"WINJS": "3"
 		},
@@ -25,7 +26,8 @@
 		},
 		"TOOLING": {
 			"CSS_PREPROCESSORS": "5",
-			"GRUNT": "4",
+			"WEBPACK": "5",
+			"GRUNT": "5",
 			"CUSTOM_TOOLING": "3"
 		},
 		"SOFT_SKILLS": {
@@ -40,7 +42,7 @@
 			"PORTUGUESE": "3"
 		},
 		"INTERESTS": {
-			"SCUBA": "4",
+			"SCUBA": "5",
 			"MUSIC": "4",
 			"ART": "4",
 			"ATHLETICS": "4",

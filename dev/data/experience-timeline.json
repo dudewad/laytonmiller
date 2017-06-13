@@ -1,9 +1,18 @@
 {
 	"events": [
 		{
+			"stringId": "GLYMPSE",
+			"start": "3/15/2016",
+			"end": "current",
+			"data": {
+				"root": "/data/experience/",
+				"file": "glympse.json"
+			}
+		},
+		{
 			"stringId": "RAZORFISH",
 			"start": "6/10/2013",
-			"end": "current",
+			"end": "3/1/2016",
 			"data": {
 				"root": "/data/experience/",
 				"file": "razorfish.json"

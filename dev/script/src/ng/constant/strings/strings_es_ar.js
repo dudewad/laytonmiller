@@ -84,6 +84,10 @@ LMApp_conditionalLoadList.push({
 						TECHNOLOGIES: {
 							TITLE: "Technologías",
 							ITEMS: {
+								ANGULAR2: {
+									NAME: "Angular 2",
+									TOOLTIP: "Angular 2 es un framework hermosa que mejoró muchisimo con la segunda versión. Me gusta mucho como su arquitectura se asemeja a lo de ES6. Ultimamente he pasado una porción siginificante de mi tiempo construyendo applicaciónes web con Angular 2."
+								},
 								HANDLEBARS: {
 									NAME: "Handlebars",
 									TOOLTIP: "Handlebars me ayudó a armar páginas estaticas y dinámicas para grandes clients como Intel y Microsoft. De hecho, al momento de escribir estas palabras, todas los componentes de Intel.com son generados por una librería de la cual yo soy arquitecto!"
@@ -96,9 +100,9 @@ LMApp_conditionalLoadList.push({
 									NAME: "jQuery",
 									TOOLTIP: "Claro."
 								},
-								ANGULARJS: {
-									NAME: "AngularJS",
-									TOOLTIP: "Proyectos armados con AngularJS son portátiles y expandibles. El Dashboard de Web del Microsoft Band es un buen ejemplo de un proyecto en lo cual yo tome el rol de arquitecto en su diseño y desarrollo. Y también, esta página misma!"
+								AWS: {
+									NAME: "AWS",
+									TOOLTIP: "AWS es una plataforma muy poderosa que puede hacer muy sencillo los deployments y manteniemiento de contenido. He usado los servicios S3 y RDS de AWS para mantener proyectos grandes y distribuidas."
 								},
 								DATABASES: {
 									NAME: "Bases de Datos",
@@ -134,6 +138,10 @@ LMApp_conditionalLoadList.push({
 						TOOLING: {
 							TITLE: "Herramientas",
 							ITEMS: {
+								WEBPACK: {
+									NAME: "Webpack",
+									TOOLTIP: "Webpack es un build system que puede ser extremadamente poderoso cuando está bien configurado."
+								},
 								GRUNT: {
 									NAME: "Build Tools",
 									TOOLTIP: "Los 'front-end build tools' llegaron a ser un estandard en la industria. Tomo ventaja de ellos todos los días, hasta dar una recomendación al equipo nacional de Razorfish en el proceso de usar al Grunt."
@@ -191,7 +199,7 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								SCUBA: {
 									NAME: "Buceo",
-									TOOLTIP: "Tengo certificado en rescate de buceo, y estoy anotado en un programa para obtener el certificado de Divemaster."
+									TOOLTIP: "Soy un Divemaster certificado por la organización internacional PADI. Trabajo cada tanto en los fines de semana dando clases de buceo con la escuela Seattle Scuba. He buceado a una profundidad de 40 metros, buceado con tiburónes toro, y nadado con pulpos. Por lo tanto, soy conservacionista del medioambiente."
 								},
 								ART: {
 									NAME: "Arte",
@@ -211,7 +219,7 @@ LMApp_conditionalLoadList.push({
 								},
 								ATHLETICS: {
 									NAME: "Atletismo",
-									TOOLTIP: "Me gusta correr, ir al gimnasio, y ir al gimnasio de Krav Maga donde siempre me caga a patadas mi instructor, Adam. Me gustan los eventos como los 5k, media maraton, y eventos estilo Tough Mudder."
+									TOOLTIP: "Me gusta correr, jugar futbol, ir al gimnasio, y ir al gimnasio de Krav Maga donde siempre me caga a patadas mi instructor, Adam. Me gustan los eventos como los 5k, media maraton, y eventos estilo Tough Mudder."
 								}
 							}
 						}
@@ -239,6 +247,10 @@ LMApp_conditionalLoadList.push({
 						RAZORFISH: {
 							LABEL: "Razorfish",
 							SUBLABEL: "Arquitecto Web"
+						},
+						GLYMPSE: {
+							LABEL: "Razorfish",
+							SUBLABEL: "Engeniero: Front-end"
 						}
 					}
 				},

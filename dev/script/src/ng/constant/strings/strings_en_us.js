@@ -84,6 +84,10 @@ LMApp_conditionalLoadList.push({
 						TECHNOLOGIES: {
 							TITLE: "Technologies",
 							ITEMS: {
+								ANGULAR2: {
+									NAME: "Angular 2",
+									TOOLTIP: "Angular 2 is a beautiful platform that improved over its predecessor in almost every way. I particularly like how much it cozies up to the industry standard ES6 spec. Lately I have spent a significant portion of my time architecting and building web applications in Angular 2."
+								},
 								HANDLEBARS: {
 									NAME: "Handlebars",
 									TOOLTIP: "Handlebars has helped me deliver both statically generated as well as Javascript driven solutions for major clients such as Intel and Microsoft. In fact, at the time of this writing, all global components for the Intel.com global initiative were generated out of a library that I architected!"
@@ -92,13 +96,13 @@ LMApp_conditionalLoadList.push({
 									NAME: "Greensock API",
 									TOOLTIP: "Why, this very site uses some Greensock to handle animation! It is one of my favorite APIs and I am extremely comfortable using it."
 								},
+								AWS: {
+									NAME: "AWS",
+									TOOLTIP: "AWS is a powerful platform that can make deployment and content management simple and fast. I have leveraged AWS's S3 cloud storage and RDS instances to manage large distributed projects."
+								},
 								JQUERY: {
 									NAME: "jQuery",
 									TOOLTIP: "No explanation required. jQuery: the screwdriver of the Javascript world!"
-								},
-								ANGULARJS: {
-									NAME: "AngularJS",
-									TOOLTIP: "Production projects using AngularJS are both portable and extensible. The Microsoft Band online dashboard is a good example of a project where I took a lead architectural role in both its design and development. Oh yeah, so is this very site!"
 								},
 								DATABASES: {
 									NAME: "Databases",
@@ -134,6 +138,10 @@ LMApp_conditionalLoadList.push({
 						TOOLING: {
 							TITLE: "Tooling",
 							ITEMS: {
+								WEBPACK: {
+									NAME: "Webpack",
+									TOOLTIP: "Webpack is a robust build system that can be extremely powerful when properly configured."
+								},
 								GRUNT: {
 									NAME: "Build Tools",
 									TOOLTIP: "Front-end build tools have become a de-facto standard for development. I have embraced them fully and have even provided the national Razorfish team with a new standard recommendation on Grunt usage process."
@@ -191,7 +199,7 @@ LMApp_conditionalLoadList.push({
 							ITEMS: {
 								SCUBA: {
 									NAME: "Scuba",
-									TOOLTIP: "I'm a certified rescue scuba diver, and I'm in active training to attain the mantle of Divemaster."
+									TOOLTIP: "I am a certified PADI scuba Dive Master. I occasionally work weekends (once a month or so) training divers of all skill levels. I also really enjoy diving recreationally. I have dived to a depth of 125 feet, swam with bull sharks, and hung out with octopuses. Because of all of this experience, I am a vocal conservationist."
 								},
 								ART: {
 									NAME: "Art",
@@ -211,7 +219,7 @@ LMApp_conditionalLoadList.push({
 								},
 								ATHLETICS: {
 									NAME: "Athletics",
-									TOOLTIP: "I am athletic, and I enjoy running, going to the gym, and frequenting my local Krav Maga training gym where I constantly get my @$$ kicked by my instructor, Adam. I enjoy events like 5ks, half marathons, and Tough Mudder-style events."
+									TOOLTIP: "I am athletic, and I enjoy running, playing soccer, going to the gym, and frequenting my local Krav Maga training gym where I constantly get my @$$ kicked by my instructor, Adam. I enjoy events like 5ks, half marathons, and Tough Mudder-style events."
 								}
 							}
 						}
@@ -239,6 +247,10 @@ LMApp_conditionalLoadList.push({
 						RAZORFISH: {
 							LABEL: "Razorfish",
 							SUBLABEL: "Presentation Layer Architect"
+						},
+						GLYMPSE: {
+							LABEL: "Glympse",
+							SUBLABEL: "Front-end SDE"
 						}
 					}
 				},

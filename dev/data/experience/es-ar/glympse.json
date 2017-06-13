@@ -1,0 +1,24 @@
+{
+	"label": "Glympse",
+	"dateString": "2016-Present",
+	"subLabel": "Engeniero: Front-end",
+	"content": "<p>Mi papel en Glympse es construir y mantener muchas interfaces y muchas partes de la infraestructura web. Trabajo en diseñar arquitectura que es escalable, localizable, y reusable. Nuestro equipo es muy eficiente y cada persona en el equipo tiene la confianza de poder hacer lo necesario para tener exito en su trabajo.</p><p>Tras el tiempo que pasé aqui, expandimos nuestra infraestructura y capacidaded de deployment dramaticamente. Casi todos los proyectos que tenemos (salvo algunos viejos de 'legacy') se conforman a los mismos procesos, y hemos tenido la buena suerte de haber tenido el tiempo para hacer codigo para mejorar nuestras herramientas respeto a la automación de deployment y reducir riesgo al mismo tiempo. Los deployments son tan fáciles ahora que se lo puede hacer desde un telefono viejo (estilo 'flip phone' - no es un chiste, lo hicimos una vez).</p><p>Glympse ha sido una oportunidad espectacular para trabajar en un equipo de plataforma usando codigo para lograr varias metas a traves de una gran variedad de equipos.</p>",
+	"asset": [
+		{
+			"fullUrl": "./asset/image/portfolio/experience/razorfish/intel-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/razorfish/intel-1-thumb.jpg",
+			"link": {
+				"sref": "portfolio.event({\"event\":\"intel\"})",
+				"copy": "Intel.com Global Rebrand"
+			}
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/experience/razorfish/ryse-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/razorfish/ryse-1-thumb.jpg",
+			"link": {
+				"sref": "portfolio.event({\"event\":\"ryse\"})",
+				"copy": "Ryse for Xbox"
+			}
+		}
+	]
+}
