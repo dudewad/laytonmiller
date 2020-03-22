@@ -1,9 +1,11 @@
 dev/bower-components/
+.firebase/
 .idea/
 .sass-cache/
 node_modules/
 dist/
 prod/
+public/
 .ftppass
 *.iml
 /dev/asset/font/lmIcon/*

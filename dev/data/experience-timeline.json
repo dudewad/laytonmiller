@@ -1,9 +1,18 @@
 {
 	"events": [
 		{
+			"stringId": "MEDCHAT",
+			"start": "12/4/2018",
+			"end": "current",
+			"data": {
+				"root": "/data/experience/",
+				"file": "medchat.json"
+			}
+		},
+		{
 			"stringId": "GLYMPSE",
 			"start": "3/15/2016",
-			"end": "current",
+			"end": "8/4/2018",
 			"data": {
 				"root": "/data/experience/",
 				"file": "glympse.json"

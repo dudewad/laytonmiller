@@ -1,0 +1,16 @@
+{
+	"label": "MedChat",
+	"dateString": "2018-Present",
+	"subLabel": "Senior Front-end SDE",
+	"content": "<p>MedChat is a small startup that provides highly secure HIPAA chat capabilities to small, medium, and enterprise sized customers in the healthcare industry. It is akin to popular messaging apps like Slack, however provides a plethora of additional functionality such as chat widgets on customer websites, text message communication with patients, and more.</p><p>My role at MedChat as a core front-end team member is to build and maintain new and existing MedChat applications. We are constantly building new products and are extremely passionate about making our apps as polished as possible. As a team, MedChat is the single most focused, effective team I've ever had the privilege of working with.</p>",
+	"asset": [
+		{
+			"fullUrl": "./asset/image/portfolio/experience/medchat/medchat-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/medchat/medchat-1-thumb.jpg"
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/experience/medchat/medchat-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/medchat/medchat-2-thumb.jpg"
+		}
+	]
+}

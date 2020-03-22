@@ -251,6 +251,10 @@ LMApp_conditionalLoadList.push({
 						GLYMPSE: {
 							LABEL: "Razorfish",
 							SUBLABEL: "Engeniero: Front-end"
+						},
+						MEDCHAT: {
+							LABEL: "MedChat",
+							SUBLABEL: "Engeniero: Front-end"
 						}
 					}
 				},

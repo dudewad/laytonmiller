@@ -7,6 +7,7 @@ module.exports = {
 	    dest: "<%=pkg.directories.dev_root %><%= pkg.directories.font %>/lmIcon/",
 	    destCss: "<%=pkg.directories.dev_root %><%= pkg.directories.scss %>/generated/",
 	    options:{
+	    	autoHint: false,
 		    font: "lmIcon",
 		    engine: "node",
 		    stylesheet: "scss",

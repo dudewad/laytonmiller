@@ -251,6 +251,10 @@ LMApp_conditionalLoadList.push({
 						GLYMPSE: {
 							LABEL: "Glympse",
 							SUBLABEL: "Front-end SDE"
+						},
+						MEDCHAT: {
+							LABEL: "MedChat",
+							SUBLABEL: "Senior Front-end SDE"
 						}
 					}
 				},

@@ -1,6 +1,6 @@
 {
 	"label": "Glympse",
-	"dateString": "2016-Present",
+	"dateString": "2016-2018",
 	"subLabel": "Front-end SDE",
 	"content": "<p>My role at Glympse is to build and maintain a wide array of front-end interfaces and infrastructure. I work to design code architecture that is scalable, localizable, and reusable. Our team runs pretty lean and all members are trusted to take initiative to be owners of whatever item they are working on.</p><p>Over the time I have spent here, we have expanded our infrastructure and deployment capabilities dramatically. Almost all projects (save a couple of legacy ones) now conform to the same specs for deployment procedures, and we have had the good fortune to have the time to write code to improve our tooling to better automate deployment and reduce risk while doing so. Deployments have become so easy, they can be done from a an old-school flip phone (this is not a lie - we actually did it once).</p><p>Glympse has been a spectacular opportunity to work on a platform team leveraging code to achieve goals across a variety of devices and ecosystems.</p>",
 	"asset": [

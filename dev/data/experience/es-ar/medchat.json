@@ -1,0 +1,16 @@
+{
+	"label": "MedChat",
+	"dateString": "2018-Present",
+	"subLabel": "Engeniero: Front-end (Senior)",
+	"content": "<p>MedChat es un startup chiquita que ofrece aplicaciónes de chat de alta seguridad a clientes medicos de tamaño chico, mediano, y enterprise. Es parecido a aplicaciónes populares de chat como Slack, pero ofrece muchas cosas adicionales como aplicaciónes de chat metido en la página web del cliente, mensajes de texto con pacientes, y más.</p><p>My puesto en MedChat como engeniero web es construir y mantener nuevas y existentes aplicaciónes web. Constantamente trabajamos en creer nuevos productos y somos muy apasionados con hacerlos lo mas agradables que sea posible. Como equipo, MedChat tiene el equipo mas enfocado y potente con que he tenido el privilegio de trabajar.</p>",
+	"asset": [
+		{
+			"fullUrl": "./asset/image/portfolio/experience/medchat/medchat-1.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/medchat/medchat-1-thumb.jpg"
+		},
+		{
+			"fullUrl": "./asset/image/portfolio/experience/medchat/medchat-2.jpg",
+			"thumbUrl": "./asset/image/portfolio/experience/medchat/medchat-2-thumb.jpg"
+		}
+	]
+}
